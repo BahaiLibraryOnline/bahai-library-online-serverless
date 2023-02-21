@@ -46,7 +46,7 @@ Phase 1 of work has involved the following:
    - Plan the transform and eventual replace of the static HTML files in S3 with JSON files
 
 ### Infrastructure work to date
-1Infrastructure setup
+Infrastructure setup
    - Create new BLO Google Workspaces account
    - Create new BLO AWS account
    - Set up preliminary AWS IAM policies and permissions
