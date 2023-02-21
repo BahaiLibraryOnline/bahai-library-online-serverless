@@ -1,0 +1,1537 @@
+Transform: 'AWS::Serverless-2016-10-31'
+Resources:
+  ApiGatewayRestApi:
+    Type: 'AWS::Serverless::Api'
+    Properties:
+      Name: bahai-library-online-api
+      StageName: prod
+      DefinitionBody:
+        openapi: 3.0.2
+        info:
+          title: Baha'i Library Online
+          version: 0.0.0
+        servers: []
+        paths:
+          /api/login:
+            post:
+              tags:
+              - auth
+              summary: Login user
+              requestBody:
+                description: Login user
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Login'
+                required: true
+              responses:
+                '201':
+                  description: Token created
+                  content:
+                    application/json:
+                      schema:
+                        type: object
+                        properties:
+                          token:
+                            type: string
+                            example: Bearer token
+                '422':
+                  $ref: '#/components/responses/ValidationErrors'
+          /api/documents:
+            get:
+              tags:
+              - document
+              summary: List documents
+              description: Returns a paginated collection of documents, most recent first
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json:
+                      schema:
+                        $ref: '#/components/schemas/Document'
+            post:
+              tags:
+              - document
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/documents/:
+            get:
+              tags:
+              - document
+              parameters:
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            put:
+              tags:
+              - document
+              parameters:
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            delete:
+              tags:
+              - document
+              parameters:
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/documents//editions:
+            get:
+              tags:
+              - document--editions
+              parameters:
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            post:
+              tags:
+              - document--editions
+              parameters:
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/documents//activities:
+            get:
+              tags:
+              - document-activities
+              parameters:
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            post:
+              tags:
+              - document-activities
+              parameters:
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/documents//languages:
+            get:
+              tags:
+              - document-languages
+              parameters:
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/documents//languages/:
+            post:
+              tags:
+              - document-languages
+              parameters:
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              - name: language
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            delete:
+              tags:
+              - document-languages
+              parameters:
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              - name: language
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/documents//tags:
+            get:
+              tags:
+              - document-tags
+              parameters:
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/documents//tags/:
+            post:
+              tags:
+              - document-tags
+              parameters:
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              - name: tag
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            delete:
+              tags:
+              - document-tags
+              parameters:
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              - name: tag
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/documents//locations:
+            get:
+              tags:
+              - document-locations
+              parameters:
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/documents//locations/:
+            post:
+              tags:
+              - document-locations
+              parameters:
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              - name: location
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            delete:
+              tags:
+              - document-locations
+              parameters:
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              - name: location
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/documents//collections:
+            get:
+              tags:
+              - document--collections
+              parameters:
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/documents//collections/:
+            post:
+              tags:
+              - document--collections
+              parameters:
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              - name: collection
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            delete:
+              tags:
+              - document--collections
+              parameters:
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              - name: collection
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/documents//creators:
+            get:
+              tags:
+              - document--creators
+              parameters:
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/documents//creators/:
+            post:
+              tags:
+              - document--creators
+              parameters:
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              - name: creator
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            delete:
+              tags:
+              - document--creators
+              parameters:
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              - name: creator
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/collections:
+            get:
+              tags:
+              - collection
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            post:
+              tags:
+              - collection
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/collections/:
+            get:
+              tags:
+              - collection
+              parameters:
+              - name: collection
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            put:
+              tags:
+              - collection
+              parameters:
+              - name: collection
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            delete:
+              tags:
+              - collection
+              parameters:
+              - name: collection
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/collections//documents:
+            get:
+              tags:
+              - collection-documents
+              parameters:
+              - name: collection
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/collections//documents/:
+            post:
+              tags:
+              - collection-documents
+              parameters:
+              - name: collection
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            delete:
+              tags:
+              - collection-documents
+              parameters:
+              - name: collection
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/tags:
+            get:
+              tags:
+              - tag
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            post:
+              tags:
+              - tag
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/tags/:
+            get:
+              tags:
+              - tag
+              parameters:
+              - name: tag
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            put:
+              tags:
+              - tag
+              parameters:
+              - name: tag
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            delete:
+              tags:
+              - tag
+              parameters:
+              - name: tag
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/tags//documents:
+            get:
+              tags:
+              - tag-documents
+              parameters:
+              - name: tag
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/tags//documents/:
+            post:
+              tags:
+              - tag-documents
+              parameters:
+              - name: tag
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            delete:
+              tags:
+              - tag-documents
+              parameters:
+              - name: tag
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/users:
+            get:
+              tags:
+              - user
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            post:
+              tags:
+              - user
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/users/:
+            get:
+              tags:
+              - user
+              parameters:
+              - name: user
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            put:
+              tags:
+              - user
+              parameters:
+              - name: user
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            delete:
+              tags:
+              - user
+              parameters:
+              - name: user
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/users//activities:
+            get:
+              tags:
+              - user-activities
+              parameters:
+              - name: user
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            post:
+              tags:
+              - user-activities
+              parameters:
+              - name: user
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/languages:
+            get:
+              tags:
+              - language
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            post:
+              tags:
+              - language
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/languages/:
+            get:
+              tags:
+              - language
+              parameters:
+              - name: language
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            put:
+              tags:
+              - language
+              parameters:
+              - name: language
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            delete:
+              tags:
+              - language
+              parameters:
+              - name: language
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/languages//documents:
+            get:
+              tags:
+              - language-documents
+              parameters:
+              - name: language
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/languages//documents/:
+            post:
+              tags:
+              - language-documents
+              parameters:
+              - name: language
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            delete:
+              tags:
+              - language-documents
+              parameters:
+              - name: language
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/locations:
+            get:
+              tags:
+              - location
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            post:
+              tags:
+              - location
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/locations/:
+            get:
+              tags:
+              - location
+              parameters:
+              - name: location
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            put:
+              tags:
+              - location
+              parameters:
+              - name: location
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            delete:
+              tags:
+              - location
+              parameters:
+              - name: location
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/locations//documents:
+            get:
+              tags:
+              - location-documents
+              parameters:
+              - name: location
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/locations//documents/:
+            post:
+              tags:
+              - location-documents
+              parameters:
+              - name: location
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            delete:
+              tags:
+              - location-documents
+              parameters:
+              - name: location
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/creators:
+            get:
+              tags:
+              - creator
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            post:
+              tags:
+              - creator
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/creators/:
+            get:
+              tags:
+              - creator
+              parameters:
+              - name: creator
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            put:
+              tags:
+              - creator
+              parameters:
+              - name: creator
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            delete:
+              tags:
+              - creator
+              parameters:
+              - name: creator
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/creators//documents:
+            get:
+              tags:
+              - creator-documents
+              parameters:
+              - name: creator
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/creators//documents/:
+            post:
+              tags:
+              - creator-documents
+              parameters:
+              - name: creator
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            delete:
+              tags:
+              - creator-documents
+              parameters:
+              - name: creator
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              - name: document
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/editions:
+            get:
+              tags:
+              - edition
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            post:
+              tags:
+              - edition
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/editions/:
+            get:
+              tags:
+              - edition
+              parameters:
+              - name: edition
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            put:
+              tags:
+              - edition
+              parameters:
+              - name: edition
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            delete:
+              tags:
+              - edition
+              parameters:
+              - name: edition
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/activities:
+            get:
+              tags:
+              - activity
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            post:
+              tags:
+              - activity
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+          /api/activities/:
+            get:
+              tags:
+              - activity
+              parameters:
+              - name: activity
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            put:
+              tags:
+              - activity
+              parameters:
+              - name: activity
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+            delete:
+              tags:
+              - activity
+              parameters:
+              - name: activity
+                in: path
+                description: ''
+                required: true
+                schema:
+                  type: string
+              responses:
+                '200':
+                  description: Successful response
+                  content:
+                    application/json: {}
+        components:
+          schemas:
+            Document:
+              type: object
+              properties:
+                content_html:
+                  type: string
+            Login:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+          responses:
+            ValidationErrors:
+              description: Validation errors
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: The given data was invalid.
+                      errors:
+                        type: object
+                        additionalProperties:
+                          type: array
+                          items:
+                            type: string
+                        example:
+                          field:
+                          - first error
+                          - second error
+                          - X error
+        tags:
+        - name: auth
+          description: Application auth related endpoints
+      Auth:
+        DefaultAuthorizer: MyAuthorizer
+        Authorizers:
+          MyAuthorizer:
+            UserPoolArn: !Ref UserPool
+            Identity:
+              Headers:
+                - Authorization
+            Claims:
+              - email
+              - custom:role
+      MethodSettings:
+        - ResourcePath: '/*'
+          HttpMethod: '*'
+          MetricsEnabled: true
+          LoggingLevel: INFO
+          DataTraceEnabled: true
+          AuthorizationType: COGNITO_USER_POOLS
+          AuthorizerId: !Ref MyAuthorizer
+
+  DocumentLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: 'document-lambda-function'
+      CodeUri: './src/document/'
+      Handler: 'app.handler'
+      Runtime: nodejs14.x
+      MemorySize: 128
+      Timeout: 10
+      Environment:
+        Variables:
+          DB_HOST: !Ref DBHost
+          DB_PORT: !Ref DBPort
+          DB_NAME: !Ref DBName
+          DB_USERNAME: !Ref DBUsername
+          DB_PASSWORD: !Ref DBPassword
+      Events:
+        DocumentApi:
+          Type: Api
+          Properties:
+            Path: /api/documents/
+            Method: get
+            RestApiId: !Ref ApiGatewayRestApi
+            RequestParameters:
+              method.request.path.document: true
+            Integration:
+              Type: AWS_PROXY
+              Uri: !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentLambdaFunction.Arn}/invocations'
+              IntegrationResponses:
+                - StatusCode: 200
+                  ResponseTemplates:
+                    application/json: |
+                      {
+                        "id": "abc123",
+                        "title": "Sample Document",
+                        "author": "John Smith",
+                        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+                        "created_at": "2022-02-14T10:00:00Z"
+                      }
+              PassthroughBehavior: WHEN_NO_MATCH
+            MethodResponses:
+              - StatusCode: 200
+                ResponseModels:
+                  application/json: "Empty"
+
+        CreateDocumentApi:
+          Type: Api
+          Properties:
+            Path: /api/documents
+            Method: post
+            RestApiId: !Ref ApiGatewayRestApi
+            Integration:
+              Type: AWS_PROXY
+              Uri: !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentLambdaFunction.Arn}/invocations'
+              IntegrationResponses:
+                - StatusCode: 200
+                  ResponseTemplates:
+                    application/json: |
+                      {
+                        "id": "abc123",
+                        "title": "Sample Document",
+                        "author": "John Smith",
+                        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+                        "created_at": "2022-02-14T10:00:00Z"
+                      }
+              PassthroughBehavior: WHEN_NO_MATCH
+            MethodResponses:
+              - StatusCode: 200
+                ResponseModels:
+                  application/json: "Empty"
+
+        UpdateDocumentApi:
+          Type: Api
+          Properties:
+            Path: /api/documents/
+            Method: put
+            RestApiId: !Ref ApiGatewayRestApi
+            RequestParameters:
+              method.request.path.document: true
+            Integration:
+              Type: AWS_PROXY
+              Uri: !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentLambdaFunction.Arn}/invocations'
+              IntegrationResponses:
+                - StatusCode: 200
+                  ResponseTemplates:
+                    application/json: |
+                      {
+                        "message": "Document updated"
+                      }
+              PassthroughBehavior: WHEN_NO_MATCH
+            MethodResponses:
+              - StatusCode: 200
+                ResponseModels:
+            application/json: "Empty"
+
+        DeleteDocumentApi:
+          Type: Api
+          Properties:
+            Path: /api/documents/
+            Method: delete
+            RestApiId: !Ref ApiGatewayRestApi
+            RequestParameters:
+              method.request.path.document: true
+            Integration:
+              Type: AWS_PROXY
+              Uri: !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${DocumentLambdaFunction.Arn}/invocations'
+              IntegrationResponses:
+                - StatusCode: 200
+                  ResponseTemplates:
+                    application/json: |
+                      {
+                        "message": "Document deleted"
+                      }
+              PassthroughBehavior: WHEN_NO_MATCH
+            MethodResponses:
+              - StatusCode: 200
+                ResponseModels:
+                  application/json: "Empty"
+  UserLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: 'user-lambda-function'
+      CodeUri: './src/user/'
+      Handler: 'app.handler'
+      Runtime: nodejs14.x
+      MemorySize: 128
+      Timeout: 10
+      Environment:
+        Variables:
+          DB_HOST: !Ref DBHost
+          DB_PORT: !Ref DBPort
+          DB_NAME: !Ref DBName
+          DB_USERNAME: !Ref DBUsername
+          DB_PASSWORD: !Ref DBPassword
+      Events:
+        LoginApi:
+          Type: Api
+          Properties:
+            Path: /api/login
+            Method: post
+            RestApiId: !Ref ApiGatewayRestApi
+            Auth:
+              Authorizer: aws_iam
+            Integration:
+              Type: AWS_PROXY
+              Uri: !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${UserLambdaFunction.Arn}/invocations'
+              PassthroughBehavior: WHEN_NO_MATCH
+              TimeoutInMillis: 29000
+              HttpMethod: POST
+              ContentHandling: CONVERT_TO_TEXT
+            MethodResponses:
+              - StatusCode: 201
+                ResponseModels:
+                  application/json: "Empty"
+  UserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName: bahai-library-online-user-pool
+      Policies:
+        PasswordPolicy:
+          MinimumLength: 8
+          RequireLowercase: true
+          RequireUppercase: true
+          RequireNumbers: true
+          RequireSymbols: false
+      Schema:
+        - Name: email
+          Required: true
+          Mutable: true
+        - Name: name
+          Required: true
+          Mutable: true
+        - Name: role
+          Required: false
+          Mutable: true
+      UsernameAttributes:
+        - email
+      VerificationMessageTemplate:
+        EmailSubject: Verify your email for Bahai Library Online
+        EmailMessage: "Hello {username},\n\nThank you for signing up for Bahai Library Online! Your verification code is {####}."
+      AdminCreateUserConfig:
+        AllowAdminCreateUserOnly: false
+      EmailConfiguration:
+        EmailSendingAccount: DEVELOPER
+        SourceArn: !Sub 'arn:aws:ses:${AWS::Region}:${AWS::AccountId}:identity/${EmailSource}'
