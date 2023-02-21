@@ -33,12 +33,15 @@ Phase 1 of work has involved the following:
 1. Assess and diagnose legacy BLO app as of 2023: codebase, database, view layer, URLs and backlinks, including backlink attacks, refactoring and rebuild alternatives.
    - Explore and compare Laravel, GCP and AWS rebuild routes
    - Select AWS for speed, versatility and customer service
-2. Architectural strategy planning and design ((see [ADR 1](/documentation/architecture/ADR 1: Migration From LAMP to Serverless (AWS).md)))
+2. Architectural strategy planning and design (see [ADR 1](/documentation/architecture/ADR 1: Migration From LAMP to Serverless (AWS).md))
    - Research, rule out and select implementation alternatives, explore scenarios, estimate costs, roadmap and prioritise tasks
    - Validate architectural design concepts and AWS service orchestration choices in consultation with 4 AWS experts and solution architects over multiple meetings
    - Design and plan graceful failure and redundancy strategies
    - Design and plan a serverless API
-3. Foundational data layer design ((see [API docs](/documentation/api)))
+3. Foundational data layer design (see [API docs](/documentation/api))
+
+![api design](documentation/api/api_design/Data%20structure.png)
+
    - Design a preliminary data structure for the planned API
    - Draft an OpenAPI contract to enable API First design
    - Decide on the database paradigm to implement (current recommendation is NoSQL document database, DynamoDB or MongoDB/AtlasCloud, with the latter as likely choice)
@@ -67,5 +70,5 @@ Phase 1 has completed the following implementation, additionally to from the arc
 
 ### Documentation work to date
 1. Readme
-2. Preliminary data structure and API design and mapping (([API docs](/documentation/api)))
+2. Preliminary data structure and API design and mapping ([API docs](/documentation/api))
 3. Architectural Decision Records (see [architecture docs](/documentation/architecture)
