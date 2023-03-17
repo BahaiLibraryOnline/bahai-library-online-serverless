@@ -1,0 +1,243 @@
+{
+  "documentId": {
+    "S": "UUID"
+  },
+  "audio_version": {
+    "S": ""
+  },
+  "authors": {
+    "L": [
+      {
+        "M": {
+          "firstNames": {
+            "S": ""
+          },
+          "publishedFirstNames": {
+            "S": ""
+          },
+          "publishedSurnames": {
+            "S": ""
+          },
+          "surnames": {
+            "S": "Abdu'l-Bah&aacute;"
+          }
+        }
+      },
+      {
+        "M": {
+          "firstNames": {
+            "S": ""
+          },
+          "publishedFirstNames": {
+            "S": ""
+          },
+          "publishedSurnames": {
+            "S": ""
+          },
+          "surnames": {
+            "S": "Abdu'l-Baha;"
+          }
+        }
+      }
+    ]
+  },
+  "blo2018_id": {
+    "S": "16"
+  },
+  "collections": {
+    "S": "Translation_provisional; Scripture"
+  },
+  "contributors": {
+    "L": [
+      {
+        "M": {
+          "firstNames": {
+            "S": "Khazeh"
+          },
+          "surnames": {
+            "S": "Fananapazir"
+          },
+          "contributor_roles": {
+            "L": [
+              {
+                "M": {
+                  "role": {
+                    "S": "editor"
+                  },
+                  "abbreviation": {
+                    "S": "ed"
+                  }
+                }
+              },
+              {
+                "M": {
+                "role": {
+                  "S": "editor"
+                },
+                "abbreviation": {
+                  "S": "ed"
+                }
+              }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "M": {
+          "firstNames": {
+            "S": "Peter"
+          },
+          "surnames": {
+            "S": "Terry"
+          }
+        }
+      }
+    ]
+  },
+  "cross_references": {
+    "S": "https://bahai-library.com/abdul-baha_fananapazir_martyrdom_bab[alternative translation by Khazeh Fananapazir (2004)]"
+  },
+  "date_created": {
+    "S": "2023-03-16T07:03:50.425Z"
+  },
+  "date_updated": {
+    "S": "2023-03-16T07:03:50.425Z"
+  },
+  "description": {
+    "S": "Three translations: a French version by Rochan Mavaddat, an English rendering from the French by Peter Terry, and an English translation from the original Persian by Khazeh Fananapazir."
+  },
+  "editions": {
+    "L": [
+      {
+        "M": {
+          "city": {
+            "S": ""
+          },
+          "date": {
+            "S": ""
+          },
+          "isbn": {
+            "S": ""
+          },
+          "isCurrentDocument": {
+            "N": "0"
+          },
+          "originalTitle": {
+            "S": "Lawh-i-Yawm-i-Shahádat-i-Hadrat-i-A'lá"
+          },
+          "pageRange": {
+            "NULL": true
+          },
+          "publication": {
+            "NULL": true
+          },
+          "publisher": {
+            "S": ""
+          },
+          "volume": {
+            "NULL": true
+          }
+        }
+      },
+      {
+        "M": {
+          "city": {
+            "S": "Los Angeles"
+          },
+          "date": {
+            "S": "1981"
+          },
+          "isbn": {
+            "S": ""
+          },
+          "isCurrentDocument": {
+            "N": "1"
+          },
+          "originalTitle": {
+            "NULL": true
+          },
+          "pageRange": {
+            "S": "187-88"
+          },
+          "publication": {
+            "S": "Ayyam-i-Tis'ih [The Nine Days]"
+          },
+          "publisher": {
+            "S": "Kalimat Press"
+          },
+          "volume": {
+            "S": ""
+          }
+        }
+      }
+    ]
+  },
+  "filename": {
+    "S": "abdul-baha_day_martyrdom_bahaullah"
+  },
+  "file_size": {
+    "N": "0"
+  },
+  "languages": {
+    "L": [
+      {
+        "M": {
+          "isCurrentDocument": {
+            "N": "0"
+          },
+          "language": {
+            "S": "Persian"
+          }
+        }
+      },
+      {
+        "M": {
+          "isCurrentDocument": {
+            "N": "1"
+          },
+          "language": {
+            "S": "French"
+          }
+        }
+      },
+      {
+        "M": {
+          "isCurrentDocument": {
+            "N": "1"
+          },
+          "language": {
+            "S": "English"
+          }
+        }
+      }
+    ]
+  },
+  "locales": {
+    "S": "India;Nepal"
+  },
+  "notes": {
+    "S": ""
+  },
+  "page_total": {
+    "S": ""
+  },
+  "permission_type": {
+    "S": "translator"
+  },
+  "phelps_info": {
+    "S": "AB03056"
+  },
+  "subtitle": {
+    "S": "Le Tablette Concernant l'Anniversaire du Martyre de Sa Sainteté, Exaltée"
+  },
+  "tags": {
+    "S": "Bab, Martyrdom of;Abdul-Baha, Writings and talks of"
+  },
+  "title": {
+    "S": "Tablet Concerning the Day of the Martyrdom of His Holiness, the Exalted One"
+  },
+  "views": {
+    "N": "10117"
+  }
+}

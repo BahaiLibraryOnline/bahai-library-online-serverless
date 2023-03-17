@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:latest
+    command: --max_allowed_packet=32505856
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: development
+      MYSQL_DATABASE: bahai
+      MYSQL_USER: bahai
+      MYSQL_PASSWORD: development
+    volumes:
+      - bahai-data-dev:/var/lib/mysql
+    ports:
+      - "9306:3306"
+volumes:
+  bahai-data-dev:
