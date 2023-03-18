@@ -5,7 +5,7 @@ AWS.config.credentials = new AWS.SharedIniFileCredentials({profile: 'blo'});
 AWS.config.update({region: 'eu-north-1'});
 
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
-const tableName = 'Documents';
+const tableName = 'BLODocuments';
 
 const connectionConfig = {
     host: 'localhost', port: 9306, user: 'bahai', password: 'development', database: 'bahai',

@@ -40,7 +40,7 @@ Phase 1 of work has involved the following:
    - Design and plan a serverless API
 3. Foundational data layer design (see [API docs](/documentation/api))
 
-![api design](documentation/api/api_design/Data%20structure.png)
+![api design](documentation/api_design/Data%20structure.png)
 
    - Design a preliminary data structure for the planned API
    - Draft an OpenAPI contract to enable API First design

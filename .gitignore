@@ -16,7 +16,7 @@ yarn.lock
 
 ## AWS Amplify and React build files
 #build/
-# DynamoDB local database files
+# DynamoDB local data_layer files
 .dynamodb/
 .dynamodb-jetty/
 
