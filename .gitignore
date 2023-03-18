@@ -53,6 +53,6 @@ amplifytools.xcconfig
 **.sample
 #amplify-do-not-edit-end
 
-# BLO big databases
-bahai_BLO2018.sql
-blo2023.sql
+# BLO database migrations
+blo_migration_2023_03_15.sql
+bahai_BLO2018_migration_2023_03_15.sql
