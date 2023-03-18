@@ -13,7 +13,11 @@
     },
     "categories": {
       "auth": {
-        "serverlessblo79c0d343": {}
+        "serverlessblo1cd84641": {},
+        "userPoolGroups": {}
+      },
+      "api": {
+        "serverlessblo": {}
       }
     }
   }

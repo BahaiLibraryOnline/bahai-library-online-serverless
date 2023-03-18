@@ -52,3 +52,7 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
+
+# BLO big databases
+bahai_BLO2018.sql
+blo2023.sql

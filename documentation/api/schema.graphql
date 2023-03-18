@@ -1,105 +1,82 @@
-type Document @model(keyName: "byDocumentId") {
-  id: ID! @primaryKey(sortKeyFields: ["title", "dateCurrentPublication", "filename"])
-  audioVersion: String
-  blo2018Id: Int @unique @auth(rules: [{allow: groups, groups: ["Admin"]}])
-  collections: [DocumentCollection] @connection
-  contributors: [DocumentContributor] @connection
-  crossReferences: String
-  dateOriginalPublication: String
-  dateCurrentPublication: String @validate(rules: [{ rule: "required" }])
-  description: String
-  editions: [DocumentEdition] @connection
-  filename: String @validate(rules: [{ rule: "required" }])
-  fileSize: Int
-  languages: [DocumentLanguage] @connection
-  locales: String
-  notes: String
-  pageRange: String
-  pageTotal: Int @validate(rules: [{ rule: "range", min: 0, max: 5000 }])
-  permissionType: String
-  phelpsInfo: String
-  subtitle: String
-  tags: [DocumentTag] @connection
-  title: String @validate(rules: [{ rule: "required" }])
-  views: Int
+type Document @model {
+  audioVersion: String @auth(rules: [{ allow: public }])
+  blo2018Id: Int @auth(rules: [{ allow: groups, groups: ["Admin"] }])
+  collections: [DocumentCollection] @manyToMany(relationName: "CollectionDocuments") @auth(rules: [{ allow: public }])
+  contributors: [DocumentContributor] @manyToMany(relationName: "ContributorDocuments") @auth(rules: [{ allow: public }])
+  crossReferences: String @auth(rules: [{ allow: public }])
+  dateOriginalPublication: String @auth(rules: [{ allow: public }])
+  dateCurrentPublication: String @auth(rules: [{ allow: public }])
+  description: String @auth(rules: [{ allow: public }])
+  editions: [DocumentEdition] @manyToMany(relationName: "EditionDocuments") @auth(rules: [{ allow: public }])
+  filename: String @auth(rules: [{ allow: public }])
+  fileSize: Int @auth(rules: [{ allow: public }])
+  languages: [DocumentLanguage] @manyToMany(relationName: "LanguageDocuments") @auth(rules: [{ allow: public }])
+  locales: String @auth(rules: [{ allow: public }])
+  notes: String @auth(rules: [{ allow: public }])
+  pageRange: String @auth(rules: [{ allow: public }])
+  pageTotal: Int @auth(rules: [{ allow: public }])
+  permissionType: String @auth(rules: [{ allow: public }])
+  phelpsInfo: String @auth(rules: [{ allow: public }])
+  subtitle: String @auth(rules: [{ allow: public }])
+  tags: [DocumentTag] @manyToMany(relationName: "TagDocuments") @auth(rules: [{ allow: public }])
+  title: String @auth(rules: [{ allow: public }])
+  views: Int @auth(rules: [{ allow: public }])
 }
 
 type DocumentCollection @model {
-  id: ID!
-  name: String
-  documents: [Document] @connection(keyName: "byCollectionDocument", fields: ["id"])
+  name: String @auth(rules: [{ allow: public }])
+  documents: [Document] @manyToMany(relationName: "CollectionDocuments") @auth(rules: [{ allow: public }])
 }
 
 type DocumentContributor @model {
-  id: ID!
-  firstNames: String
-  surnames: String
-  publicationFirstNames: String
-  publicationSurnames: String
-  isAuthor: Boolean!
-  isEditor: Boolean!
-  isTranslator: Boolean!
-  isCompiler: Boolean!
-  isIllustrator: Boolean!
-  isOther: Boolean!
-  editorAbbreviation: String @readonly(if: ["!isEditor"])
-  translatorAbbreviation: String @readonly(if: ["!isTranslator"])
-  compilerAbbreviation: String @readonly(if: ["!isCompiler"])
-  otherDescription: String
-  documents: [Document] @connection(keyName: "byContributorDocument", fields: ["id"])
+  firstNames: String @auth(rules: [{ allow: public }])
+  surnames: String @auth(rules: [{ allow: public }])
+  publicationFirstNames: String @auth(rules: [{ allow: public }])
+  publicationSurnames: String @auth(rules: [{ allow: public }])
+  isAuthor: Boolean @auth(rules: [{ allow: public }])
+  isEditor: Boolean @auth(rules: [{ allow: public }])
+  isTranslator: Boolean @auth(rules: [{ allow: public }])
+  isCompiler: Boolean @auth(rules: [{ allow: public }])
+  isIllustrator: Boolean @auth(rules: [{ allow: public }])
+  isOther: Boolean @auth(rules: [{ allow: public }])
+  otherDescription: String @auth(rules: [{ allow: public }])
+  documents: [Document] @manyToMany(relationName: "ContributorDocuments") @auth(rules: [{ allow: public }])
 }
 
 type DocumentEdition @model {
-  id: ID!
-  city: String
-  date: String
-  isbn: String
-  isCurrentDocument: Boolean
-  originalTitle: String
-  pageRange: String
-  publication: String
-  publisher: String
-  volume: String
-  documents: [Document] @connection(keyName: "byEditionDocument", fields: ["id"])
+  city: String @auth(rules: [{ allow: public }])
+  date: String @auth(rules: [{ allow: public }])
+  isbn: String @auth(rules: [{ allow: public }])
+  isCurrentDocument: Boolean @auth(rules: [{ allow: public }])
+  originalTitle: String @auth(rules: [{ allow: public }])
+  pageRange: String @auth(rules: [{ allow: public }])
+  publication: String @auth(rules: [{ allow: public }])
+  publisher: String @auth(rules: [{ allow: public }])
+  volume: String @auth(rules: [{ allow: public }])
+  documents: [Document] @manyToMany(relationName: "EditionDocuments") @auth(rules: [{ allow: public }])
 }
 
 type DocumentLanguage @model {
-  id: ID!
-  isCurrentDocument: Boolean
-  language: String
-  documents: [Document] @connection(keyName: "byLanguageDocument", fields: ["id"])
+  isCurrentDocument: Boolean @auth(rules: [{ allow: public }])
+  language: String @auth(rules: [{ allow: public }])
+  documents: [Document] @auth(rules: [{ allow: public }]) @manyToMany(relationName: "LanguageDocuments")
 }
 
 type DocumentTag @model {
-  id: ID!
-  isCurrentDocument: Boolean
-  language: String
-  documents: [Document] @connection(keyName: "byTagDocument", fields: ["id"])
+  isCurrentDocument: Boolean @auth(rules: [{ allow: public }])
+  language: String @auth(rules: [{ allow: public }])
+  documents: [Document] @auth(rules: [{ allow: public }]) @manyToMany(relationName: "TagDocuments")
 }
 
 type DocumentSummary @model {
-  id: ID!
-  filename: String
-  collectionName: String
-  contributorName: String
-  dateCurrentPublication: String
-  language: String
-  title: String
-  tag: String
-  views: Int
+  filename: String @auth(rules: [{ allow: public }])
+  collectionName: String @auth(rules: [{ allow: public }])
+  contributorName: String @auth(rules: [{ allow: public }])
+  dateCurrentPublication: String @auth(rules: [{ allow: public }])
+  language: String @auth(rules: [{ allow: public }])
+  title: String @auth(rules: [{ allow: public }])
+  tag: String @auth(rules: [{ allow: public }])
+  views: Int @auth(rules: [{ allow: public }])
 }
 
-type Query {
-  getDocument(id: ID!): Document
-  listDocuments: [Document]
-  searchDocuments(
-    query: String!
-    collections: [String]
-    contributors: [String]
-    languages: [String]
-    tags: [String]
-    dateFrom: String
-    dateTo: String
-  ): [Document]
-  getDocumentSummary(id: ID!): [Document]
-}
+

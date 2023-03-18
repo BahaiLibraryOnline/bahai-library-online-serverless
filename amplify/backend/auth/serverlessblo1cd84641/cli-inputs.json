@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "serverlessblo79c0d343_identitypool_79c0d343",
+    "identityPoolName": "serverlessblo1cd84641_identitypool_1cd84641",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "server79c0d343",
-    "userPoolName": "serverlessblo79c0d343_userpool_79c0d343",
+    "resourceNameTruncated": "server1cd84641",
+    "userPoolName": "serverlessblo1cd84641_userpool_1cd84641",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -31,18 +31,18 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "server79c0d343_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "server1cd84641_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "79c0d343",
-    "resourceName": "serverlessblo79c0d343",
+    "sharedId": "1cd84641",
+    "resourceName": "serverlessblo1cd84641",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "default",
     "usernameAttributes": [
       "email"
     ],
+    "triggers": {},
     "userPoolGroupList": [
-      "authpool",
-      "Admin"
+      "serverlessblocognitouserpoolgroup"
     ],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
@@ -60,6 +60,10 @@
       ]
     },
     "breakCircularDependency": true,
-    "dependsOn": []
+    "dependsOn": [],
+    "parentStack": {
+      "Ref": "AWS::StackId"
+    },
+    "permissions": []
   }
 }

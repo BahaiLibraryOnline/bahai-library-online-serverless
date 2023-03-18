@@ -1,13 +1,13 @@
 export type AmplifyDependentResourcesAttributes = {
   "api": {
-    "metadataAPI": {
+    "serverlessblo": {
       "GraphQLAPIEndpointOutput": "string",
       "GraphQLAPIIdOutput": "string",
       "GraphQLAPIKeyOutput": "string"
     }
   },
   "auth": {
-    "serverlessblo79c0d343": {
+    "serverlessblo1cd84641": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
       "IdentityPoolId": "string",
@@ -17,8 +17,7 @@ export type AmplifyDependentResourcesAttributes = {
       "UserPoolName": "string"
     },
     "userPoolGroups": {
-      "AdminGroupRole": "string",
-      "authpoolGroupRole": "string"
+      "serverlessblocognitouserpoolgroupGroupRole": "string"
     }
   }
 }

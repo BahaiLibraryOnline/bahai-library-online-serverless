@@ -1,10 +1,6 @@
 [
   {
-    "groupName": "authpool",
+    "groupName": "serverlessblocognitouserpoolgroup",
     "precedence": 1
-  },
-  {
-    "groupName": "Admin",
-    "precedence": 2
   }
 ]

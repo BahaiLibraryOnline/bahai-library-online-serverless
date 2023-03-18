@@ -78,5 +78,3 @@ type DocumentSummary @model {
     tag: String @auth(rules: [{ allow: public }])
     views: Int @auth(rules: [{ allow: public }])
 }
-
-
