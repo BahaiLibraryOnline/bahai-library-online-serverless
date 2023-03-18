@@ -1,0 +1,105 @@
+type Document @model(keyName: "byDocumentId") {
+  id: ID! @primaryKey(sortKeyFields: ["title", "dateCurrentPublication", "filename"])
+  audioVersion: String
+  blo2018Id: Int @unique @auth(rules: [{allow: groups, groups: ["Admin"]}])
+  collections: [DocumentCollection] @connection
+  contributors: [DocumentContributor] @connection
+  crossReferences: String
+  dateOriginalPublication: String
+  dateCurrentPublication: String @validate(rules: [{ rule: "required" }])
+  description: String
+  editions: [DocumentEdition] @connection
+  filename: String @validate(rules: [{ rule: "required" }])
+  fileSize: Int
+  languages: [DocumentLanguage] @connection
+  locales: String
+  notes: String
+  pageRange: String
+  pageTotal: Int @validate(rules: [{ rule: "range", min: 0, max: 5000 }])
+  permissionType: String
+  phelpsInfo: String
+  subtitle: String
+  tags: [DocumentTag] @connection
+  title: String @validate(rules: [{ rule: "required" }])
+  views: Int
+}
+
+type DocumentCollection @model {
+  id: ID!
+  name: String
+  documents: [Document] @connection(keyName: "byCollectionDocument", fields: ["id"])
+}
+
+type DocumentContributor @model {
+  id: ID!
+  firstNames: String
+  surnames: String
+  publicationFirstNames: String
+  publicationSurnames: String
+  isAuthor: Boolean!
+  isEditor: Boolean!
+  isTranslator: Boolean!
+  isCompiler: Boolean!
+  isIllustrator: Boolean!
+  isOther: Boolean!
+  editorAbbreviation: String @readonly(if: ["!isEditor"])
+  translatorAbbreviation: String @readonly(if: ["!isTranslator"])
+  compilerAbbreviation: String @readonly(if: ["!isCompiler"])
+  otherDescription: String
+  documents: [Document] @connection(keyName: "byContributorDocument", fields: ["id"])
+}
+
+type DocumentEdition @model {
+  id: ID!
+  city: String
+  date: String
+  isbn: String
+  isCurrentDocument: Boolean
+  originalTitle: String
+  pageRange: String
+  publication: String
+  publisher: String
+  volume: String
+  documents: [Document] @connection(keyName: "byEditionDocument", fields: ["id"])
+}
+
+type DocumentLanguage @model {
+  id: ID!
+  isCurrentDocument: Boolean
+  language: String
+  documents: [Document] @connection(keyName: "byLanguageDocument", fields: ["id"])
+}
+
+type DocumentTag @model {
+  id: ID!
+  isCurrentDocument: Boolean
+  language: String
+  documents: [Document] @connection(keyName: "byTagDocument", fields: ["id"])
+}
+
+type DocumentSummary @model {
+  id: ID!
+  filename: String
+  collectionName: String
+  contributorName: String
+  dateCurrentPublication: String
+  language: String
+  title: String
+  tag: String
+  views: Int
+}
+
+type Query {
+  getDocument(id: ID!): Document
+  listDocuments: [Document]
+  searchDocuments(
+    query: String!
+    collections: [String]
+    contributors: [String]
+    languages: [String]
+    tags: [String]
+    dateFrom: String
+    dateTo: String
+  ): [Document]
+  getDocumentSummary(id: ID!): [Document]
+}

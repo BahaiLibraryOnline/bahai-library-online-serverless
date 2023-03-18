@@ -1,0 +1,148 @@
+{
+  "id": {
+    "S": ""
+  },
+  "audio_version": {
+    "S": ""
+  },
+  "blo2018_id": {
+    "S": ""
+  },
+  "collections": {
+    "S": ""
+  },
+  "contributors": {
+    "L": [
+      {
+        "M": {
+          "first_names": {
+            "S": ""
+          },
+          "surnames": {
+            "S": ""
+          },
+          "publication_first_names": {
+            "S": ""
+          },
+          "publication_surnames": {
+            "S": ""
+          },
+          "roles": {
+            "L": [
+              {
+                "M": {
+                  "role": {
+                    "S": ""
+                  },
+                  "abbreviation": {
+                    "S": ""
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "cross_references": {
+    "S": ""
+  },
+  "date_created": {
+    "S": "2023-03-17T07:59:56.054Z"
+  },
+  "date_current_publication": {
+    "S": ""
+  },
+  "date_original_publication": {
+    "S": ""
+  },
+  "date_updated": {
+    "S": "2023-03-17T07:59:56.054Z"
+  },
+  "description": {
+    "S": ""
+  },
+  "editions": {
+    "L": [
+      {
+        "M": {
+          "city": {
+            "S": ""
+          },
+          "date": {
+            "S": ""
+          },
+          "isbn": {
+            "S": ""
+          },
+          "isCurrentDocument": {
+            "N": "0"
+          },
+          "originalTitle": {
+            "S": ""
+          },
+          "pageRange": {
+            "S": ""
+          },
+          "publication": {
+            "S": ""
+          },
+          "publisher": {
+            "S": ""
+          },
+          "volume": {
+            "S": ""
+          }
+        }
+      }
+    ]
+  },
+  "filename": {
+    "S": ""
+  },
+  "file_size": {
+    "N": ""
+  },
+  "languages": {
+    "L": [
+      {
+        "M": {
+          "isCurrentDocument": {
+            "BOOL": true
+          },
+          "language": {
+            "S": ""
+          }
+        }
+      }
+    ]
+  },
+  "locales": {
+    "S": ""
+  },
+  "notes": {
+    "S": ""
+  },
+  "page_total": {
+    "N": ""
+  },
+  "permission_type": {
+    "S": ""
+  },
+  "phelps_info": {
+    "S": ""
+  },
+  "subtitle": {
+    "S": ""
+  },
+  "tags": {
+    "S": ""
+  },
+  "title": {
+    "S": ""
+  },
+  "views": {
+    "N": "0"
+  }
+}

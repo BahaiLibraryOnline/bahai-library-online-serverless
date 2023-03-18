@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {v4 as uuidv4} from 'uuid';
 import EditionsFormInputs from './EditionsFormInputs';
-import AuthorsFormInputs from './AuthorsFormInputs';
 import ContributorsFormInputs from './ContributorsFormInputs';
 import LanguagesFormInputs from './LanguagesFormInputs';
 
@@ -9,11 +8,12 @@ import LanguagesFormInputs from './LanguagesFormInputs';
 const initialDocumentData = {
     documentId: {S: ''},
     audio_version: {S: ''},
-    authors: {L: []},
     collections: {S: ''},
     contributors: {L: []},
     cross_references: {S: ''},
     date_created: {S: ''},
+    date_current_publication: {S: ''},
+    date_original_publication: {S: ''},
     date_updated: {S: ''},
     description: {S: ''},
     editions: {L: []},
@@ -79,32 +79,6 @@ const AddDocumentForm = () => {
         newArray.splice(index, 1);
         setDocumentData({...documentData, editions: {...documentData.editions, L: newArray}});
     };
-
-    const handleAuthorChange = (event, index, key, type) => {
-        const newArray = documentData.authors.L.slice();
-        newArray[index] = {...newArray[index], M: {...newArray[index].M, [key]: {[type]: event.target.value}}};
-        setDocumentData({...documentData, authors: {...documentData.authors, L: newArray}});
-    };
-
-    const handleAddAuthor = () => {
-        const newArray = documentData.authors.L.slice();
-        newArray.push({
-            M: {
-                firstNames: {S: ''},
-                publishedFirstNames: {S: ''},
-                publishedSurnames: {S: ''},
-                surnames: {S: ''},
-            },
-        });
-        setDocumentData({...documentData, authors: {...documentData.authors, L: newArray}});
-    };
-
-    const handleRemoveAuthor = (index) => {
-        const newArray = documentData.authors.L.slice();
-        newArray.splice(index, 1);
-        setDocumentData({...documentData, authors: {...documentData.authors, L: newArray}});
-    };
-
     const handleContributorChange = (
         e,
         contributorIndex,
@@ -257,13 +231,6 @@ const AddDocumentForm = () => {
                 value={documentData.description.S}
                 onChange={(e) => handleChange(e, "description", "S")}
                 aria-labelledby="description-label"
-            />
-
-            <AuthorsFormInputs
-                authors={documentData.authors}
-                handleAddAuthor={handleAddAuthor}
-                handleRemoveAuthor={handleRemoveAuthor}
-                handleAuthorChange={handleAuthorChange}
             />
 
             <ContributorsFormInputs
