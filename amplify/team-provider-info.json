@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-serverlessblo-dev-201133-authRole",
+      "UnauthRoleArn": "arn:aws:iam::447306866448:role/amplify-serverlessblo-dev-201133-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::447306866448:role/amplify-serverlessblo-dev-201133-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-serverlessblo-dev-201133-deployment",
+      "UnauthRoleName": "amplify-serverlessblo-dev-201133-unauthRole",
+      "StackName": "amplify-serverlessblo-dev-201133",
+      "StackId": "arn:aws:cloudformation:eu-north-1:447306866448:stack/amplify-serverlessblo-dev-201133/365d6340-c532-11ed-84d8-062cbd0534e8",
+      "AmplifyAppId": "dzmpcxgexdsbw"
+    },
+    "categories": {
+      "auth": {
+        "serverlessblo79c0d343": {}
+      }
+    }
+  }
+}
