@@ -23,12 +23,12 @@ type Document @model {
     views: Int @auth(rules: [{ allow: public }])
 }
 
-type DocumentCollection @model {
+type Collection @model {
     name: String @auth(rules: [{ allow: public }])
     documents: [Document] @manyToMany(relationName: "CollectionDocuments") @auth(rules: [{ allow: public }])
 }
 
-type DocumentContributor @model {
+type Contributor @model {
     firstNames: String @auth(rules: [{ allow: public }])
     surnames: String @auth(rules: [{ allow: public }])
     publicationFirstNames: String @auth(rules: [{ allow: public }])
@@ -43,7 +43,7 @@ type DocumentContributor @model {
     documents: [Document] @manyToMany(relationName: "ContributorDocuments") @auth(rules: [{ allow: public }])
 }
 
-type DocumentEdition @model {
+type Edition @model {
     city: String @auth(rules: [{ allow: public }])
     date: String @auth(rules: [{ allow: public }])
     isbn: String @auth(rules: [{ allow: public }])
@@ -56,19 +56,18 @@ type DocumentEdition @model {
     documents: [Document] @manyToMany(relationName: "EditionDocuments") @auth(rules: [{ allow: public }])
 }
 
-type DocumentLanguage @model {
+type Language @model {
     isCurrentDocument: Boolean @auth(rules: [{ allow: public }])
     language: String @auth(rules: [{ allow: public }])
     documents: [Document] @auth(rules: [{ allow: public }]) @manyToMany(relationName: "LanguageDocuments")
 }
 
-type DocumentTag @model {
-    isCurrentDocument: Boolean @auth(rules: [{ allow: public }])
-    language: String @auth(rules: [{ allow: public }])
+type Tag @model {
+    tag: String @auth(rules: [{ allow: public }])
     documents: [Document] @auth(rules: [{ allow: public }]) @manyToMany(relationName: "TagDocuments")
 }
 
-type DocumentSummary @model {
+type Summary @model {
     filename: String @auth(rules: [{ allow: public }])
     collectionName: String @auth(rules: [{ allow: public }])
     contributorName: String @auth(rules: [{ allow: public }])

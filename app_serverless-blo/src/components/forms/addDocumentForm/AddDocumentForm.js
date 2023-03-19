@@ -1,385 +1,289 @@
 import React, {useState, useEffect} from 'react';
-import {v4 as uuidv4} from 'uuid';
+// import { useMutation } from '@apollo/client';
+// import { ADD_DOCUMENT_MUTATION } from '../graphql/mutations';
+import DocumentFormInputs from './DocumentFormInputs';
 import EditionsFormInputs from './EditionsFormInputs';
 import ContributorsFormInputs from './ContributorsFormInputs';
 import LanguagesFormInputs from './LanguagesFormInputs';
-
+import CollectionsFormInputs from './CollectionsFormInputs';
+import TagsFormInputs from './TagsFormInputs';
 
 const initialDocumentData = {
-    documentId: {S: ''},
-    audio_version: {S: ''},
-    collections: {S: ''},
-    contributors: {L: []},
-    cross_references: {S: ''},
-    date_created: {S: ''},
-    date_current_publication: {S: ''},
-    date_original_publication: {S: ''},
-    date_updated: {S: ''},
-    description: {S: ''},
-    editions: {L: []},
-    filename: {S: ''},
-    file_size: {N: ''},
-    languages: {L: []},
-    locales: {S: ''},
-    notes: {S: ''},
-    page_total: {N: ''},
-    permission_type: {S: ''},
-    phelps_info: {S: ''},
-    subtitle: {S: ''},
-    tags: {S: ''},
-    title: {S: ''},
-    views: {N: '0'},
+    filename: '',
+    title: '',
+    subtitle: '',
+    description: '',
+    dateCurrentPublication: '',
+    dateOriginalPublication: '',
+    notes: '',
+    phelpsInfo: '',
+    audioVersion: '',
+    locales: '',
+    crossReferences: '',
+    permissionType: '',
+    pageRange: '',
+    pageTotal: null,
+    fileSize: null,
+    contributors: [],
+    languages: [],
+    editions: [],
+    collections: [],
+    tags: [],
 };
 
 const AddDocumentForm = () => {
     const [documentData, setDocumentData] = useState(initialDocumentData);
 
+    // const [addDocument, { loading, error }] = useMutation(ADD_DOCUMENT_MUTATION);
+
     useEffect(() => {
         setDocumentData((prevState) => ({
             ...prevState,
-            documentId: {S: uuidv4()},
-            date_created: {S: new Date().toISOString()},
-            date_updated: {S: new Date().toISOString()},
         }));
     }, []);
 
-    const handleChange = (event, key, type) => {
+    const handleChange = (event, key) => {
         setDocumentData({
             ...documentData,
-            [key]: {...documentData[key], [type]: event.target.value},
+            [key]: event.target.value,
         });
     };
 
-    const handleEditionChange = (event, index, key) => {
-        const newArray = documentData.editions.L.slice();
-        newArray[index] = {...newArray[index], M: {...newArray[index].M, [key]: {S: event.target.value}}};
-        setDocumentData({...documentData, editions: {...documentData.editions, L: newArray}});
-    };
-
-    const handleAddEdition = () => {
-        const newArray = documentData.editions.L.slice();
-        newArray.push({
-            M: {
-                city: {S: ''},
-                date: {S: ''},
-                isbn: {S: ''},
-                isCurrentDocument: {N: '0'},
-                originalTitle: {S: ''},
-                pageRange: {S: ''},
-                publication: {S: ''},
-                publisher: {S: ''},
-                volume: {S: ''},
-            },
-        });
-        setDocumentData({...documentData, editions: {...documentData.editions, L: newArray}});
-    };
-
-    const handleRemoveEdition = (index) => {
-        const newArray = documentData.editions.L.slice();
-        newArray.splice(index, 1);
-        setDocumentData({...documentData, editions: {...documentData.editions, L: newArray}});
-    };
-    const handleContributorChange = (
-        e,
-        contributorIndex,
-        field,
-        type,
-        roleIndex = null,
-        roleField = null,
-        roleType = null
-    ) => {
-        const newContributorsArray = documentData.contributors.L.slice();
-
-        if (roleIndex !== null && roleField !== null && roleType !== null) {
-            newContributorsArray[contributorIndex].M.contributor_roles.L[roleIndex].M[
-                roleField
-                ][roleType] = e.target.value;
-        } else {
-            newContributorsArray[contributorIndex].M[field][type] = e.target.value;
-        }
-
+    const handleContributorChange = (event, index, key) => {
+        const updatedContributors = [...documentData.contributors];
+        updatedContributors[index] = {
+            ...updatedContributors[index],
+            [key]: event.target.type === "checkbox" ? event.target.checked : event.target.value,
+        };
         setDocumentData({
             ...documentData,
-            contributors: { ...documentData.contributors, L: newContributorsArray },
+            contributors: updatedContributors,
         });
     };
-
 
     const handleAddContributor = () => {
-        const newArray = documentData.contributors.L.slice();
-        newArray.push({
-            M: {
-                firstNames: { S: "" },
-                surnames: { S: "" },
-                contributor_roles: { L: [] },
-            },
-        });
         setDocumentData({
             ...documentData,
-            contributors: { ...documentData.contributors, L: newArray },
-        });
-    };
-
-    const handleAddRole = (contributorIndex) => {
-        const newContributorsArray = documentData.contributors.L.slice();
-        const newRolesArray =
-            newContributorsArray[contributorIndex].M.contributor_roles.L.slice();
-
-        newRolesArray.push({
-            M: {
-                role: { S: "" },
-                abbreviation: { S: "" },
-            },
-        });
-
-        newContributorsArray[contributorIndex].M.contributor_roles.L = newRolesArray;
-        setDocumentData({
-            ...documentData,
-            contributors: { ...documentData.contributors, L: newContributorsArray },
-        });
-    };
-
-    const handleRemoveRole = (contributorIndex, roleIndex) => {
-        const newContributorsArray = documentData.contributors.L.slice();
-        const newRolesArray =
-            newContributorsArray[contributorIndex].M.contributor_roles.L.slice();
-
-        newRolesArray.splice(roleIndex, 1);
-
-        newContributorsArray[contributorIndex].M.contributor_roles.L = newRolesArray;
-        setDocumentData({
-            ...documentData,
-            contributors: { ...documentData.contributors, L: newContributorsArray },
+            contributors: [...documentData.contributors, {}],
         });
     };
 
     const handleRemoveContributor = (index) => {
-        const newArray = documentData.contributors.L.slice();
-        newArray.splice(index, 1);
         setDocumentData({
             ...documentData,
-            contributors: { ...documentData.contributors, L: newArray },
+            contributors: documentData.contributors.filter((_, i) => i !== index),
         });
     };
 
-    const handleLanguageChange = (event, index, key, type) => {
-        const newArray = documentData.languages.L.slice();
-        newArray[index] = { ...newArray[index], M: { ...newArray[index].M, [key]: { [type]: event.target.value } } };
-        setDocumentData({ ...documentData, languages: { ...documentData.languages, L: newArray } });
+    const handleAddCollection = () => {
+        setDocumentData({
+            ...documentData,
+            collections: [...documentData.collections, { name: "" }],
+        });
+    };
+
+    const handleRemoveCollection = (index) => {
+        setDocumentData({
+            ...documentData,
+            collections: [
+                ...documentData.collections.slice(0, index),
+                ...documentData.collections.slice(index + 1),
+            ],
+        });
+    };
+
+    const handleCollectionChange = (event, index) => {
+        const updatedCollections = [...documentData.collections];
+        updatedCollections[index] = {
+            ...updatedCollections[index],
+            name: event.target.value,
+        };
+        setDocumentData({
+            ...documentData,
+            collections: updatedCollections,
+        });
     };
 
     const handleAddLanguage = () => {
-        const newArray = documentData.languages.L.slice();
-        newArray.push({
-            M: {
-                isCurrentDocument: { BOOL: true },
-                language: { S: '' },
-            },
+        setDocumentData({
+            ...documentData,
+            languages: [
+                ...documentData.languages,
+                {
+                    language: "",
+                    documents: [],
+                },
+            ],
         });
-        setDocumentData({ ...documentData, languages: { ...documentData.languages, L: newArray } });
     };
 
     const handleRemoveLanguage = (index) => {
-        const newArray = documentData.languages.L.slice();
-        newArray.splice(index, 1);
-        setDocumentData({ ...documentData, languages: { ...documentData.languages, L: newArray } });
+        setDocumentData({
+            ...documentData,
+            languages: [
+                ...documentData.languages.slice(0, index),
+                ...documentData.languages.slice(index + 1),
+            ],
+        });
+    };
+
+    const handleLanguageChange = (event, index, key, docIndex) => {
+        if (key === "language") {
+            setDocumentData({
+                ...documentData,
+                languages: [
+                    ...documentData.languages.slice(0, index),
+                    {
+                        ...documentData.languages[index],
+                        [key]: event.target.value,
+                    },
+                    ...documentData.languages.slice(index + 1),
+                ]
+            });
+        } else if (key === "documents") {
+            const {value} = event.target;
+            setDocumentData({
+                ...documentData,
+                languages: [
+                    ...documentData.languages.slice(0, index),
+                    {
+                        ...documentData.languages[index],
+                        [key]: [
+                            ...documentData.languages[index].documents.slice(0, docIndex),
+                            value, ...documentData.languages[index].documents.slice(docIndex + 1),
+                        ],
+                    },
+                    ...documentData.languages.slice(index + 1),
+                ],
+            });
+        }
+    };
+    const handleAddEdition = () => {
+        setDocumentData({
+            ...documentData,
+            editions: [
+                ...documentData.editions,
+                {
+                    city: '',
+                    date: '',
+                    isbn: '',
+                    isCurrentDocument: false,
+                    originalTitle: '',
+                    pageRange: '',
+                    publication: '',
+                    publisher: '',
+                    volume: '',
+                },
+            ],
+        });
+    };
+
+    const handleRemoveEdition = (index) => {
+        setDocumentData({
+            ...documentData,
+            editions: [
+                ...documentData.editions.slice(0, index),
+                ...documentData.editions.slice(index + 1),
+            ],
+        });
+    };
+
+    const handleEditionChange = (event, index, key) => {
+        const {value} = event.target;
+        setDocumentData({
+            ...documentData,
+            editions: [
+                ...documentData.editions.slice(0, index),
+                {
+                    ...documentData.editions[index],
+                    [key]: value,
+                },
+                ...documentData.editions.slice(index + 1),
+            ],
+        });
+    };
+
+    const handleAddTag = () => {
+        setDocumentData({
+            ...documentData,
+            tags: [...documentData.tags, ""],
+        });
+    };
+
+    const handleRemoveTag = (index) => {
+        setDocumentData({
+            ...documentData,
+            tags: documentData.tags.filter((_, i) => i !== index),
+        });
+    };
+
+    const handleTagChange = (event, index) => {
+        setDocumentData({
+            ...documentData,
+            tags: [
+                ...documentData.tags.slice(0, index),
+                event.target.value,
+                ...documentData.tags.slice(index + 1),
+            ],
+        });
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
         // Handle form submission here
         console.log(documentData);
+        // addDocument({ variables: { documentData } });
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            <h3 id="filename-label">Filename</h3>
-            <input
-                type="text"
-                id="filename"
-                name="filename"
-                value={documentData.filename.S}
-                onChange={(e) => handleChange(e, "filename", "S")}
-                aria-labelledby="filename-label"
-            />
+            <h3>Document</h3>
 
-            <h3 id="title-label">Title</h3>
-            <input
-                type="text"
-                id="title"
-                name="title"
-                value={documentData.title.S}
-                onChange={(e) => handleChange(e, "title", "S")}
-                aria-labelledby="title-label"
-            />
+            {/* Document */}
+            <DocumentFormInputs documentData={documentData} handleChange={handleChange}/>
 
-            <h3 id="subtitle-label">Subtitle</h3>
-            <input
-                type="text"
-                id="subtitle"
-                name="subtitle"
-                value={documentData.subtitle.S}
-                onChange={(e) => handleChange(e, "subtitle", "S")}
-                aria-labelledby="subtitle-label"
-            />
-
-            <h3 id="description-label">Description</h3>
-            <input
-                type="text"
-                id="description"
-                name="description"
-                value={documentData.description.S}
-                onChange={(e) => handleChange(e, "description", "S")}
-                aria-labelledby="description-label"
-            />
-
+            {/* Contributors */}
             <ContributorsFormInputs
                 contributors={documentData.contributors}
                 handleAddContributor={handleAddContributor}
                 handleRemoveContributor={handleRemoveContributor}
                 handleContributorChange={handleContributorChange}
-                handleAddRole={handleAddRole}
-                handleRemoveRole={handleRemoveRole}
             />
 
+            {/* Collections */}
+            <CollectionsFormInputs
+                collections={documentData.collections}
+                handleAddCollection={handleAddCollection}
+                handleRemoveCollection={handleRemoveCollection}
+                handleCollectionChange={handleCollectionChange}
+            />
+            
+            {/* Languages */}
             <LanguagesFormInputs
                 languages={documentData.languages}
-                handleLanguageChange={handleLanguageChange}
                 handleAddLanguage={handleAddLanguage}
                 handleRemoveLanguage={handleRemoveLanguage}
+                handleLanguageChange={handleLanguageChange}
             />
 
+            {/*/!* Editions *!/*/}
             <EditionsFormInputs
                 editions={documentData.editions}
-                handleEditionChange={handleEditionChange}
                 handleAddEdition={handleAddEdition}
                 handleRemoveEdition={handleRemoveEdition}
+                handleEditionChange={handleEditionChange}
+            />
+            {/*/!* Editions *!/*/}
+            <TagsFormInputs
+                tags={documentData.tags}
+                handleAddTag={handleAddTag}
+                handleRemoveTag={handleRemoveTag}
+                handleTagChange={handleTagChange}
             />
 
-            <h3 id="page_total-label">Page total</h3>
-            <input
-                type="text"
-                id="page_total"
-                name="page_total"
-                value={documentData.page_total.N}
-                onChange={(e) => handleChange(e, "page_total", "N")}
-                aria-labelledby="page_total-label"
-            />
-
-            <h3 id="notes-label">Notes</h3>
-            <input
-                type="text"
-                id="notes"
-                name="notes"
-                value={documentData.notes.S}
-                onChange={(e) => handleChange(e, "notes", "S")}
-                aria-labelledby="notes-label"
-            />
-
-            <h3 id="collections-label">Collections</h3>
-            <input
-                type="text"
-                id="collections"
-                name="collections"
-                value={documentData.collections.S}
-                onChange={(e) => handleChange(e, "collections", "S")}
-                aria-labelledby="collections-label"
-            />
-
-            <h3 id="tags-label">Tags</h3>
-            <input
-                type="text"
-                id="tags"
-                name="tags"
-                value={documentData.tags.S}
-                onChange={(e) => handleChange(e, "tags", "S")}
-                aria-labelledby="tags-label"
-            />
-
-            <h3 id="locales-label">Locations</h3>
-            <input
-                type="text"
-                id="locales"
-                name="locales"
-                value={documentData.locales.S}
-                onChange={(e) => handleChange(e, "locales", "S")}
-                aria-labelledby="locales-label"
-            />
-
-            <h3 id="cross_references-label">Cross references</h3>
-            <input
-                type="text"
-                id="cross_references"
-                name="cross_references"
-                value={documentData.cross_references.S}
-                onChange={(e) => handleChange(e, "cross_references", "S")}
-                aria-labelledby="cross_references-label"
-            />
-
-            <h3 id="audio_version-label">Audio version</h3>
-            <input
-                type="text"
-                id="audio_version"
-                name="audio_version"
-                value={documentData.audio_version.S}
-                onChange={(e) => handleChange(e, "audio_version", "S")}
-                aria-labelledby="audio_version-label"
-            />
-
-            <h3 id="phelps_info-label">Phelps info</h3>
-            <input
-                type="text"
-                id="phelps_info"
-                name="phelps_info"
-                value={documentData.phelps_info.S}
-                onChange={(e) => handleChange(e, "phelps_info", "S")}
-                aria-labelledby="phelps_info-label"
-            />
-
-            <h3 id="permission_type-label">Permission type</h3>
-            <input
-                type="text"
-                id="permission_type"
-                name="permission_type"
-                value={documentData.permission_type.S}
-                onChange={(e) => handleChange(e, "permission_type", "S")}
-                aria-labelledby="permission_type-label"
-            />
-
-            <h3 id="documentId-label">Document ID</h3>
-            <input
-                type="text"
-                id="documentId"
-                name="documentId"
-                value={documentData.documentId.S}
-                readOnly
-                aria-labelledby="documentId-label"
-            />
-
-            <h3 id="date_created-label">Date created</h3>
-            <input
-                type="text"
-                id="date_created"
-                name="date_created"
-                value={documentData.date_created.S}
-                readOnly
-                aria-labelledby="date_created-label"
-            />
-
-            <h3 id="date_updated-label">Date updated</h3>
-            <input
-                type="text"
-                id="date_updated"
-                name="date_updated"
-                value={documentData.date_updated.S}
-                readOnly
-                aria-labelledby="date_updated-label"
-            />
-
-            <button type="submit">Submit</button>
+            <button type="submit">Add Document</button>
         </form>
     );
 };
 
 export default AddDocumentForm;
-

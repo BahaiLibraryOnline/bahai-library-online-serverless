@@ -24,20 +24,34 @@ h2 {
 }
 
 form {
-  width: 80%;
+  width: 90%;
   max-width: 600px;
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  padding: 1rem;
+  padding-left: 3rem;
+  padding-right: 4rem;
+  padding-bottom: 4rem;
+  margin: 1rem;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+form .form-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+form .form-row .form-col {
+  width: 48%;
+}
+
+
 form label {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
+  margin: 1rem;
 }
 
 form input,
@@ -45,6 +59,7 @@ form textarea {
   padding: 0.5rem;
   border-radius: 5px;
   border: 1px solid #ccc;
+  width: 100%;
 }
 
 form button {
@@ -56,8 +71,38 @@ form button {
   border: none;
   cursor: pointer;
   margin-top: 1rem;
+  width: 100%;
 }
 
 form button:hover {
   background-color: #0056b3;
+}
+
+/* Desktop view */
+@media screen and (max-width: 1025px) and (min-width: 1024px) {
+  form {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+/* Tablet view */
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+  form {
+    flex-direction: column;
+  }
+}
+
+/* Horizontal phone view */
+@media screen and (max-width: 767px) and (orientation: landscape) {
+  form {
+    flex-direction: column;
+  }
+}
+
+/* Single phone view */
+@media screen and (max-width: 767px) and (orientation: portrait) {
+  form {
+    flex-direction: column;
+  }
 }

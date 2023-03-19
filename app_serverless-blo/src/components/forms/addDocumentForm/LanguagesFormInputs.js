@@ -1,29 +1,55 @@
-import React from 'react';
+import React from "react";
 
-const LanguagesFormInputs = ({ languages, handleLanguageChange, handleAddLanguage, handleRemoveLanguage }) => {
+const LanguagesFormInputs = ({
+                                 languages,
+                                 handleAddLanguage,
+                                 handleRemoveLanguage,
+                                 handleLanguageChange,
+                             }) => {
     return (
         <div>
-            {languages.L.map((languageItem, index) => (
+            {languages.map((language, index) => (
                 <div key={index}>
                     <h3>Language {index + 1}</h3>
+                    <h4>Language</h4>
                     <input
                         type="text"
                         id={`language-${index}`}
                         name={`language-${index}`}
-                        value={languageItem.M.language.S}
-                        onChange={(event) => handleLanguageChange(event, index, 'language', 'S')}
-                        aria-label={`Language ${index + 1}`}
+                        value={language.language}
+                        onChange={(e) => handleLanguageChange(e, index, "language")}
+                        aria-label={`Language for Language ${index + 1}`}
                     />
 
-                    <h4>Is Language Of Current File</h4>
-                    <input
-                        type="text"
-                        id={`isCurrentDocument-${index}`}
-                        name={`isCurrentDocument-${index}`}
-                        placeholder="1 for true, 0 for false"
-                        onChange={(event) => handleLanguageChange(event, index, 'isCurrentDocument', 'N')}
-                        aria-label={`Is Language ${index + 1} of Current File`}
-                    />
+                    <div>
+                        <h4>Is Current Document</h4>
+                        <input
+                            type="checkbox"
+                            id={`isCurrentDocument-${index}`}
+                            name={`isCurrentDocument-${index}`}
+                            checked={language.isCurrentDocument}
+                            onChange={(e) =>
+                                handleLanguageChange(e, index, "isCurrentDocument")
+                            }
+                            aria-label={`Is Current Document for Language ${index + 1}`}
+                        />
+                    </div>
+
+                    {language.documents.map((document, docIndex) => (
+                        <div key={docIndex}>
+                            <h4>Document {docIndex + 1}</h4>
+                            <input
+                                type="text"
+                                id={`document-${docIndex}`}
+                                name={`document-${docIndex}`}
+                                value={document}
+                                onChange={(e) =>
+                                    handleLanguageChange(e, index, "documents", docIndex)
+                                }
+                                aria-label={`Document ${docIndex + 1} for Language ${index + 1}`}
+                            />
+                        </div>
+                    ))}
 
                     <button type="button" onClick={() => handleRemoveLanguage(index)}>
                         Remove Language

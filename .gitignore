@@ -16,7 +16,7 @@ yarn.lock
 
 ## AWS Amplify and React build files
 #build/
-# DynamoDB local data_layer files
+# dynamodb local data_layer files
 .dynamodb/
 .dynamodb-jetty/
 
@@ -54,5 +54,5 @@ amplifytools.xcconfig
 #amplify-do-not-edit-end
 
 # BLO database migrations
-blo_migration_2023_03_15.sql
-bahai_BLO2018_migration_2023_03_15.sql
+BLO2023_normalised_migration_2023_03_15.sql
+BLO2018_legacy_migration_2023_03_15.sql
