@@ -81,16 +81,6 @@ const EditionsFormInputs = ({
                         aria-label={`Volume for Edition ${index + 1}`}
                     />
 
-                    <h4>Page Range</h4>
-                    <input
-                        type="text"
-                        id={`pageRange-${index}`}
-                        name={`pageRange-${index}`}
-                        value={edition.pageRange}
-                        onChange={(e) => handleEditionChange(e, index, "pageRange")}
-                        aria-label={`Page Range for Edition ${index + 1}`}
-                    />
-
                     <button type="button" onClick={() => handleRemoveEdition(index)}>
                         Remove Edition
                     </button>

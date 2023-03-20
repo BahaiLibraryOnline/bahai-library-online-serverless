@@ -1,45 +1,42 @@
 import React, {useState, useEffect} from 'react';
-// import { useMutation } from '@apollo/client';
-// import { ADD_DOCUMENT_MUTATION } from '../graphql/mutations';
+import {API, graphqlOperation} from 'aws-amplify';
+import {createDocument} from '../../../graphql/mutations';
 import DocumentFormInputs from './DocumentFormInputs';
 import EditionsFormInputs from './EditionsFormInputs';
 import ContributorsFormInputs from './ContributorsFormInputs';
 import LanguagesFormInputs from './LanguagesFormInputs';
 import CollectionsFormInputs from './CollectionsFormInputs';
 import TagsFormInputs from './TagsFormInputs';
-
-const initialDocumentData = {
-    filename: '',
-    title: '',
-    subtitle: '',
-    description: '',
-    dateCurrentPublication: '',
-    dateOriginalPublication: '',
-    notes: '',
-    phelpsInfo: '',
-    audioVersion: '',
-    locales: '',
-    crossReferences: '',
-    permissionType: '',
-    pageRange: '',
-    pageTotal: null,
-    fileSize: null,
-    contributors: [],
-    languages: [],
-    editions: [],
-    collections: [],
-    tags: [],
-};
+import AddDocumentFormValidationSchema from './AddDocumentFormValidationSchema';
 
 const AddDocumentForm = () => {
+    const initialDocumentData = {
+        filename: '',
+        title: '',
+        subtitle: '',
+        description: '',
+        dateCurrentPublication: '',
+        dateOriginalPublication: '',
+        notes: '',
+        phelpsInfo: '',
+        audioVersion: '',
+        locales: '',
+        crossReferences: '',
+        permissionType: '',
+        pageRange: '',
+        pageTotal: null,
+        fileSize: null,
+        contributors: [],
+        languages: [],
+        editions: [],
+        collections: [],
+        tags: [],
+    };
+
     const [documentData, setDocumentData] = useState(initialDocumentData);
 
-    // const [addDocument, { loading, error }] = useMutation(ADD_DOCUMENT_MUTATION);
-
     useEffect(() => {
-        setDocumentData((prevState) => ({
-            ...prevState,
-        }));
+        setDocumentData(initialDocumentData);
     }, []);
 
     const handleChange = (event, key) => {
@@ -78,7 +75,7 @@ const AddDocumentForm = () => {
     const handleAddCollection = () => {
         setDocumentData({
             ...documentData,
-            collections: [...documentData.collections, { name: "" }],
+            collections: [...documentData.collections, {name: ""}],
         });
     };
 
@@ -158,6 +155,7 @@ const AddDocumentForm = () => {
             });
         }
     };
+
     const handleAddEdition = () => {
         setDocumentData({
             ...documentData,
@@ -227,13 +225,54 @@ const AddDocumentForm = () => {
             ],
         });
     };
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Handle form submission here
-        console.log(documentData);
-        // addDocument({ variables: { documentData } });
+    const displayErrors = (errors) => {
+        const errorMessages = errors.inner.map((error) => error.message);
+        alert(`Validation errors:\n${errorMessages.join('\n')}`);
+        errors.inner.forEach((error) => {
+            const field = error.path;
+            const inputElement = document.querySelector(`[id="${field}"]`);
+            if (inputElement) {
+                inputElement.style.border = '2px solid red';
+            }
+        });
     };
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            await AddDocumentFormValidationSchema.validate(documentData, { abortEarly: false });
+            console.log(documentData);
+
+            const input = {
+                filename: documentData.filename,
+                title: documentData.title,
+                subtitle: documentData.subtitle,
+                description: documentData.description,
+                dateCurrentPublication: documentData.dateCurrentPublication,
+                dateOriginalPublication: documentData.dateOriginalPublication,
+                notes: documentData.notes,
+                phelpsInfo: documentData.phelpsInfo,
+                audioVersion: documentData.audioVersion,
+                locales: documentData.locales,
+                crossReferences: documentData.crossReferences,
+                permissionType: documentData.permissionType,
+                pageRange: documentData.pageRange,
+                pageTotal: documentData.pageTotal,
+                fileSize: documentData.fileSize,
+                contributors: documentData.contributors ? documentData.contributors.map(({ name, email }) => ({ name, email })) : [],
+                languages: documentData.languages,
+                editions: documentData.editions,
+                collections: documentData.collections ? documentData.collections.map(({ name }) => ({ name })) : [],
+                tags: documentData.tags,
+            };
+
+            const result = await API.graphql(graphqlOperation(createDocument, { input }));
+            console.log('Document created:', result.data.createDocument);
+        } catch (errors) {
+            console.error(errors);
+            displayErrors(errors);
+        }
+    };
+
 
     return (
         <form onSubmit={handleSubmit}>
@@ -257,7 +296,7 @@ const AddDocumentForm = () => {
                 handleRemoveCollection={handleRemoveCollection}
                 handleCollectionChange={handleCollectionChange}
             />
-            
+
             {/* Languages */}
             <LanguagesFormInputs
                 languages={documentData.languages}
@@ -266,14 +305,15 @@ const AddDocumentForm = () => {
                 handleLanguageChange={handleLanguageChange}
             />
 
-            {/*/!* Editions *!/*/}
+            {/* Editions */}
             <EditionsFormInputs
                 editions={documentData.editions}
                 handleAddEdition={handleAddEdition}
                 handleRemoveEdition={handleRemoveEdition}
                 handleEditionChange={handleEditionChange}
             />
-            {/*/!* Editions *!/*/}
+
+            {/* Tags */}
             <TagsFormInputs
                 tags={documentData.tags}
                 handleAddTag={handleAddTag}

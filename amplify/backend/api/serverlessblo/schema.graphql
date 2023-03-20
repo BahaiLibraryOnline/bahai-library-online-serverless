@@ -1,16 +1,16 @@
 type Document @model {
     audioVersion: String @auth(rules: [{ allow: public }])
     blo2018Id: Int @auth(rules: [{ allow: groups, groups: ["Admin"] }])
-    collections: [DocumentCollection] @manyToMany(relationName: "CollectionDocuments") @auth(rules: [{ allow: public }])
-    contributors: [DocumentContributor] @manyToMany(relationName: "ContributorDocuments") @auth(rules: [{ allow: public }])
+    collections: [Collection] @manyToMany(relationName: "CollectionDocuments") @auth(rules: [{ allow: public }])
+    contributors: [Contributor] @manyToMany(relationName: "ContributorDocuments") @auth(rules: [{ allow: public }])
     crossReferences: String @auth(rules: [{ allow: public }])
     dateOriginalPublication: String @auth(rules: [{ allow: public }])
     dateCurrentPublication: String @auth(rules: [{ allow: public }])
     description: String @auth(rules: [{ allow: public }])
-    editions: [DocumentEdition] @manyToMany(relationName: "EditionDocuments") @auth(rules: [{ allow: public }])
+    editions: [Edition] @manyToMany(relationName: "EditionDocuments") @auth(rules: [{ allow: public }])
     filename: String @auth(rules: [{ allow: public }])
     fileSize: Int @auth(rules: [{ allow: public }])
-    languages: [DocumentLanguage] @manyToMany(relationName: "LanguageDocuments") @auth(rules: [{ allow: public }])
+    languages: [Language] @manyToMany(relationName: "LanguageDocuments") @auth(rules: [{ allow: public }])
     locales: String @auth(rules: [{ allow: public }])
     notes: String @auth(rules: [{ allow: public }])
     pageRange: String @auth(rules: [{ allow: public }])
@@ -18,7 +18,7 @@ type Document @model {
     permissionType: String @auth(rules: [{ allow: public }])
     phelpsInfo: String @auth(rules: [{ allow: public }])
     subtitle: String @auth(rules: [{ allow: public }])
-    tags: [DocumentTag] @manyToMany(relationName: "TagDocuments") @auth(rules: [{ allow: public }])
+    tags: [Tag] @manyToMany(relationName: "TagDocuments") @auth(rules: [{ allow: public }])
     title: String @auth(rules: [{ allow: public }])
     views: Int @auth(rules: [{ allow: public }])
 }
@@ -63,7 +63,7 @@ type Language @model {
 }
 
 type Tag @model {
-    tag: String @auth(rules: [{ allow: public }])
+    language: String @auth(rules: [{ allow: public }])
     documents: [Document] @auth(rules: [{ allow: public }]) @manyToMany(relationName: "TagDocuments")
 }
 
