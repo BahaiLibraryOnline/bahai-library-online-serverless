@@ -24,8 +24,8 @@ const AddDocumentForm = () => {
         crossReferences: '',
         permissionType: '',
         pageRange: '',
-        pageTotal: null,
-        fileSize: null,
+        pageTotal: undefined,
+        fileSize: undefined,
         contributors: [],
         languages: [],
         editions: [],
@@ -231,9 +231,11 @@ const AddDocumentForm = () => {
         errors.inner.forEach((error) => {
             const field = error.path;
             const inputElement = document.querySelector(`[id="${field}"]`);
-            if (inputElement) {
-                inputElement.style.border = '2px solid red';
-            }
+            const errorElement = document.createElement('p');
+            errorElement.innerText = error.message;
+            errorElement.style.color = 'red';
+            inputElement.parentNode.insertBefore(errorElement, inputElement);
+            inputElement.style.border = '2px solid red';
         });
     };
     const handleSubmit = async (event) => {

@@ -14,7 +14,6 @@ const DocumentFormInputs = ({ documentData, handleChange }) => {
         { label: 'Locales', id: 'locales', type: 'text' },
         { label: 'Cross References', id: 'crossReferences', type: 'text' },
         { label: 'Permission Type', id: 'permissionType', type: 'text' },
-        { label: 'Page Range', id: 'pageRange', type: 'text' },
         { label: 'Page Total', id: 'pageTotal', type: 'number' },
         { label: 'File Size', id: 'fileSize', type: 'number' },
     ];
