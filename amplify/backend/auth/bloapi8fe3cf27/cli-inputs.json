@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "serverlessblo1cd84641_identitypool_1cd84641",
+    "identityPoolName": "bloapi8fe3cf27_identitypool_8fe3cf27",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "server1cd84641",
-    "userPoolName": "serverlessblo1cd84641_userpool_1cd84641",
+    "resourceNameTruncated": "bloapi8fe3cf27",
+    "userPoolName": "bloapi8fe3cf27_userpool_8fe3cf27",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -31,39 +31,18 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "server1cd84641_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "bloapi8fe3cf27_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "1cd84641",
-    "resourceName": "serverlessblo1cd84641",
+    "sharedId": "8fe3cf27",
+    "resourceName": "bloapi8fe3cf27",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "default",
     "usernameAttributes": [
       "email"
     ],
-    "triggers": {},
-    "userPoolGroupList": [
-      "serverlessblocognitouserpoolgroup"
-    ],
+    "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
-    "useEnabledMfas": true,
-    "authRoleArn": {
-      "Fn::GetAtt": [
-        "AuthRole",
-        "Arn"
-      ]
-    },
-    "unauthRoleArn": {
-      "Fn::GetAtt": [
-        "UnauthRole",
-        "Arn"
-      ]
-    },
-    "breakCircularDependency": true,
-    "dependsOn": [],
-    "parentStack": {
-      "Ref": "AWS::StackId"
-    },
-    "permissions": []
+    "useEnabledMfas": true
   }
 }

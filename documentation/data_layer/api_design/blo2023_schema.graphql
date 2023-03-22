@@ -1,82 +1,260 @@
 type Document @model {
-  audioVersion: String @auth(rules: [{ allow: public }])
-  blo2018Id: Int @auth(rules: [{ allow: groups, groups: ["Admin"] }])
-  collections: [DocumentCollection] @manyToMany(relationName: "CollectionDocuments") @auth(rules: [{ allow: public }])
-  contributors: [DocumentContributor] @manyToMany(relationName: "ContributorDocuments") @auth(rules: [{ allow: public }])
-  crossReferences: String @auth(rules: [{ allow: public }])
-  dateOriginalPublication: String @auth(rules: [{ allow: public }])
-  dateCurrentPublication: String @auth(rules: [{ allow: public }])
-  description: String @auth(rules: [{ allow: public }])
-  editions: [DocumentEdition] @manyToMany(relationName: "EditionDocuments") @auth(rules: [{ allow: public }])
-  filename: String @auth(rules: [{ allow: public }])
-  fileSize: Int @auth(rules: [{ allow: public }])
-  languages: [DocumentLanguage] @manyToMany(relationName: "LanguageDocuments") @auth(rules: [{ allow: public }])
-  locales: String @auth(rules: [{ allow: public }])
-  notes: String @auth(rules: [{ allow: public }])
-  pageRange: String @auth(rules: [{ allow: public }])
-  pageTotal: Int @auth(rules: [{ allow: public }])
-  permissionType: String @auth(rules: [{ allow: public }])
-  phelpsInfo: String @auth(rules: [{ allow: public }])
-  subtitle: String @auth(rules: [{ allow: public }])
-  tags: [DocumentTag] @manyToMany(relationName: "TagDocuments") @auth(rules: [{ allow: public }])
-  title: String @auth(rules: [{ allow: public }])
-  views: Int @auth(rules: [{ allow: public }])
+  id: ID! @primaryKey(sortKeyFields:["filename"]) @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  audioVersion: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  blo2018Id: Int  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  collections: [Collection] @manyToMany(relationName: "CollectionDocuments")  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  contributors: [Contributor] @manyToMany(relationName: "ContributorDocuments")  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  crossReferences: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  dateOriginalPublication: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  dateCurrentPublication: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  description: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  editions: [Edition] @manyToMany(relationName: "EditionDocuments")  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  filename: String!  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  fileSize: Int  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  languages: [Language] @manyToMany(relationName: "LanguageDocuments")  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  locales: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  notes: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  pageRange: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  pageTotal: Int  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  permissionType: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  phelpsInfo: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  subtitle: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  tags: [Tag] @manyToMany(relationName: "TagDocuments")  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  title: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  views: Int  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
 }
 
-type DocumentCollection @model {
-  name: String @auth(rules: [{ allow: public }])
-  documents: [Document] @manyToMany(relationName: "CollectionDocuments") @auth(rules: [{ allow: public }])
+type Collection @model {
+  name: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  documents: [Document] @manyToMany(relationName: "CollectionDocuments")  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
 }
 
-type DocumentContributor @model {
-  firstNames: String @auth(rules: [{ allow: public }])
-  surnames: String @auth(rules: [{ allow: public }])
-  publicationFirstNames: String @auth(rules: [{ allow: public }])
-  publicationSurnames: String @auth(rules: [{ allow: public }])
-  isAuthor: Boolean @auth(rules: [{ allow: public }])
-  isEditor: Boolean @auth(rules: [{ allow: public }])
-  isTranslator: Boolean @auth(rules: [{ allow: public }])
-  isCompiler: Boolean @auth(rules: [{ allow: public }])
-  isIllustrator: Boolean @auth(rules: [{ allow: public }])
-  isOther: Boolean @auth(rules: [{ allow: public }])
-  otherDescription: String @auth(rules: [{ allow: public }])
-  documents: [Document] @manyToMany(relationName: "ContributorDocuments") @auth(rules: [{ allow: public }])
+type Contributor @model {
+  firstNames: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  surnames: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  publicationFirstNames: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  publicationSurnames: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  isAuthor: Boolean  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  isEditor: Boolean  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  isTranslator: Boolean  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  isCompiler: Boolean  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  isIllustrator: Boolean  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  isOther: Boolean  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  otherDescription: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  documents: [Document] @manyToMany(relationName: "ContributorDocuments")  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
 }
 
-type DocumentEdition @model {
-  city: String @auth(rules: [{ allow: public }])
-  date: String @auth(rules: [{ allow: public }])
-  isbn: String @auth(rules: [{ allow: public }])
-  isCurrentDocument: Boolean @auth(rules: [{ allow: public }])
-  originalTitle: String @auth(rules: [{ allow: public }])
-  pageRange: String @auth(rules: [{ allow: public }])
-  publication: String @auth(rules: [{ allow: public }])
-  publisher: String @auth(rules: [{ allow: public }])
-  volume: String @auth(rules: [{ allow: public }])
-  documents: [Document] @manyToMany(relationName: "EditionDocuments") @auth(rules: [{ allow: public }])
+type Edition @model {
+  city: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  date: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  isbn: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  isCurrentDocument: Boolean  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  originalTitle: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  pageRange: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  publication: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  publisher: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  volume: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  documents: [Document] @manyToMany(relationName: "EditionDocuments")  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
 }
 
-type DocumentLanguage @model {
-  isCurrentDocument: Boolean @auth(rules: [{ allow: public }])
-  language: String @auth(rules: [{ allow: public }])
-  documents: [Document] @auth(rules: [{ allow: public }]) @manyToMany(relationName: "LanguageDocuments")
+type Language @model {
+  isCurrentDocument: Boolean  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  language: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  documents: [Document]  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ]) @manyToMany(relationName: "LanguageDocuments")
 }
 
-type DocumentTag @model {
-  isCurrentDocument: Boolean @auth(rules: [{ allow: public }])
-  language: String @auth(rules: [{ allow: public }])
-  documents: [Document] @auth(rules: [{ allow: public }]) @manyToMany(relationName: "TagDocuments")
+type Tag @model {
+  language: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  documents: [Document]  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ]) @manyToMany(relationName: "TagDocuments")
 }
 
-type DocumentSummary @model {
-  filename: String @auth(rules: [{ allow: public }])
-  collectionName: String @auth(rules: [{ allow: public }])
-  contributorName: String @auth(rules: [{ allow: public }])
-  dateCurrentPublication: String @auth(rules: [{ allow: public }])
-  language: String @auth(rules: [{ allow: public }])
-  title: String @auth(rules: [{ allow: public }])
-  tag: String @auth(rules: [{ allow: public }])
-  views: Int @auth(rules: [{ allow: public }])
+type Summary @model {
+  filename: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  collectionName: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  contributorName: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  dateCurrentPublication: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  language: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  title: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  tag: String  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
+  views: Int  @auth(rules: [
+    { allow: private, operations: [create, read, update, delete] },
+    { allow: public, operations: [read] }
+  ])
 }
-
-

@@ -21,9 +21,12 @@ import LanguagesFormInputs from './LanguagesFormInputs';
 import CollectionsFormInputs from './CollectionsFormInputs';
 import TagsFormInputs from './TagsFormInputs';
 import AddDocumentFormValidationSchema from './AddDocumentFormValidationSchema';
+import {v4 as uuidv4} from 'uuid';
+
 
 const AddDocumentForm = () => {
     const initialDocumentData = {
+        id: '',
         filename: '',
         title: '',
         subtitle: '',
@@ -258,6 +261,7 @@ const AddDocumentForm = () => {
             console.log(documentData);
 
             const documentInput = {
+                id: uuidv4(),
                 filename: documentData.filename,
                 title: documentData.title,
                 subtitle: documentData.subtitle,
@@ -275,195 +279,194 @@ const AddDocumentForm = () => {
                 fileSize: documentData.fileSize,
             };
 
-            const contributorsInput = {
-                contributors: documentData.contributors ? documentData.contributors : [],
-                language: documentData.languages,
-                edition: documentData.editions,
-                collection: documentData.collections ? documentData.collections : [],
-                tags: documentData.tags,
+            const createdDocument = await API.graphql(
+                graphqlOperation(createDocumentMutation, {input: documentInput})
+            );
+
+            const documentId = createdDocument.data.createDocument.id;
+
+            if (documentData.contributors && documentData.contributors.length > 0) {
+                for (const contributor of documentData.contributors) {
+                    const contributorInput = {
+                        id: uuidv4(),
+                        ...contributor,
+                    };
+
+                    const createdContributor = await API.graphql(
+                        graphqlOperation(createContributorMutation, {input: contributorInput})
+                    );
+
+                    const contributorDocumentsInput = {
+                        id: uuidv4(),
+                        documentID: documentId,
+                        contributorID: createdContributor.data.createContributor.id,
+                    };
+
+                    await API.graphql(
+                        graphqlOperation(createContributorDocumentsMutation, {
+                            input: contributorDocumentsInput,
+                        })
+                    );
+                }
             }
 
-            const languagesInput = {
-                language: documentData.languages,
+            if (documentData.languages && documentData.languages.length > 0) {
+                for (const language of documentData.languages) {
+                    const languageInput = {
+                        id: uuidv4(),
+                        ...language,
+                    };
+
+                    const createdLanguage = await API.graphql(
+                        graphqlOperation(createLanguageMutation, {input: languageInput})
+                    );
+
+                    const languageDocumentsInput = {
+                        id: uuidv4(),
+                        documentID: documentId,
+                        languageID: createdLanguage.data.createLanguage.id,
+                    };
+
+                    await API.graphql(
+                        graphqlOperation(createLanguageDocumentsMutation, {
+                            input: languageDocumentsInput,
+                        })
+                    );
+                }
             }
 
-            const editionsInput = {
-                edition: documentData.editions,
+            if (documentData.collections && documentData.collections.length > 0) {
+                for (const collection of documentData.collections) {
+                    const collectionInput = {
+                        id: uuidv4(),
+                        ...collection,
+                    };
+
+                    const createdCollection = await API.graphql(
+                        graphqlOperation(createCollectionMutation, {input: collectionInput})
+                    );
+
+                    const collectionDocumentsInput = {
+                        id: uuidv4(),
+                        documentID: documentId,
+                        collectionID: createdCollection.data.createCollection.id,
+                    };
+
+                    await API.graphql(
+                        graphqlOperation(createCollectionDocumentsMutation, {
+                            input: collectionDocumentsInput,
+                        })
+                    );
+                }
             }
 
-            const collectionsInput = {
-                collection: documentData.collections ? documentData.collections : [],
+            if (documentData.editions && documentData.editions.length > 0) {
+                for (const edition of documentData.editions) {
+                    const editionInput = {
+                        id: uuidv4(),
+                        ...edition,
+                    };
+
+                    const createdEdition = await API.graphql(
+                        graphqlOperation(createEditionMutation, {input: editionInput})
+                    );
+
+                    const editionDocumentsInput = {
+                        id: uuidv4(),
+                        documentID: documentId,
+                        editionID: createdEdition.data.createEdition.id,
+                    };
+
+                    await API.graphql(
+                        graphqlOperation(createEditionDocumentsMutation, {
+                            input: editionDocumentsInput,
+                        })
+                    );
+                }
             }
 
-            const tagsInput = {
-                tags: documentData.tags,
+            if (documentData.tags && documentData.tags.length > 0) {
+                for (const tag of documentData.tags) {
+                    const tagInput = {
+                        id: uuidv4(),
+                        ...tag,
+                    };
+                    const createdTag = await API.graphql(
+                        graphqlOperation(createTagMutation, {input: tagInput})
+                    );
+
+                    const tagDocumentsInput = {
+                        id: uuidv4(),
+                        documentID: documentId,
+                        tagID: createdTag.data.createTag.id,
+                    };
+
+                    await API.graphql(
+                        graphqlOperation(createTagDocumentsMutation, {
+                            input: tagDocumentsInput,
+                        })
+                    );
+                }
             }
 
-
-            // Create the document and get the autogenerated ID
-            const documentResult = await API.graphql(graphqlOperation(createDocumentMutation, {input: documentInput}));
-            const createdDocumentId = documentResult.data.createDocument.id;
-
-// Create related entities with the generated ID
-            const createRelatedEntities = async () => {
-                // Create contributors and store their IDs
-                const contributorIds = await Promise.all(documentData.contributors.map(async (contributor) => {
-                    const result = await API.graphql(graphqlOperation(createContributorMutation, {
-                        input: {
-                            ...contributorsInput,
-                            contributor
-                        }
-                    }));
-                    return result.data.createContributor.id;
-                }));
-
-                // Create ContributorDocuments relationships
-                const createContributorDocuments = contributorIds.map(contributorId => {
-                    return API.graphql(graphqlOperation(createContributorDocumentsMutation, {
-                        input: {
-                            documentId: createdDocumentId,
-                            contributorId
-                        }
-                    }));
-                });
-
-                // Create collections and store their IDs
-                const collectionIds = await Promise.all(documentData.collections.map(async (collection) => {
-                    const result = await API.graphql(graphqlOperation(createCollectionMutation, {
-                        input: {
-                            ...collectionsInput,
-                            collection
-                        }
-                    }));
-                    return result.data.createCollection.id;
-                }));
-
-                // Create CollectionDocuments relationships
-                const createCollectionDocuments = collectionIds.map(collectionId => {
-                    return API.graphql(graphqlOperation(createCollectionDocumentsMutation, {
-                        input: {
-                            documentId: createdDocumentId,
-                            collectionId
-                        }
-                    }));
-                });
-
-                // Create editions and store their IDs
-                const editionIds = await Promise.all(documentData.editions.map(async (edition) => {
-                    const result = await API.graphql(graphqlOperation(createEditionMutation, {
-                        input: {
-                            ...editionsInput,
-                            edition
-                        }
-                    }));
-                    return result.data.createEdition.id;
-                }));
-
-                // Create EditionDocuments relationships
-                const createEditionDocuments = editionIds.map(editionId => {
-                    return API.graphql(graphqlOperation(createEditionDocumentsMutation, {
-                        input: {
-                            documentId: createdDocumentId,
-                            editionId
-                        }
-                    }));
-                });
-
-                // Create languages and store their IDs
-                const languageIds = await Promise.all(documentData.languages.map(async (language) => {
-                    const result = await API.graphql(graphqlOperation(createLanguageMutation, {input: {...languagesInput, language}}));
-                    return result.data.createLanguage.id;
-                }));
-
-                // Create LanguageDocuments relationships
-                const createLanguageDocuments = languageIds.map(languageId => {
-                    return API.graphql(graphqlOperation(createLanguageDocumentsMutation, {
-                        input: {
-                            documentId: createdDocumentId,
-                            languageId
-                        }
-                    }));
-                });
-
-                // Create tags and store their IDs
-                const tagIds = await Promise.all(documentData.tags.map(async (tag) => {
-                    const result = await API.graphql(graphqlOperation(createTagMutation, {input: {...tagsInput, tag}}));
-                    return result.data.createTag.id;
-                }));
-
-                // Create TagDocuments relationships
-                const createTagDocuments = tagIds.map(tagId => {
-                    return API.graphql(graphqlOperation(createTagDocumentsMutation, {
-                        input: {
-                            documentId: createdDocumentId,
-                            tagId
-                        }
-                    }));
-                });
-
-                await Promise.all([...createContributorDocuments, ...createCollectionDocuments, ...createEditionDocuments, ...createLanguageDocuments, ...createTagDocuments]);
-            };
-
-            await createRelatedEntities();
-
-            console.log('Document created:', documentResult.data.createDocument);
-
-        } catch (errors) {
-            console.error(errors);
-            displayErrors(errors);
+            alert('Document created successfully');
+        } catch (error) {
+            console.error('Error creating document:', error);
+            displayErrors(error);
         }
     };
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <h3>Document</h3>
+            return (
+                <form onSubmit={handleSubmit}>
+                    <h3>Document</h3>
 
-            {/* Document */}
-            <DocumentFormInputs documentData={documentData} handleChange={handleChange}/>
+                    {/* Document */}
+                    <DocumentFormInputs documentData={documentData} handleChange={handleChange}/>
 
-            {/* Contributors */}
-            <ContributorsFormInputs
-                contributors={documentData.contributors}
-                handleAddContributor={handleAddContributor}
-                handleRemoveContributor={handleRemoveContributor}
-                handleContributorChange={handleContributorChange}
-            />
+                    {/* Contributors */}
+                    <ContributorsFormInputs
+                        contributors={documentData.contributors}
+                        handleAddContributor={handleAddContributor}
+                        handleRemoveContributor={handleRemoveContributor}
+                        handleContributorChange={handleContributorChange}
+                    />
 
-            {/* Collections */}
-            <CollectionsFormInputs
-                collections={documentData.collections}
-                handleAddCollection={handleAddCollection}
-                handleRemoveCollection={handleRemoveCollection}
-                handleCollectionChange={handleCollectionChange}
-            />
+                    {/* Collections */}
+                    <CollectionsFormInputs
+                        collections={documentData.collections}
+                        handleAddCollection={handleAddCollection}
+                        handleRemoveCollection={handleRemoveCollection}
+                        handleCollectionChange={handleCollectionChange}
+                    />
 
-            {/* Languages */}
-            <LanguagesFormInputs
-                languages={documentData.languages}
-                handleAddLanguage={handleAddLanguage}
-                handleRemoveLanguage={handleRemoveLanguage}
-                handleLanguageChange={handleLanguageChange}
-            />
+                    {/* Languages */}
+                    <LanguagesFormInputs
+                        languages={documentData.languages}
+                        handleAddLanguage={handleAddLanguage}
+                        handleRemoveLanguage={handleRemoveLanguage}
+                        handleLanguageChange={handleLanguageChange}
+                    />
 
-            {/* Editions */}
-            <EditionsFormInputs
-                editions={documentData.editions}
-                handleAddEdition={handleAddEdition}
-                handleRemoveEdition={handleRemoveEdition}
-                handleEditionChange={handleEditionChange}
-            />
+                    {/* Editions */}
+                    <EditionsFormInputs
+                        editions={documentData.editions}
+                        handleAddEdition={handleAddEdition}
+                        handleRemoveEdition={handleRemoveEdition}
+                        handleEditionChange={handleEditionChange}
+                    />
 
-            {/* Tags */}
-            <TagsFormInputs
-                tags={documentData.tags}
-                handleAddTag={handleAddTag}
-                handleRemoveTag={handleRemoveTag}
-                handleTagChange={handleTagChange}
-            />
+                    {/* Tags */}
+                    <TagsFormInputs
+                        tags={documentData.tags}
+                        handleAddTag={handleAddTag}
+                        handleRemoveTag={handleRemoveTag}
+                        handleTagChange={handleTagChange}
+                    />
 
-            <button type="submit">Add Document</button>
-        </form>
-    );
-};
+                    <button type="submit">Add Document</button>
+                </form>
+            );
+        }
+        ;
 
-export default AddDocumentForm;
+        export default AddDocumentForm;

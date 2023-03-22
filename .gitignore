@@ -31,6 +31,11 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+
+# BLO database migrations
+BLO2023_normalised_migration_2023_03_15.sql
+BLO2018_legacy_migration_2023_03_15.sql
+
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
 amplify/.config/local-*
@@ -52,7 +57,3 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
-
-# BLO database migrations
-BLO2023_normalised_migration_2023_03_15.sql
-BLO2018_legacy_migration_2023_03_15.sql

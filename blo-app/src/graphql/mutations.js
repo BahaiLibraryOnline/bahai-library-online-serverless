@@ -1,18 +1,20 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const deleteDocument = /* GraphQL */ `
-  mutation DeleteDocument(
-    $input: DeleteDocumentInput!
+export const createDocument = /* GraphQL */ `
+  mutation CreateDocument(
+    $input: CreateDocumentInput!
     $condition: ModelDocumentConditionInput
   ) {
-    deleteDocument(input: $input, condition: $condition) {
+    createDocument(input: $input, condition: $condition) {
+      id
       audioVersion
       blo2018Id
       collections {
         items {
           id
           documentId
+          documentfilename
           collectionId
           createdAt
           updatedAt
@@ -23,6 +25,7 @@ export const deleteDocument = /* GraphQL */ `
         items {
           id
           documentId
+          documentfilename
           contributorId
           createdAt
           updatedAt
@@ -37,6 +40,7 @@ export const deleteDocument = /* GraphQL */ `
         items {
           id
           documentId
+          documentfilename
           editionId
           createdAt
           updatedAt
@@ -49,6 +53,7 @@ export const deleteDocument = /* GraphQL */ `
         items {
           id
           documentId
+          documentfilename
           languageId
           createdAt
           updatedAt
@@ -66,6 +71,7 @@ export const deleteDocument = /* GraphQL */ `
         items {
           id
           documentId
+          documentfilename
           tagId
           createdAt
           updatedAt
@@ -74,7 +80,174 @@ export const deleteDocument = /* GraphQL */ `
       }
       title
       views
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateDocument = /* GraphQL */ `
+  mutation UpdateDocument(
+    $input: UpdateDocumentInput!
+    $condition: ModelDocumentConditionInput
+  ) {
+    updateDocument(input: $input, condition: $condition) {
       id
+      audioVersion
+      blo2018Id
+      collections {
+        items {
+          id
+          documentId
+          documentfilename
+          collectionId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      contributors {
+        items {
+          id
+          documentId
+          documentfilename
+          contributorId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      crossReferences
+      dateOriginalPublication
+      dateCurrentPublication
+      description
+      editions {
+        items {
+          id
+          documentId
+          documentfilename
+          editionId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      filename
+      fileSize
+      languages {
+        items {
+          id
+          documentId
+          documentfilename
+          languageId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      locales
+      notes
+      pageRange
+      pageTotal
+      permissionType
+      phelpsInfo
+      subtitle
+      tags {
+        items {
+          id
+          documentId
+          documentfilename
+          tagId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      title
+      views
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteDocument = /* GraphQL */ `
+  mutation DeleteDocument(
+    $input: DeleteDocumentInput!
+    $condition: ModelDocumentConditionInput
+  ) {
+    deleteDocument(input: $input, condition: $condition) {
+      id
+      audioVersion
+      blo2018Id
+      collections {
+        items {
+          id
+          documentId
+          documentfilename
+          collectionId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      contributors {
+        items {
+          id
+          documentId
+          documentfilename
+          contributorId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      crossReferences
+      dateOriginalPublication
+      dateCurrentPublication
+      description
+      editions {
+        items {
+          id
+          documentId
+          documentfilename
+          editionId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      filename
+      fileSize
+      languages {
+        items {
+          id
+          documentId
+          documentfilename
+          languageId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      locales
+      notes
+      pageRange
+      pageTotal
+      permissionType
+      phelpsInfo
+      subtitle
+      tags {
+        items {
+          id
+          documentId
+          documentfilename
+          tagId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      title
+      views
       createdAt
       updatedAt
     }
@@ -91,6 +264,7 @@ export const createCollection = /* GraphQL */ `
         items {
           id
           documentId
+          documentfilename
           collectionId
           createdAt
           updatedAt
@@ -114,6 +288,7 @@ export const updateCollection = /* GraphQL */ `
         items {
           id
           documentId
+          documentfilename
           collectionId
           createdAt
           updatedAt
@@ -137,6 +312,7 @@ export const deleteCollection = /* GraphQL */ `
         items {
           id
           documentId
+          documentfilename
           collectionId
           createdAt
           updatedAt
@@ -170,6 +346,7 @@ export const createContributor = /* GraphQL */ `
         items {
           id
           documentId
+          documentfilename
           contributorId
           createdAt
           updatedAt
@@ -203,6 +380,7 @@ export const updateContributor = /* GraphQL */ `
         items {
           id
           documentId
+          documentfilename
           contributorId
           createdAt
           updatedAt
@@ -236,6 +414,7 @@ export const deleteContributor = /* GraphQL */ `
         items {
           id
           documentId
+          documentfilename
           contributorId
           createdAt
           updatedAt
@@ -267,6 +446,7 @@ export const createEdition = /* GraphQL */ `
         items {
           id
           documentId
+          documentfilename
           editionId
           createdAt
           updatedAt
@@ -298,6 +478,7 @@ export const updateEdition = /* GraphQL */ `
         items {
           id
           documentId
+          documentfilename
           editionId
           createdAt
           updatedAt
@@ -329,6 +510,7 @@ export const deleteEdition = /* GraphQL */ `
         items {
           id
           documentId
+          documentfilename
           editionId
           createdAt
           updatedAt
@@ -353,6 +535,7 @@ export const createLanguage = /* GraphQL */ `
         items {
           id
           documentId
+          documentfilename
           languageId
           createdAt
           updatedAt
@@ -377,6 +560,7 @@ export const updateLanguage = /* GraphQL */ `
         items {
           id
           documentId
+          documentfilename
           languageId
           createdAt
           updatedAt
@@ -401,6 +585,7 @@ export const deleteLanguage = /* GraphQL */ `
         items {
           id
           documentId
+          documentfilename
           languageId
           createdAt
           updatedAt
@@ -424,6 +609,7 @@ export const createTag = /* GraphQL */ `
         items {
           id
           documentId
+          documentfilename
           tagId
           createdAt
           updatedAt
@@ -447,6 +633,7 @@ export const updateTag = /* GraphQL */ `
         items {
           id
           documentId
+          documentfilename
           tagId
           createdAt
           updatedAt
@@ -470,6 +657,7 @@ export const deleteTag = /* GraphQL */ `
         items {
           id
           documentId
+          documentfilename
           tagId
           createdAt
           updatedAt
@@ -550,8 +738,10 @@ export const createCollectionDocuments = /* GraphQL */ `
     createCollectionDocuments(input: $input, condition: $condition) {
       id
       documentId
+      documentfilename
       collectionId
       document {
+        id
         audioVersion
         blo2018Id
         collections {
@@ -584,7 +774,6 @@ export const createCollectionDocuments = /* GraphQL */ `
         }
         title
         views
-        id
         createdAt
         updatedAt
       }
@@ -610,8 +799,10 @@ export const updateCollectionDocuments = /* GraphQL */ `
     updateCollectionDocuments(input: $input, condition: $condition) {
       id
       documentId
+      documentfilename
       collectionId
       document {
+        id
         audioVersion
         blo2018Id
         collections {
@@ -644,7 +835,6 @@ export const updateCollectionDocuments = /* GraphQL */ `
         }
         title
         views
-        id
         createdAt
         updatedAt
       }
@@ -670,8 +860,10 @@ export const deleteCollectionDocuments = /* GraphQL */ `
     deleteCollectionDocuments(input: $input, condition: $condition) {
       id
       documentId
+      documentfilename
       collectionId
       document {
+        id
         audioVersion
         blo2018Id
         collections {
@@ -704,7 +896,6 @@ export const deleteCollectionDocuments = /* GraphQL */ `
         }
         title
         views
-        id
         createdAt
         updatedAt
       }
@@ -730,8 +921,10 @@ export const createContributorDocuments = /* GraphQL */ `
     createContributorDocuments(input: $input, condition: $condition) {
       id
       documentId
+      documentfilename
       contributorId
       document {
+        id
         audioVersion
         blo2018Id
         collections {
@@ -764,7 +957,6 @@ export const createContributorDocuments = /* GraphQL */ `
         }
         title
         views
-        id
         createdAt
         updatedAt
       }
@@ -800,8 +992,10 @@ export const updateContributorDocuments = /* GraphQL */ `
     updateContributorDocuments(input: $input, condition: $condition) {
       id
       documentId
+      documentfilename
       contributorId
       document {
+        id
         audioVersion
         blo2018Id
         collections {
@@ -834,7 +1028,6 @@ export const updateContributorDocuments = /* GraphQL */ `
         }
         title
         views
-        id
         createdAt
         updatedAt
       }
@@ -870,8 +1063,10 @@ export const deleteContributorDocuments = /* GraphQL */ `
     deleteContributorDocuments(input: $input, condition: $condition) {
       id
       documentId
+      documentfilename
       contributorId
       document {
+        id
         audioVersion
         blo2018Id
         collections {
@@ -904,7 +1099,6 @@ export const deleteContributorDocuments = /* GraphQL */ `
         }
         title
         views
-        id
         createdAt
         updatedAt
       }
@@ -940,8 +1134,10 @@ export const createEditionDocuments = /* GraphQL */ `
     createEditionDocuments(input: $input, condition: $condition) {
       id
       documentId
+      documentfilename
       editionId
       document {
+        id
         audioVersion
         blo2018Id
         collections {
@@ -974,7 +1170,6 @@ export const createEditionDocuments = /* GraphQL */ `
         }
         title
         views
-        id
         createdAt
         updatedAt
       }
@@ -1008,8 +1203,10 @@ export const updateEditionDocuments = /* GraphQL */ `
     updateEditionDocuments(input: $input, condition: $condition) {
       id
       documentId
+      documentfilename
       editionId
       document {
+        id
         audioVersion
         blo2018Id
         collections {
@@ -1042,7 +1239,6 @@ export const updateEditionDocuments = /* GraphQL */ `
         }
         title
         views
-        id
         createdAt
         updatedAt
       }
@@ -1076,8 +1272,10 @@ export const deleteEditionDocuments = /* GraphQL */ `
     deleteEditionDocuments(input: $input, condition: $condition) {
       id
       documentId
+      documentfilename
       editionId
       document {
+        id
         audioVersion
         blo2018Id
         collections {
@@ -1110,7 +1308,6 @@ export const deleteEditionDocuments = /* GraphQL */ `
         }
         title
         views
-        id
         createdAt
         updatedAt
       }
@@ -1144,8 +1341,10 @@ export const createLanguageDocuments = /* GraphQL */ `
     createLanguageDocuments(input: $input, condition: $condition) {
       id
       documentId
+      documentfilename
       languageId
       document {
+        id
         audioVersion
         blo2018Id
         collections {
@@ -1178,7 +1377,6 @@ export const createLanguageDocuments = /* GraphQL */ `
         }
         title
         views
-        id
         createdAt
         updatedAt
       }
@@ -1205,8 +1403,10 @@ export const updateLanguageDocuments = /* GraphQL */ `
     updateLanguageDocuments(input: $input, condition: $condition) {
       id
       documentId
+      documentfilename
       languageId
       document {
+        id
         audioVersion
         blo2018Id
         collections {
@@ -1239,7 +1439,6 @@ export const updateLanguageDocuments = /* GraphQL */ `
         }
         title
         views
-        id
         createdAt
         updatedAt
       }
@@ -1266,8 +1465,10 @@ export const deleteLanguageDocuments = /* GraphQL */ `
     deleteLanguageDocuments(input: $input, condition: $condition) {
       id
       documentId
+      documentfilename
       languageId
       document {
+        id
         audioVersion
         blo2018Id
         collections {
@@ -1300,7 +1501,6 @@ export const deleteLanguageDocuments = /* GraphQL */ `
         }
         title
         views
-        id
         createdAt
         updatedAt
       }
@@ -1327,8 +1527,10 @@ export const createTagDocuments = /* GraphQL */ `
     createTagDocuments(input: $input, condition: $condition) {
       id
       documentId
+      documentfilename
       tagId
       document {
+        id
         audioVersion
         blo2018Id
         collections {
@@ -1361,7 +1563,6 @@ export const createTagDocuments = /* GraphQL */ `
         }
         title
         views
-        id
         createdAt
         updatedAt
       }
@@ -1387,8 +1588,10 @@ export const updateTagDocuments = /* GraphQL */ `
     updateTagDocuments(input: $input, condition: $condition) {
       id
       documentId
+      documentfilename
       tagId
       document {
+        id
         audioVersion
         blo2018Id
         collections {
@@ -1421,7 +1624,6 @@ export const updateTagDocuments = /* GraphQL */ `
         }
         title
         views
-        id
         createdAt
         updatedAt
       }
@@ -1447,8 +1649,10 @@ export const deleteTagDocuments = /* GraphQL */ `
     deleteTagDocuments(input: $input, condition: $condition) {
       id
       documentId
+      documentfilename
       tagId
       document {
+        id
         audioVersion
         blo2018Id
         collections {
@@ -1481,7 +1685,6 @@ export const deleteTagDocuments = /* GraphQL */ `
         }
         title
         views
-        id
         createdAt
         updatedAt
       }
@@ -1494,164 +1697,6 @@ export const deleteTagDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createDocument = /* GraphQL */ `
-  mutation CreateDocument(
-    $input: CreateDocumentInput!
-    $condition: ModelDocumentConditionInput
-  ) {
-    createDocument(input: $input, condition: $condition) {
-      audioVersion
-      blo2018Id
-      collections {
-        items {
-          id
-          documentId
-          collectionId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      contributors {
-        items {
-          id
-          documentId
-          contributorId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      crossReferences
-      dateOriginalPublication
-      dateCurrentPublication
-      description
-      editions {
-        items {
-          id
-          documentId
-          editionId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      filename
-      fileSize
-      languages {
-        items {
-          id
-          documentId
-          languageId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      locales
-      notes
-      pageRange
-      pageTotal
-      permissionType
-      phelpsInfo
-      subtitle
-      tags {
-        items {
-          id
-          documentId
-          tagId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      title
-      views
-      id
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateDocument = /* GraphQL */ `
-  mutation UpdateDocument(
-    $input: UpdateDocumentInput!
-    $condition: ModelDocumentConditionInput
-  ) {
-    updateDocument(input: $input, condition: $condition) {
-      audioVersion
-      blo2018Id
-      collections {
-        items {
-          id
-          documentId
-          collectionId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      contributors {
-        items {
-          id
-          documentId
-          contributorId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      crossReferences
-      dateOriginalPublication
-      dateCurrentPublication
-      description
-      editions {
-        items {
-          id
-          documentId
-          editionId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      filename
-      fileSize
-      languages {
-        items {
-          id
-          documentId
-          languageId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      locales
-      notes
-      pageRange
-      pageTotal
-      permissionType
-      phelpsInfo
-      subtitle
-      tags {
-        items {
-          id
-          documentId
-          tagId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      title
-      views
-      id
       createdAt
       updatedAt
     }

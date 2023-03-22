@@ -1,10 +1,10 @@
 {
-  "AppSyncApiName": "serverlessblo",
+  "AppSyncApiName": "BLOApi",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
   "AuthCognitoUserPoolId": {
     "Fn::GetAtt": [
-      "authserverlessblo1cd84641",
+      "authbloapi8fe3cf27",
       "Outputs.UserPoolId"
     ]
   }
