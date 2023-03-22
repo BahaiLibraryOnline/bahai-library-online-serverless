@@ -1,19 +1,19 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const deleteDocument = /* GraphQL */ `
-  mutation DeleteDocument(
-    $input: DeleteDocumentInput!
+export const createDocument = /* GraphQL */ `
+  mutation CreateDocument(
+    $input: CreateDocumentInput!
     $condition: ModelDocumentConditionInput
   ) {
-    deleteDocument(input: $input, condition: $condition) {
+    createDocument(input: $input, condition: $condition) {
       audioVersion
       blo2018Id
       collections {
         items {
           id
           documentId
-          documentCollectionId
+          collectionId
           createdAt
           updatedAt
         }
@@ -23,7 +23,7 @@ export const deleteDocument = /* GraphQL */ `
         items {
           id
           documentId
-          documentContributorId
+          contributorId
           createdAt
           updatedAt
         }
@@ -37,7 +37,7 @@ export const deleteDocument = /* GraphQL */ `
         items {
           id
           documentId
-          documentEditionId
+          editionId
           createdAt
           updatedAt
         }
@@ -49,7 +49,7 @@ export const deleteDocument = /* GraphQL */ `
         items {
           id
           documentId
-          documentLanguageId
+          languageId
           createdAt
           updatedAt
         }
@@ -66,7 +66,7 @@ export const deleteDocument = /* GraphQL */ `
         items {
           id
           documentId
-          documentTagId
+          tagId
           createdAt
           updatedAt
         }
@@ -80,18 +80,176 @@ export const deleteDocument = /* GraphQL */ `
     }
   }
 `;
-export const createDocumentCollection = /* GraphQL */ `
-  mutation CreateDocumentCollection(
-    $input: CreateDocumentCollectionInput!
-    $condition: ModelDocumentCollectionConditionInput
+export const updateDocument = /* GraphQL */ `
+  mutation UpdateDocument(
+    $input: UpdateDocumentInput!
+    $condition: ModelDocumentConditionInput
   ) {
-    createDocumentCollection(input: $input, condition: $condition) {
+    updateDocument(input: $input, condition: $condition) {
+      audioVersion
+      blo2018Id
+      collections {
+        items {
+          id
+          documentId
+          collectionId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      contributors {
+        items {
+          id
+          documentId
+          contributorId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      crossReferences
+      dateOriginalPublication
+      dateCurrentPublication
+      description
+      editions {
+        items {
+          id
+          documentId
+          editionId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      filename
+      fileSize
+      languages {
+        items {
+          id
+          documentId
+          languageId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      locales
+      notes
+      pageRange
+      pageTotal
+      permissionType
+      phelpsInfo
+      subtitle
+      tags {
+        items {
+          id
+          documentId
+          tagId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      title
+      views
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteDocument = /* GraphQL */ `
+  mutation DeleteDocument(
+    $input: DeleteDocumentInput!
+    $condition: ModelDocumentConditionInput
+  ) {
+    deleteDocument(input: $input, condition: $condition) {
+      audioVersion
+      blo2018Id
+      collections {
+        items {
+          id
+          documentId
+          collectionId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      contributors {
+        items {
+          id
+          documentId
+          contributorId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      crossReferences
+      dateOriginalPublication
+      dateCurrentPublication
+      description
+      editions {
+        items {
+          id
+          documentId
+          editionId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      filename
+      fileSize
+      languages {
+        items {
+          id
+          documentId
+          languageId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      locales
+      notes
+      pageRange
+      pageTotal
+      permissionType
+      phelpsInfo
+      subtitle
+      tags {
+        items {
+          id
+          documentId
+          tagId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      title
+      views
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createCollection = /* GraphQL */ `
+  mutation CreateCollection(
+    $input: CreateCollectionInput!
+    $condition: ModelCollectionConditionInput
+  ) {
+    createCollection(input: $input, condition: $condition) {
       name
       documents {
         items {
           id
           documentId
-          documentCollectionId
+          collectionId
           createdAt
           updatedAt
         }
@@ -103,18 +261,18 @@ export const createDocumentCollection = /* GraphQL */ `
     }
   }
 `;
-export const updateDocumentCollection = /* GraphQL */ `
-  mutation UpdateDocumentCollection(
-    $input: UpdateDocumentCollectionInput!
-    $condition: ModelDocumentCollectionConditionInput
+export const updateCollection = /* GraphQL */ `
+  mutation UpdateCollection(
+    $input: UpdateCollectionInput!
+    $condition: ModelCollectionConditionInput
   ) {
-    updateDocumentCollection(input: $input, condition: $condition) {
+    updateCollection(input: $input, condition: $condition) {
       name
       documents {
         items {
           id
           documentId
-          documentCollectionId
+          collectionId
           createdAt
           updatedAt
         }
@@ -126,18 +284,18 @@ export const updateDocumentCollection = /* GraphQL */ `
     }
   }
 `;
-export const deleteDocumentCollection = /* GraphQL */ `
-  mutation DeleteDocumentCollection(
-    $input: DeleteDocumentCollectionInput!
-    $condition: ModelDocumentCollectionConditionInput
+export const deleteCollection = /* GraphQL */ `
+  mutation DeleteCollection(
+    $input: DeleteCollectionInput!
+    $condition: ModelCollectionConditionInput
   ) {
-    deleteDocumentCollection(input: $input, condition: $condition) {
+    deleteCollection(input: $input, condition: $condition) {
       name
       documents {
         items {
           id
           documentId
-          documentCollectionId
+          collectionId
           createdAt
           updatedAt
         }
@@ -149,12 +307,12 @@ export const deleteDocumentCollection = /* GraphQL */ `
     }
   }
 `;
-export const createDocumentContributor = /* GraphQL */ `
-  mutation CreateDocumentContributor(
-    $input: CreateDocumentContributorInput!
-    $condition: ModelDocumentContributorConditionInput
+export const createContributor = /* GraphQL */ `
+  mutation CreateContributor(
+    $input: CreateContributorInput!
+    $condition: ModelContributorConditionInput
   ) {
-    createDocumentContributor(input: $input, condition: $condition) {
+    createContributor(input: $input, condition: $condition) {
       firstNames
       surnames
       publicationFirstNames
@@ -170,7 +328,7 @@ export const createDocumentContributor = /* GraphQL */ `
         items {
           id
           documentId
-          documentContributorId
+          contributorId
           createdAt
           updatedAt
         }
@@ -182,12 +340,12 @@ export const createDocumentContributor = /* GraphQL */ `
     }
   }
 `;
-export const updateDocumentContributor = /* GraphQL */ `
-  mutation UpdateDocumentContributor(
-    $input: UpdateDocumentContributorInput!
-    $condition: ModelDocumentContributorConditionInput
+export const updateContributor = /* GraphQL */ `
+  mutation UpdateContributor(
+    $input: UpdateContributorInput!
+    $condition: ModelContributorConditionInput
   ) {
-    updateDocumentContributor(input: $input, condition: $condition) {
+    updateContributor(input: $input, condition: $condition) {
       firstNames
       surnames
       publicationFirstNames
@@ -203,7 +361,7 @@ export const updateDocumentContributor = /* GraphQL */ `
         items {
           id
           documentId
-          documentContributorId
+          contributorId
           createdAt
           updatedAt
         }
@@ -215,12 +373,12 @@ export const updateDocumentContributor = /* GraphQL */ `
     }
   }
 `;
-export const deleteDocumentContributor = /* GraphQL */ `
-  mutation DeleteDocumentContributor(
-    $input: DeleteDocumentContributorInput!
-    $condition: ModelDocumentContributorConditionInput
+export const deleteContributor = /* GraphQL */ `
+  mutation DeleteContributor(
+    $input: DeleteContributorInput!
+    $condition: ModelContributorConditionInput
   ) {
-    deleteDocumentContributor(input: $input, condition: $condition) {
+    deleteContributor(input: $input, condition: $condition) {
       firstNames
       surnames
       publicationFirstNames
@@ -236,7 +394,7 @@ export const deleteDocumentContributor = /* GraphQL */ `
         items {
           id
           documentId
-          documentContributorId
+          contributorId
           createdAt
           updatedAt
         }
@@ -248,12 +406,12 @@ export const deleteDocumentContributor = /* GraphQL */ `
     }
   }
 `;
-export const createDocumentEdition = /* GraphQL */ `
-  mutation CreateDocumentEdition(
-    $input: CreateDocumentEditionInput!
-    $condition: ModelDocumentEditionConditionInput
+export const createEdition = /* GraphQL */ `
+  mutation CreateEdition(
+    $input: CreateEditionInput!
+    $condition: ModelEditionConditionInput
   ) {
-    createDocumentEdition(input: $input, condition: $condition) {
+    createEdition(input: $input, condition: $condition) {
       city
       date
       isbn
@@ -267,7 +425,7 @@ export const createDocumentEdition = /* GraphQL */ `
         items {
           id
           documentId
-          documentEditionId
+          editionId
           createdAt
           updatedAt
         }
@@ -279,12 +437,12 @@ export const createDocumentEdition = /* GraphQL */ `
     }
   }
 `;
-export const updateDocumentEdition = /* GraphQL */ `
-  mutation UpdateDocumentEdition(
-    $input: UpdateDocumentEditionInput!
-    $condition: ModelDocumentEditionConditionInput
+export const updateEdition = /* GraphQL */ `
+  mutation UpdateEdition(
+    $input: UpdateEditionInput!
+    $condition: ModelEditionConditionInput
   ) {
-    updateDocumentEdition(input: $input, condition: $condition) {
+    updateEdition(input: $input, condition: $condition) {
       city
       date
       isbn
@@ -298,7 +456,7 @@ export const updateDocumentEdition = /* GraphQL */ `
         items {
           id
           documentId
-          documentEditionId
+          editionId
           createdAt
           updatedAt
         }
@@ -310,12 +468,12 @@ export const updateDocumentEdition = /* GraphQL */ `
     }
   }
 `;
-export const deleteDocumentEdition = /* GraphQL */ `
-  mutation DeleteDocumentEdition(
-    $input: DeleteDocumentEditionInput!
-    $condition: ModelDocumentEditionConditionInput
+export const deleteEdition = /* GraphQL */ `
+  mutation DeleteEdition(
+    $input: DeleteEditionInput!
+    $condition: ModelEditionConditionInput
   ) {
-    deleteDocumentEdition(input: $input, condition: $condition) {
+    deleteEdition(input: $input, condition: $condition) {
       city
       date
       isbn
@@ -329,7 +487,7 @@ export const deleteDocumentEdition = /* GraphQL */ `
         items {
           id
           documentId
-          documentEditionId
+          editionId
           createdAt
           updatedAt
         }
@@ -341,19 +499,19 @@ export const deleteDocumentEdition = /* GraphQL */ `
     }
   }
 `;
-export const createDocumentLanguage = /* GraphQL */ `
-  mutation CreateDocumentLanguage(
-    $input: CreateDocumentLanguageInput!
-    $condition: ModelDocumentLanguageConditionInput
+export const createLanguage = /* GraphQL */ `
+  mutation CreateLanguage(
+    $input: CreateLanguageInput!
+    $condition: ModelLanguageConditionInput
   ) {
-    createDocumentLanguage(input: $input, condition: $condition) {
+    createLanguage(input: $input, condition: $condition) {
       isCurrentDocument
       language
       documents {
         items {
           id
           documentId
-          documentLanguageId
+          languageId
           createdAt
           updatedAt
         }
@@ -365,19 +523,19 @@ export const createDocumentLanguage = /* GraphQL */ `
     }
   }
 `;
-export const updateDocumentLanguage = /* GraphQL */ `
-  mutation UpdateDocumentLanguage(
-    $input: UpdateDocumentLanguageInput!
-    $condition: ModelDocumentLanguageConditionInput
+export const updateLanguage = /* GraphQL */ `
+  mutation UpdateLanguage(
+    $input: UpdateLanguageInput!
+    $condition: ModelLanguageConditionInput
   ) {
-    updateDocumentLanguage(input: $input, condition: $condition) {
+    updateLanguage(input: $input, condition: $condition) {
       isCurrentDocument
       language
       documents {
         items {
           id
           documentId
-          documentLanguageId
+          languageId
           createdAt
           updatedAt
         }
@@ -389,19 +547,19 @@ export const updateDocumentLanguage = /* GraphQL */ `
     }
   }
 `;
-export const deleteDocumentLanguage = /* GraphQL */ `
-  mutation DeleteDocumentLanguage(
-    $input: DeleteDocumentLanguageInput!
-    $condition: ModelDocumentLanguageConditionInput
+export const deleteLanguage = /* GraphQL */ `
+  mutation DeleteLanguage(
+    $input: DeleteLanguageInput!
+    $condition: ModelLanguageConditionInput
   ) {
-    deleteDocumentLanguage(input: $input, condition: $condition) {
+    deleteLanguage(input: $input, condition: $condition) {
       isCurrentDocument
       language
       documents {
         items {
           id
           documentId
-          documentLanguageId
+          languageId
           createdAt
           updatedAt
         }
@@ -413,19 +571,18 @@ export const deleteDocumentLanguage = /* GraphQL */ `
     }
   }
 `;
-export const createDocumentTag = /* GraphQL */ `
-  mutation CreateDocumentTag(
-    $input: CreateDocumentTagInput!
-    $condition: ModelDocumentTagConditionInput
+export const createTag = /* GraphQL */ `
+  mutation CreateTag(
+    $input: CreateTagInput!
+    $condition: ModelTagConditionInput
   ) {
-    createDocumentTag(input: $input, condition: $condition) {
-      isCurrentDocument
+    createTag(input: $input, condition: $condition) {
       language
       documents {
         items {
           id
           documentId
-          documentTagId
+          tagId
           createdAt
           updatedAt
         }
@@ -437,19 +594,18 @@ export const createDocumentTag = /* GraphQL */ `
     }
   }
 `;
-export const updateDocumentTag = /* GraphQL */ `
-  mutation UpdateDocumentTag(
-    $input: UpdateDocumentTagInput!
-    $condition: ModelDocumentTagConditionInput
+export const updateTag = /* GraphQL */ `
+  mutation UpdateTag(
+    $input: UpdateTagInput!
+    $condition: ModelTagConditionInput
   ) {
-    updateDocumentTag(input: $input, condition: $condition) {
-      isCurrentDocument
+    updateTag(input: $input, condition: $condition) {
       language
       documents {
         items {
           id
           documentId
-          documentTagId
+          tagId
           createdAt
           updatedAt
         }
@@ -461,19 +617,18 @@ export const updateDocumentTag = /* GraphQL */ `
     }
   }
 `;
-export const deleteDocumentTag = /* GraphQL */ `
-  mutation DeleteDocumentTag(
-    $input: DeleteDocumentTagInput!
-    $condition: ModelDocumentTagConditionInput
+export const deleteTag = /* GraphQL */ `
+  mutation DeleteTag(
+    $input: DeleteTagInput!
+    $condition: ModelTagConditionInput
   ) {
-    deleteDocumentTag(input: $input, condition: $condition) {
-      isCurrentDocument
+    deleteTag(input: $input, condition: $condition) {
       language
       documents {
         items {
           id
           documentId
-          documentTagId
+          tagId
           createdAt
           updatedAt
         }
@@ -485,12 +640,12 @@ export const deleteDocumentTag = /* GraphQL */ `
     }
   }
 `;
-export const createDocumentSummary = /* GraphQL */ `
-  mutation CreateDocumentSummary(
-    $input: CreateDocumentSummaryInput!
-    $condition: ModelDocumentSummaryConditionInput
+export const createSummary = /* GraphQL */ `
+  mutation CreateSummary(
+    $input: CreateSummaryInput!
+    $condition: ModelSummaryConditionInput
   ) {
-    createDocumentSummary(input: $input, condition: $condition) {
+    createSummary(input: $input, condition: $condition) {
       filename
       collectionName
       contributorName
@@ -505,12 +660,12 @@ export const createDocumentSummary = /* GraphQL */ `
     }
   }
 `;
-export const updateDocumentSummary = /* GraphQL */ `
-  mutation UpdateDocumentSummary(
-    $input: UpdateDocumentSummaryInput!
-    $condition: ModelDocumentSummaryConditionInput
+export const updateSummary = /* GraphQL */ `
+  mutation UpdateSummary(
+    $input: UpdateSummaryInput!
+    $condition: ModelSummaryConditionInput
   ) {
-    updateDocumentSummary(input: $input, condition: $condition) {
+    updateSummary(input: $input, condition: $condition) {
       filename
       collectionName
       contributorName
@@ -525,12 +680,12 @@ export const updateDocumentSummary = /* GraphQL */ `
     }
   }
 `;
-export const deleteDocumentSummary = /* GraphQL */ `
-  mutation DeleteDocumentSummary(
-    $input: DeleteDocumentSummaryInput!
-    $condition: ModelDocumentSummaryConditionInput
+export const deleteSummary = /* GraphQL */ `
+  mutation DeleteSummary(
+    $input: DeleteSummaryInput!
+    $condition: ModelSummaryConditionInput
   ) {
-    deleteDocumentSummary(input: $input, condition: $condition) {
+    deleteSummary(input: $input, condition: $condition) {
       filename
       collectionName
       contributorName
@@ -553,7 +708,7 @@ export const createCollectionDocuments = /* GraphQL */ `
     createCollectionDocuments(input: $input, condition: $condition) {
       id
       documentId
-      documentCollectionId
+      collectionId
       document {
         audioVersion
         blo2018Id
@@ -591,7 +746,7 @@ export const createCollectionDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentCollection {
+      collection {
         name
         documents {
           nextToken
@@ -613,7 +768,7 @@ export const updateCollectionDocuments = /* GraphQL */ `
     updateCollectionDocuments(input: $input, condition: $condition) {
       id
       documentId
-      documentCollectionId
+      collectionId
       document {
         audioVersion
         blo2018Id
@@ -651,7 +806,7 @@ export const updateCollectionDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentCollection {
+      collection {
         name
         documents {
           nextToken
@@ -673,7 +828,7 @@ export const deleteCollectionDocuments = /* GraphQL */ `
     deleteCollectionDocuments(input: $input, condition: $condition) {
       id
       documentId
-      documentCollectionId
+      collectionId
       document {
         audioVersion
         blo2018Id
@@ -711,7 +866,7 @@ export const deleteCollectionDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentCollection {
+      collection {
         name
         documents {
           nextToken
@@ -733,7 +888,7 @@ export const createContributorDocuments = /* GraphQL */ `
     createContributorDocuments(input: $input, condition: $condition) {
       id
       documentId
-      documentContributorId
+      contributorId
       document {
         audioVersion
         blo2018Id
@@ -771,7 +926,7 @@ export const createContributorDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentContributor {
+      contributor {
         firstNames
         surnames
         publicationFirstNames
@@ -803,7 +958,7 @@ export const updateContributorDocuments = /* GraphQL */ `
     updateContributorDocuments(input: $input, condition: $condition) {
       id
       documentId
-      documentContributorId
+      contributorId
       document {
         audioVersion
         blo2018Id
@@ -841,7 +996,7 @@ export const updateContributorDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentContributor {
+      contributor {
         firstNames
         surnames
         publicationFirstNames
@@ -873,7 +1028,7 @@ export const deleteContributorDocuments = /* GraphQL */ `
     deleteContributorDocuments(input: $input, condition: $condition) {
       id
       documentId
-      documentContributorId
+      contributorId
       document {
         audioVersion
         blo2018Id
@@ -911,7 +1066,7 @@ export const deleteContributorDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentContributor {
+      contributor {
         firstNames
         surnames
         publicationFirstNames
@@ -943,7 +1098,7 @@ export const createEditionDocuments = /* GraphQL */ `
     createEditionDocuments(input: $input, condition: $condition) {
       id
       documentId
-      documentEditionId
+      editionId
       document {
         audioVersion
         blo2018Id
@@ -981,7 +1136,7 @@ export const createEditionDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentEdition {
+      edition {
         city
         date
         isbn
@@ -1011,7 +1166,7 @@ export const updateEditionDocuments = /* GraphQL */ `
     updateEditionDocuments(input: $input, condition: $condition) {
       id
       documentId
-      documentEditionId
+      editionId
       document {
         audioVersion
         blo2018Id
@@ -1049,7 +1204,7 @@ export const updateEditionDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentEdition {
+      edition {
         city
         date
         isbn
@@ -1079,7 +1234,7 @@ export const deleteEditionDocuments = /* GraphQL */ `
     deleteEditionDocuments(input: $input, condition: $condition) {
       id
       documentId
-      documentEditionId
+      editionId
       document {
         audioVersion
         blo2018Id
@@ -1117,7 +1272,7 @@ export const deleteEditionDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentEdition {
+      edition {
         city
         date
         isbn
@@ -1147,7 +1302,7 @@ export const createLanguageDocuments = /* GraphQL */ `
     createLanguageDocuments(input: $input, condition: $condition) {
       id
       documentId
-      documentLanguageId
+      languageId
       document {
         audioVersion
         blo2018Id
@@ -1185,7 +1340,7 @@ export const createLanguageDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentLanguage {
+      language {
         isCurrentDocument
         language
         documents {
@@ -1208,7 +1363,7 @@ export const updateLanguageDocuments = /* GraphQL */ `
     updateLanguageDocuments(input: $input, condition: $condition) {
       id
       documentId
-      documentLanguageId
+      languageId
       document {
         audioVersion
         blo2018Id
@@ -1246,7 +1401,7 @@ export const updateLanguageDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentLanguage {
+      language {
         isCurrentDocument
         language
         documents {
@@ -1269,7 +1424,7 @@ export const deleteLanguageDocuments = /* GraphQL */ `
     deleteLanguageDocuments(input: $input, condition: $condition) {
       id
       documentId
-      documentLanguageId
+      languageId
       document {
         audioVersion
         blo2018Id
@@ -1307,7 +1462,7 @@ export const deleteLanguageDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentLanguage {
+      language {
         isCurrentDocument
         language
         documents {
@@ -1330,7 +1485,7 @@ export const createTagDocuments = /* GraphQL */ `
     createTagDocuments(input: $input, condition: $condition) {
       id
       documentId
-      documentTagId
+      tagId
       document {
         audioVersion
         blo2018Id
@@ -1368,8 +1523,7 @@ export const createTagDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentTag {
-        isCurrentDocument
+      tag {
         language
         documents {
           nextToken
@@ -1391,7 +1545,7 @@ export const updateTagDocuments = /* GraphQL */ `
     updateTagDocuments(input: $input, condition: $condition) {
       id
       documentId
-      documentTagId
+      tagId
       document {
         audioVersion
         blo2018Id
@@ -1429,8 +1583,7 @@ export const updateTagDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentTag {
-        isCurrentDocument
+      tag {
         language
         documents {
           nextToken
@@ -1452,7 +1605,7 @@ export const deleteTagDocuments = /* GraphQL */ `
     deleteTagDocuments(input: $input, condition: $condition) {
       id
       documentId
-      documentTagId
+      tagId
       document {
         audioVersion
         blo2018Id
@@ -1490,8 +1643,7 @@ export const deleteTagDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentTag {
-        isCurrentDocument
+      tag {
         language
         documents {
           nextToken
@@ -1500,164 +1652,6 @@ export const deleteTagDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createDocument = /* GraphQL */ `
-  mutation CreateDocument(
-    $input: CreateDocumentInput!
-    $condition: ModelDocumentConditionInput
-  ) {
-    createDocument(input: $input, condition: $condition) {
-      audioVersion
-      blo2018Id
-      collections {
-        items {
-          id
-          documentId
-          documentCollectionId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      contributors {
-        items {
-          id
-          documentId
-          documentContributorId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      crossReferences
-      dateOriginalPublication
-      dateCurrentPublication
-      description
-      editions {
-        items {
-          id
-          documentId
-          documentEditionId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      filename
-      fileSize
-      languages {
-        items {
-          id
-          documentId
-          documentLanguageId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      locales
-      notes
-      pageRange
-      pageTotal
-      permissionType
-      phelpsInfo
-      subtitle
-      tags {
-        items {
-          id
-          documentId
-          documentTagId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      title
-      views
-      id
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateDocument = /* GraphQL */ `
-  mutation UpdateDocument(
-    $input: UpdateDocumentInput!
-    $condition: ModelDocumentConditionInput
-  ) {
-    updateDocument(input: $input, condition: $condition) {
-      audioVersion
-      blo2018Id
-      collections {
-        items {
-          id
-          documentId
-          documentCollectionId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      contributors {
-        items {
-          id
-          documentId
-          documentContributorId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      crossReferences
-      dateOriginalPublication
-      dateCurrentPublication
-      description
-      editions {
-        items {
-          id
-          documentId
-          documentEditionId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      filename
-      fileSize
-      languages {
-        items {
-          id
-          documentId
-          documentLanguageId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      locales
-      notes
-      pageRange
-      pageTotal
-      permissionType
-      phelpsInfo
-      subtitle
-      tags {
-        items {
-          id
-          documentId
-          documentTagId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      title
-      views
-      id
       createdAt
       updatedAt
     }

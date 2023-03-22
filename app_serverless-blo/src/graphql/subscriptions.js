@@ -1,17 +1,245 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateDocumentCollection = /* GraphQL */ `
-  subscription OnCreateDocumentCollection(
-    $filter: ModelSubscriptionDocumentCollectionFilterInput
+export const onCreateDocument = /* GraphQL */ `
+  subscription OnCreateDocument($filter: ModelSubscriptionDocumentFilterInput) {
+    onCreateDocument(filter: $filter) {
+      audioVersion
+      blo2018Id
+      collections {
+        items {
+          id
+          documentId
+          collectionId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      contributors {
+        items {
+          id
+          documentId
+          contributorId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      crossReferences
+      dateOriginalPublication
+      dateCurrentPublication
+      description
+      editions {
+        items {
+          id
+          documentId
+          editionId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      filename
+      fileSize
+      languages {
+        items {
+          id
+          documentId
+          languageId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      locales
+      notes
+      pageRange
+      pageTotal
+      permissionType
+      phelpsInfo
+      subtitle
+      tags {
+        items {
+          id
+          documentId
+          tagId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      title
+      views
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateDocument = /* GraphQL */ `
+  subscription OnUpdateDocument($filter: ModelSubscriptionDocumentFilterInput) {
+    onUpdateDocument(filter: $filter) {
+      audioVersion
+      blo2018Id
+      collections {
+        items {
+          id
+          documentId
+          collectionId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      contributors {
+        items {
+          id
+          documentId
+          contributorId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      crossReferences
+      dateOriginalPublication
+      dateCurrentPublication
+      description
+      editions {
+        items {
+          id
+          documentId
+          editionId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      filename
+      fileSize
+      languages {
+        items {
+          id
+          documentId
+          languageId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      locales
+      notes
+      pageRange
+      pageTotal
+      permissionType
+      phelpsInfo
+      subtitle
+      tags {
+        items {
+          id
+          documentId
+          tagId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      title
+      views
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteDocument = /* GraphQL */ `
+  subscription OnDeleteDocument($filter: ModelSubscriptionDocumentFilterInput) {
+    onDeleteDocument(filter: $filter) {
+      audioVersion
+      blo2018Id
+      collections {
+        items {
+          id
+          documentId
+          collectionId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      contributors {
+        items {
+          id
+          documentId
+          contributorId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      crossReferences
+      dateOriginalPublication
+      dateCurrentPublication
+      description
+      editions {
+        items {
+          id
+          documentId
+          editionId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      filename
+      fileSize
+      languages {
+        items {
+          id
+          documentId
+          languageId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      locales
+      notes
+      pageRange
+      pageTotal
+      permissionType
+      phelpsInfo
+      subtitle
+      tags {
+        items {
+          id
+          documentId
+          tagId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      title
+      views
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateCollection = /* GraphQL */ `
+  subscription OnCreateCollection(
+    $filter: ModelSubscriptionCollectionFilterInput
   ) {
-    onCreateDocumentCollection(filter: $filter) {
+    onCreateCollection(filter: $filter) {
       name
       documents {
         items {
           id
           documentId
-          documentCollectionId
+          collectionId
           createdAt
           updatedAt
         }
@@ -23,17 +251,17 @@ export const onCreateDocumentCollection = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateDocumentCollection = /* GraphQL */ `
-  subscription OnUpdateDocumentCollection(
-    $filter: ModelSubscriptionDocumentCollectionFilterInput
+export const onUpdateCollection = /* GraphQL */ `
+  subscription OnUpdateCollection(
+    $filter: ModelSubscriptionCollectionFilterInput
   ) {
-    onUpdateDocumentCollection(filter: $filter) {
+    onUpdateCollection(filter: $filter) {
       name
       documents {
         items {
           id
           documentId
-          documentCollectionId
+          collectionId
           createdAt
           updatedAt
         }
@@ -45,17 +273,17 @@ export const onUpdateDocumentCollection = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteDocumentCollection = /* GraphQL */ `
-  subscription OnDeleteDocumentCollection(
-    $filter: ModelSubscriptionDocumentCollectionFilterInput
+export const onDeleteCollection = /* GraphQL */ `
+  subscription OnDeleteCollection(
+    $filter: ModelSubscriptionCollectionFilterInput
   ) {
-    onDeleteDocumentCollection(filter: $filter) {
+    onDeleteCollection(filter: $filter) {
       name
       documents {
         items {
           id
           documentId
-          documentCollectionId
+          collectionId
           createdAt
           updatedAt
         }
@@ -67,11 +295,11 @@ export const onDeleteDocumentCollection = /* GraphQL */ `
     }
   }
 `;
-export const onCreateDocumentContributor = /* GraphQL */ `
-  subscription OnCreateDocumentContributor(
-    $filter: ModelSubscriptionDocumentContributorFilterInput
+export const onCreateContributor = /* GraphQL */ `
+  subscription OnCreateContributor(
+    $filter: ModelSubscriptionContributorFilterInput
   ) {
-    onCreateDocumentContributor(filter: $filter) {
+    onCreateContributor(filter: $filter) {
       firstNames
       surnames
       publicationFirstNames
@@ -87,7 +315,7 @@ export const onCreateDocumentContributor = /* GraphQL */ `
         items {
           id
           documentId
-          documentContributorId
+          contributorId
           createdAt
           updatedAt
         }
@@ -99,11 +327,11 @@ export const onCreateDocumentContributor = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateDocumentContributor = /* GraphQL */ `
-  subscription OnUpdateDocumentContributor(
-    $filter: ModelSubscriptionDocumentContributorFilterInput
+export const onUpdateContributor = /* GraphQL */ `
+  subscription OnUpdateContributor(
+    $filter: ModelSubscriptionContributorFilterInput
   ) {
-    onUpdateDocumentContributor(filter: $filter) {
+    onUpdateContributor(filter: $filter) {
       firstNames
       surnames
       publicationFirstNames
@@ -119,7 +347,7 @@ export const onUpdateDocumentContributor = /* GraphQL */ `
         items {
           id
           documentId
-          documentContributorId
+          contributorId
           createdAt
           updatedAt
         }
@@ -131,11 +359,11 @@ export const onUpdateDocumentContributor = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteDocumentContributor = /* GraphQL */ `
-  subscription OnDeleteDocumentContributor(
-    $filter: ModelSubscriptionDocumentContributorFilterInput
+export const onDeleteContributor = /* GraphQL */ `
+  subscription OnDeleteContributor(
+    $filter: ModelSubscriptionContributorFilterInput
   ) {
-    onDeleteDocumentContributor(filter: $filter) {
+    onDeleteContributor(filter: $filter) {
       firstNames
       surnames
       publicationFirstNames
@@ -151,7 +379,7 @@ export const onDeleteDocumentContributor = /* GraphQL */ `
         items {
           id
           documentId
-          documentContributorId
+          contributorId
           createdAt
           updatedAt
         }
@@ -163,11 +391,9 @@ export const onDeleteDocumentContributor = /* GraphQL */ `
     }
   }
 `;
-export const onCreateDocumentEdition = /* GraphQL */ `
-  subscription OnCreateDocumentEdition(
-    $filter: ModelSubscriptionDocumentEditionFilterInput
-  ) {
-    onCreateDocumentEdition(filter: $filter) {
+export const onCreateEdition = /* GraphQL */ `
+  subscription OnCreateEdition($filter: ModelSubscriptionEditionFilterInput) {
+    onCreateEdition(filter: $filter) {
       city
       date
       isbn
@@ -181,7 +407,7 @@ export const onCreateDocumentEdition = /* GraphQL */ `
         items {
           id
           documentId
-          documentEditionId
+          editionId
           createdAt
           updatedAt
         }
@@ -193,11 +419,9 @@ export const onCreateDocumentEdition = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateDocumentEdition = /* GraphQL */ `
-  subscription OnUpdateDocumentEdition(
-    $filter: ModelSubscriptionDocumentEditionFilterInput
-  ) {
-    onUpdateDocumentEdition(filter: $filter) {
+export const onUpdateEdition = /* GraphQL */ `
+  subscription OnUpdateEdition($filter: ModelSubscriptionEditionFilterInput) {
+    onUpdateEdition(filter: $filter) {
       city
       date
       isbn
@@ -211,7 +435,7 @@ export const onUpdateDocumentEdition = /* GraphQL */ `
         items {
           id
           documentId
-          documentEditionId
+          editionId
           createdAt
           updatedAt
         }
@@ -223,11 +447,9 @@ export const onUpdateDocumentEdition = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteDocumentEdition = /* GraphQL */ `
-  subscription OnDeleteDocumentEdition(
-    $filter: ModelSubscriptionDocumentEditionFilterInput
-  ) {
-    onDeleteDocumentEdition(filter: $filter) {
+export const onDeleteEdition = /* GraphQL */ `
+  subscription OnDeleteEdition($filter: ModelSubscriptionEditionFilterInput) {
+    onDeleteEdition(filter: $filter) {
       city
       date
       isbn
@@ -241,7 +463,7 @@ export const onDeleteDocumentEdition = /* GraphQL */ `
         items {
           id
           documentId
-          documentEditionId
+          editionId
           createdAt
           updatedAt
         }
@@ -253,18 +475,16 @@ export const onDeleteDocumentEdition = /* GraphQL */ `
     }
   }
 `;
-export const onCreateDocumentLanguage = /* GraphQL */ `
-  subscription OnCreateDocumentLanguage(
-    $filter: ModelSubscriptionDocumentLanguageFilterInput
-  ) {
-    onCreateDocumentLanguage(filter: $filter) {
+export const onCreateLanguage = /* GraphQL */ `
+  subscription OnCreateLanguage($filter: ModelSubscriptionLanguageFilterInput) {
+    onCreateLanguage(filter: $filter) {
       isCurrentDocument
       language
       documents {
         items {
           id
           documentId
-          documentLanguageId
+          languageId
           createdAt
           updatedAt
         }
@@ -276,18 +496,16 @@ export const onCreateDocumentLanguage = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateDocumentLanguage = /* GraphQL */ `
-  subscription OnUpdateDocumentLanguage(
-    $filter: ModelSubscriptionDocumentLanguageFilterInput
-  ) {
-    onUpdateDocumentLanguage(filter: $filter) {
+export const onUpdateLanguage = /* GraphQL */ `
+  subscription OnUpdateLanguage($filter: ModelSubscriptionLanguageFilterInput) {
+    onUpdateLanguage(filter: $filter) {
       isCurrentDocument
       language
       documents {
         items {
           id
           documentId
-          documentLanguageId
+          languageId
           createdAt
           updatedAt
         }
@@ -299,18 +517,16 @@ export const onUpdateDocumentLanguage = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteDocumentLanguage = /* GraphQL */ `
-  subscription OnDeleteDocumentLanguage(
-    $filter: ModelSubscriptionDocumentLanguageFilterInput
-  ) {
-    onDeleteDocumentLanguage(filter: $filter) {
+export const onDeleteLanguage = /* GraphQL */ `
+  subscription OnDeleteLanguage($filter: ModelSubscriptionLanguageFilterInput) {
+    onDeleteLanguage(filter: $filter) {
       isCurrentDocument
       language
       documents {
         items {
           id
           documentId
-          documentLanguageId
+          languageId
           createdAt
           updatedAt
         }
@@ -322,18 +538,15 @@ export const onDeleteDocumentLanguage = /* GraphQL */ `
     }
   }
 `;
-export const onCreateDocumentTag = /* GraphQL */ `
-  subscription OnCreateDocumentTag(
-    $filter: ModelSubscriptionDocumentTagFilterInput
-  ) {
-    onCreateDocumentTag(filter: $filter) {
-      isCurrentDocument
+export const onCreateTag = /* GraphQL */ `
+  subscription OnCreateTag($filter: ModelSubscriptionTagFilterInput) {
+    onCreateTag(filter: $filter) {
       language
       documents {
         items {
           id
           documentId
-          documentTagId
+          tagId
           createdAt
           updatedAt
         }
@@ -345,18 +558,15 @@ export const onCreateDocumentTag = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateDocumentTag = /* GraphQL */ `
-  subscription OnUpdateDocumentTag(
-    $filter: ModelSubscriptionDocumentTagFilterInput
-  ) {
-    onUpdateDocumentTag(filter: $filter) {
-      isCurrentDocument
+export const onUpdateTag = /* GraphQL */ `
+  subscription OnUpdateTag($filter: ModelSubscriptionTagFilterInput) {
+    onUpdateTag(filter: $filter) {
       language
       documents {
         items {
           id
           documentId
-          documentTagId
+          tagId
           createdAt
           updatedAt
         }
@@ -368,18 +578,15 @@ export const onUpdateDocumentTag = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteDocumentTag = /* GraphQL */ `
-  subscription OnDeleteDocumentTag(
-    $filter: ModelSubscriptionDocumentTagFilterInput
-  ) {
-    onDeleteDocumentTag(filter: $filter) {
-      isCurrentDocument
+export const onDeleteTag = /* GraphQL */ `
+  subscription OnDeleteTag($filter: ModelSubscriptionTagFilterInput) {
+    onDeleteTag(filter: $filter) {
       language
       documents {
         items {
           id
           documentId
-          documentTagId
+          tagId
           createdAt
           updatedAt
         }
@@ -391,11 +598,9 @@ export const onDeleteDocumentTag = /* GraphQL */ `
     }
   }
 `;
-export const onCreateDocumentSummary = /* GraphQL */ `
-  subscription OnCreateDocumentSummary(
-    $filter: ModelSubscriptionDocumentSummaryFilterInput
-  ) {
-    onCreateDocumentSummary(filter: $filter) {
+export const onCreateSummary = /* GraphQL */ `
+  subscription OnCreateSummary($filter: ModelSubscriptionSummaryFilterInput) {
+    onCreateSummary(filter: $filter) {
       filename
       collectionName
       contributorName
@@ -410,11 +615,9 @@ export const onCreateDocumentSummary = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateDocumentSummary = /* GraphQL */ `
-  subscription OnUpdateDocumentSummary(
-    $filter: ModelSubscriptionDocumentSummaryFilterInput
-  ) {
-    onUpdateDocumentSummary(filter: $filter) {
+export const onUpdateSummary = /* GraphQL */ `
+  subscription OnUpdateSummary($filter: ModelSubscriptionSummaryFilterInput) {
+    onUpdateSummary(filter: $filter) {
       filename
       collectionName
       contributorName
@@ -429,11 +632,9 @@ export const onUpdateDocumentSummary = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteDocumentSummary = /* GraphQL */ `
-  subscription OnDeleteDocumentSummary(
-    $filter: ModelSubscriptionDocumentSummaryFilterInput
-  ) {
-    onDeleteDocumentSummary(filter: $filter) {
+export const onDeleteSummary = /* GraphQL */ `
+  subscription OnDeleteSummary($filter: ModelSubscriptionSummaryFilterInput) {
+    onDeleteSummary(filter: $filter) {
       filename
       collectionName
       contributorName
@@ -455,7 +656,7 @@ export const onCreateCollectionDocuments = /* GraphQL */ `
     onCreateCollectionDocuments(filter: $filter) {
       id
       documentId
-      documentCollectionId
+      collectionId
       document {
         audioVersion
         blo2018Id
@@ -493,7 +694,7 @@ export const onCreateCollectionDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentCollection {
+      collection {
         name
         documents {
           nextToken
@@ -514,7 +715,7 @@ export const onUpdateCollectionDocuments = /* GraphQL */ `
     onUpdateCollectionDocuments(filter: $filter) {
       id
       documentId
-      documentCollectionId
+      collectionId
       document {
         audioVersion
         blo2018Id
@@ -552,7 +753,7 @@ export const onUpdateCollectionDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentCollection {
+      collection {
         name
         documents {
           nextToken
@@ -573,7 +774,7 @@ export const onDeleteCollectionDocuments = /* GraphQL */ `
     onDeleteCollectionDocuments(filter: $filter) {
       id
       documentId
-      documentCollectionId
+      collectionId
       document {
         audioVersion
         blo2018Id
@@ -611,7 +812,7 @@ export const onDeleteCollectionDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentCollection {
+      collection {
         name
         documents {
           nextToken
@@ -632,7 +833,7 @@ export const onCreateContributorDocuments = /* GraphQL */ `
     onCreateContributorDocuments(filter: $filter) {
       id
       documentId
-      documentContributorId
+      contributorId
       document {
         audioVersion
         blo2018Id
@@ -670,7 +871,7 @@ export const onCreateContributorDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentContributor {
+      contributor {
         firstNames
         surnames
         publicationFirstNames
@@ -701,7 +902,7 @@ export const onUpdateContributorDocuments = /* GraphQL */ `
     onUpdateContributorDocuments(filter: $filter) {
       id
       documentId
-      documentContributorId
+      contributorId
       document {
         audioVersion
         blo2018Id
@@ -739,7 +940,7 @@ export const onUpdateContributorDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentContributor {
+      contributor {
         firstNames
         surnames
         publicationFirstNames
@@ -770,7 +971,7 @@ export const onDeleteContributorDocuments = /* GraphQL */ `
     onDeleteContributorDocuments(filter: $filter) {
       id
       documentId
-      documentContributorId
+      contributorId
       document {
         audioVersion
         blo2018Id
@@ -808,7 +1009,7 @@ export const onDeleteContributorDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentContributor {
+      contributor {
         firstNames
         surnames
         publicationFirstNames
@@ -839,7 +1040,7 @@ export const onCreateEditionDocuments = /* GraphQL */ `
     onCreateEditionDocuments(filter: $filter) {
       id
       documentId
-      documentEditionId
+      editionId
       document {
         audioVersion
         blo2018Id
@@ -877,7 +1078,7 @@ export const onCreateEditionDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentEdition {
+      edition {
         city
         date
         isbn
@@ -906,7 +1107,7 @@ export const onUpdateEditionDocuments = /* GraphQL */ `
     onUpdateEditionDocuments(filter: $filter) {
       id
       documentId
-      documentEditionId
+      editionId
       document {
         audioVersion
         blo2018Id
@@ -944,7 +1145,7 @@ export const onUpdateEditionDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentEdition {
+      edition {
         city
         date
         isbn
@@ -973,7 +1174,7 @@ export const onDeleteEditionDocuments = /* GraphQL */ `
     onDeleteEditionDocuments(filter: $filter) {
       id
       documentId
-      documentEditionId
+      editionId
       document {
         audioVersion
         blo2018Id
@@ -1011,7 +1212,7 @@ export const onDeleteEditionDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentEdition {
+      edition {
         city
         date
         isbn
@@ -1040,7 +1241,7 @@ export const onCreateLanguageDocuments = /* GraphQL */ `
     onCreateLanguageDocuments(filter: $filter) {
       id
       documentId
-      documentLanguageId
+      languageId
       document {
         audioVersion
         blo2018Id
@@ -1078,7 +1279,7 @@ export const onCreateLanguageDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentLanguage {
+      language {
         isCurrentDocument
         language
         documents {
@@ -1100,7 +1301,7 @@ export const onUpdateLanguageDocuments = /* GraphQL */ `
     onUpdateLanguageDocuments(filter: $filter) {
       id
       documentId
-      documentLanguageId
+      languageId
       document {
         audioVersion
         blo2018Id
@@ -1138,7 +1339,7 @@ export const onUpdateLanguageDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentLanguage {
+      language {
         isCurrentDocument
         language
         documents {
@@ -1160,7 +1361,7 @@ export const onDeleteLanguageDocuments = /* GraphQL */ `
     onDeleteLanguageDocuments(filter: $filter) {
       id
       documentId
-      documentLanguageId
+      languageId
       document {
         audioVersion
         blo2018Id
@@ -1198,7 +1399,7 @@ export const onDeleteLanguageDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentLanguage {
+      language {
         isCurrentDocument
         language
         documents {
@@ -1220,7 +1421,7 @@ export const onCreateTagDocuments = /* GraphQL */ `
     onCreateTagDocuments(filter: $filter) {
       id
       documentId
-      documentTagId
+      tagId
       document {
         audioVersion
         blo2018Id
@@ -1258,8 +1459,7 @@ export const onCreateTagDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentTag {
-        isCurrentDocument
+      tag {
         language
         documents {
           nextToken
@@ -1280,7 +1480,7 @@ export const onUpdateTagDocuments = /* GraphQL */ `
     onUpdateTagDocuments(filter: $filter) {
       id
       documentId
-      documentTagId
+      tagId
       document {
         audioVersion
         blo2018Id
@@ -1318,8 +1518,7 @@ export const onUpdateTagDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentTag {
-        isCurrentDocument
+      tag {
         language
         documents {
           nextToken
@@ -1340,7 +1539,7 @@ export const onDeleteTagDocuments = /* GraphQL */ `
     onDeleteTagDocuments(filter: $filter) {
       id
       documentId
-      documentTagId
+      tagId
       document {
         audioVersion
         blo2018Id
@@ -1378,8 +1577,7 @@ export const onDeleteTagDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      documentTag {
-        isCurrentDocument
+      tag {
         language
         documents {
           nextToken
@@ -1388,234 +1586,6 @@ export const onDeleteTagDocuments = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateDocument = /* GraphQL */ `
-  subscription OnCreateDocument($filter: ModelSubscriptionDocumentFilterInput) {
-    onCreateDocument(filter: $filter) {
-      audioVersion
-      blo2018Id
-      collections {
-        items {
-          id
-          documentId
-          documentCollectionId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      contributors {
-        items {
-          id
-          documentId
-          documentContributorId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      crossReferences
-      dateOriginalPublication
-      dateCurrentPublication
-      description
-      editions {
-        items {
-          id
-          documentId
-          documentEditionId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      filename
-      fileSize
-      languages {
-        items {
-          id
-          documentId
-          documentLanguageId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      locales
-      notes
-      pageRange
-      pageTotal
-      permissionType
-      phelpsInfo
-      subtitle
-      tags {
-        items {
-          id
-          documentId
-          documentTagId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      title
-      views
-      id
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateDocument = /* GraphQL */ `
-  subscription OnUpdateDocument($filter: ModelSubscriptionDocumentFilterInput) {
-    onUpdateDocument(filter: $filter) {
-      audioVersion
-      blo2018Id
-      collections {
-        items {
-          id
-          documentId
-          documentCollectionId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      contributors {
-        items {
-          id
-          documentId
-          documentContributorId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      crossReferences
-      dateOriginalPublication
-      dateCurrentPublication
-      description
-      editions {
-        items {
-          id
-          documentId
-          documentEditionId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      filename
-      fileSize
-      languages {
-        items {
-          id
-          documentId
-          documentLanguageId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      locales
-      notes
-      pageRange
-      pageTotal
-      permissionType
-      phelpsInfo
-      subtitle
-      tags {
-        items {
-          id
-          documentId
-          documentTagId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      title
-      views
-      id
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteDocument = /* GraphQL */ `
-  subscription OnDeleteDocument($filter: ModelSubscriptionDocumentFilterInput) {
-    onDeleteDocument(filter: $filter) {
-      audioVersion
-      blo2018Id
-      collections {
-        items {
-          id
-          documentId
-          documentCollectionId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      contributors {
-        items {
-          id
-          documentId
-          documentContributorId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      crossReferences
-      dateOriginalPublication
-      dateCurrentPublication
-      description
-      editions {
-        items {
-          id
-          documentId
-          documentEditionId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      filename
-      fileSize
-      languages {
-        items {
-          id
-          documentId
-          documentLanguageId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      locales
-      notes
-      pageRange
-      pageTotal
-      permissionType
-      phelpsInfo
-      subtitle
-      tags {
-        items {
-          id
-          documentId
-          documentTagId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      title
-      views
-      id
       createdAt
       updatedAt
     }

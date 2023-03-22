@@ -9,10 +9,12 @@ function App() {
     return (
         <div className="App">
             <AddDocumentForm />
-            <DocumentList />
+
             <button onClick={() => Auth.signOut()}>Sign Out</button>
         </div>
     );
 }
 
 export default withAuthenticator(App);
+
+/*<DocumentList />*/

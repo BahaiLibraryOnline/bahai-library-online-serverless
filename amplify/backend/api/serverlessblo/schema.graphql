@@ -1,6 +1,6 @@
 type Document @model {
     audioVersion: String @auth(rules: [{ allow: public }])
-    blo2018Id: Int @auth(rules: [{ allow: groups, groups: ["Admin"] }])
+    blo2018Id: Int @auth(rules: [{ allow: public }])
     collections: [Collection] @manyToMany(relationName: "CollectionDocuments") @auth(rules: [{ allow: public }])
     contributors: [Contributor] @manyToMany(relationName: "ContributorDocuments") @auth(rules: [{ allow: public }])
     crossReferences: String @auth(rules: [{ allow: public }])
