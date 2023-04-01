@@ -1,0 +1,1048 @@
+﻿
+type Collection @model @aws_api_key @aws_cognito_user_pools {
+  documents(filter: ModelCollectionDocumentsFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelCollectionDocumentsConnection
+  name: String
+}
+
+type CollectionDocuments @model @aws_api_key @aws_cognito_user_pools {
+  collection: Collection!
+  collectionId: ID!
+  document: Document!
+  documentId: ID!
+  documentfilename: String!
+}
+
+type Contributor @model @aws_api_key @aws_cognito_user_pools {
+  documents(filter: ModelContributorDocumentsFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelContributorDocumentsConnection
+  firstNames: String
+  isAuthor: Boolean
+  isCompiler: Boolean
+  isEditor: Boolean
+  isIllustrator: Boolean
+  isOther: Boolean
+  isTranslator: Boolean
+  otherDescription: String
+  publicationFirstNames: String
+  publicationSurnames: String
+  surnames: String
+}
+
+type ContributorDocuments @model @aws_api_key @aws_cognito_user_pools {
+  contributor: Contributor!
+  contributorId: ID!
+  document: Document!
+  documentId: ID!
+  documentfilename: String!
+}
+
+type Document @model @aws_api_key @aws_cognito_user_pools {
+  audioVersion: String
+  blo2018Id: Int
+  collections(filter: ModelCollectionDocumentsFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelCollectionDocumentsConnection
+  contributors(filter: ModelContributorDocumentsFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelContributorDocumentsConnection
+  crossReferences: String
+  dateCurrentPublication: String
+  dateOriginalPublication: String
+  description: String
+  editions(filter: ModelEditionDocumentsFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelEditionDocumentsConnection
+  fileSize: Int
+  filename: String!
+  languages(filter: ModelLanguageDocumentsFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelLanguageDocumentsConnection
+  locales: String
+  notes: String
+  pageRange: String
+  pageTotal: Int
+  permissionType: String
+  phelpsInfo: String
+  subtitle: String
+  tags(filter: ModelTagDocumentsFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelTagDocumentsConnection
+  title: String
+  views: Int
+}
+
+type Edition @model @aws_api_key @aws_cognito_user_pools {
+  city: String
+  date: String
+  documents(filter: ModelEditionDocumentsFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelEditionDocumentsConnection
+  isCurrentDocument: Boolean
+  isbn: String
+  originalTitle: String
+  pageRange: String
+  publication: String
+  publisher: String
+  volume: String
+}
+
+type EditionDocuments @model @aws_api_key @aws_cognito_user_pools {
+  document: Document!
+  documentId: ID!
+  documentfilename: String!
+  edition: Edition!
+  editionId: ID!
+}
+
+type Language @model @aws_api_key @aws_cognito_user_pools {
+  documents(filter: ModelLanguageDocumentsFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelLanguageDocumentsConnection
+  isCurrentDocument: Boolean
+  language: String
+}
+
+type LanguageDocuments @model @aws_api_key @aws_cognito_user_pools {
+  document: Document!
+  documentId: ID!
+  documentfilename: String!
+  language: Language!
+  languageId: ID!
+}
+
+type ModelCollectionConnection @aws_api_key @aws_cognito_user_pools {
+  items: [Collection]!
+  nextToken: String
+}
+
+type ModelCollectionDocumentsConnection @aws_api_key @aws_cognito_user_pools {
+  items: [CollectionDocuments]!
+  nextToken: String
+}
+
+type ModelContributorConnection @aws_api_key @aws_cognito_user_pools {
+  items: [Contributor]!
+  nextToken: String
+}
+
+type ModelContributorDocumentsConnection @aws_api_key @aws_cognito_user_pools {
+  items: [ContributorDocuments]!
+  nextToken: String
+}
+
+type ModelDocumentConnection @aws_api_key @aws_cognito_user_pools {
+  items: [Document]!
+  nextToken: String
+}
+
+type ModelEditionConnection @aws_api_key @aws_cognito_user_pools {
+  items: [Edition]!
+  nextToken: String
+}
+
+type ModelEditionDocumentsConnection @aws_api_key @aws_cognito_user_pools {
+  items: [EditionDocuments]!
+  nextToken: String
+}
+
+type ModelLanguageConnection @aws_api_key @aws_cognito_user_pools {
+  items: [Language]!
+  nextToken: String
+}
+
+type ModelLanguageDocumentsConnection @aws_api_key @aws_cognito_user_pools {
+  items: [LanguageDocuments]!
+  nextToken: String
+}
+
+type ModelTagConnection @aws_api_key @aws_cognito_user_pools {
+  items: [Tag]!
+  nextToken: String
+}
+
+type ModelTagDocumentsConnection @aws_api_key @aws_cognito_user_pools {
+  items: [TagDocuments]!
+  nextToken: String
+}
+
+
+type Mutation @aws_api_key @aws_cognito_user_pools {
+  createCollection(condition: ModelCollectionConditionInput, input: CreateCollectionInput!): Collection
+  createCollectionDocuments(condition: ModelCollectionDocumentsConditionInput, input: CreateCollectionDocumentsInput!): CollectionDocuments
+  createContributor(condition: ModelContributorConditionInput, input: CreateContributorInput!): Contributor
+  createContributorDocuments(condition: ModelContributorDocumentsConditionInput, input: CreateContributorDocumentsInput!): ContributorDocuments
+  createDocument(condition: ModelDocumentConditionInput, input: CreateDocumentInput!): Document
+  createEdition(condition: ModelEditionConditionInput, input: CreateEditionInput!): Edition
+  createEditionDocuments(condition: ModelEditionDocumentsConditionInput, input: CreateEditionDocumentsInput!): EditionDocuments
+  createLanguage(condition: ModelLanguageConditionInput, input: CreateLanguageInput!): Language
+  createLanguageDocuments(condition: ModelLanguageDocumentsConditionInput, input: CreateLanguageDocumentsInput!): LanguageDocuments
+  createTag(condition: ModelTagConditionInput, input: CreateTagInput!): Tag
+  createTagDocuments(condition: ModelTagDocumentsConditionInput, input: CreateTagDocumentsInput!): TagDocuments
+  deleteCollection(condition: ModelCollectionConditionInput, input: DeleteCollectionInput!): Collection
+  deleteCollectionDocuments(condition: ModelCollectionDocumentsConditionInput, input: DeleteCollectionDocumentsInput!): CollectionDocuments
+  deleteContributor(condition: ModelContributorConditionInput, input: DeleteContributorInput!): Contributor
+  deleteContributorDocuments(condition: ModelContributorDocumentsConditionInput, input: DeleteContributorDocumentsInput!): ContributorDocuments
+  deleteDocument(condition: ModelDocumentConditionInput, input: DeleteDocumentInput!): Document
+  deleteEdition(condition: ModelEditionConditionInput, input: DeleteEditionInput!): Edition
+  deleteEditionDocuments(condition: ModelEditionDocumentsConditionInput, input: DeleteEditionDocumentsInput!): EditionDocuments
+  deleteLanguage(condition: ModelLanguageConditionInput, input: DeleteLanguageInput!): Language
+  deleteLanguageDocuments(condition: ModelLanguageDocumentsConditionInput, input: DeleteLanguageDocumentsInput!): LanguageDocuments
+  deleteTag(condition: ModelTagConditionInput, input: DeleteTagInput!): Tag
+  deleteTagDocuments(condition: ModelTagDocumentsConditionInput, input: DeleteTagDocumentsInput!): TagDocuments
+  updateCollection(condition: ModelCollectionConditionInput, input: UpdateCollectionInput!): Collection
+  updateCollectionDocuments(condition: ModelCollectionDocumentsConditionInput, input: UpdateCollectionDocumentsInput!): CollectionDocuments
+  updateContributor(condition: ModelContributorConditionInput, input: UpdateContributorInput!): Contributor
+  updateContributorDocuments(condition: ModelContributorDocumentsConditionInput, input: UpdateContributorDocumentsInput!): ContributorDocuments
+  updateDocument(condition: ModelDocumentConditionInput, input: UpdateDocumentInput!): Document
+  updateEdition(condition: ModelEditionConditionInput, input: UpdateEditionInput!): Edition
+  updateEditionDocuments(condition: ModelEditionDocumentsConditionInput, input: UpdateEditionDocumentsInput!): EditionDocuments
+  updateLanguage(condition: ModelLanguageConditionInput, input: UpdateLanguageInput!): Language
+  updateLanguageDocuments(condition: ModelLanguageDocumentsConditionInput, input: UpdateLanguageDocumentsInput!): LanguageDocuments
+  updateTag(condition: ModelTagConditionInput, input: UpdateTagInput!): Tag
+  updateTagDocuments(condition: ModelTagDocumentsConditionInput, input: UpdateTagDocumentsInput!): TagDocuments
+}
+
+type Query @aws_api_key @aws_cognito_user_pools {
+  collectionDocumentsByCollectionId(collectionId: ID!, filter: ModelCollectionDocumentsFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelCollectionDocumentsConnection
+  collectionDocumentsByDocumentIdAndDocumentfilename(documentId: ID!, documentfilename: ModelStringKeyConditionInput, filter: ModelCollectionDocumentsFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelCollectionDocumentsConnection
+  contributorDocumentsByContributorId(contributorId: ID!, filter: ModelContributorDocumentsFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelContributorDocumentsConnection
+  contributorDocumentsByDocumentIdAndDocumentfilename(documentId: ID!, documentfilename: ModelStringKeyConditionInput, filter: ModelContributorDocumentsFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelContributorDocumentsConnection
+  editionDocumentsByDocumentIdAndDocumentfilename(documentId: ID!, documentfilename: ModelStringKeyConditionInput, filter: ModelEditionDocumentsFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelEditionDocumentsConnection
+  editionDocumentsByEditionId(editionId: ID!, filter: ModelEditionDocumentsFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelEditionDocumentsConnection
+  getCollection(id: ID!): Collection @aws_api_key @aws_cognito_user_pools
+  getCollectionDocuments(id: ID!): CollectionDocuments
+  getContributor(id: ID!): Contributor @aws_api_key @aws_cognito_user_pools
+  getContributorDocuments(id: ID!): ContributorDocuments
+  getDocument(filename: String!, id: ID!): Document @aws_api_key @aws_cognito_user_pools
+  getEdition(id: ID!): Edition @aws_api_key @aws_cognito_user_pools
+  getEditionDocuments(id: ID!): EditionDocuments
+  getLanguage(id: ID!): Language @aws_api_key @aws_cognito_user_pools
+  getLanguageDocuments(id: ID!): LanguageDocuments
+  getTag(id: ID!): Tag @aws_api_key @aws_cognito_user_pools
+  getTagDocuments(id: ID!): TagDocuments
+  languageDocumentsByDocumentIdAndDocumentfilename(documentId: ID!, documentfilename: ModelStringKeyConditionInput, filter: ModelLanguageDocumentsFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelLanguageDocumentsConnection
+  languageDocumentsByLanguageId(filter: ModelLanguageDocumentsFilterInput, languageId: ID!, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelLanguageDocumentsConnection
+  listCollectionDocuments(filter: ModelCollectionDocumentsFilterInput, limit: Int, nextToken: String): ModelCollectionDocumentsConnection
+  listCollections(filter: ModelCollectionFilterInput, limit: Int, nextToken: String): ModelCollectionConnection @aws_api_key @aws_cognito_user_pools
+  listContributorDocuments(filter: ModelContributorDocumentsFilterInput, limit: Int, nextToken: String): ModelContributorDocumentsConnection
+  listContributors(filter: ModelContributorFilterInput, limit: Int, nextToken: String): ModelContributorConnection @aws_api_key @aws_cognito_user_pools
+  listDocuments(filename: ModelStringKeyConditionInput, filter: ModelDocumentFilterInput, id: ID, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelDocumentConnection @aws_api_key @aws_cognito_user_pools
+  listEditionDocuments(filter: ModelEditionDocumentsFilterInput, limit: Int, nextToken: String): ModelEditionDocumentsConnection
+  listEditions(filter: ModelEditionFilterInput, limit: Int, nextToken: String): ModelEditionConnection @aws_api_key @aws_cognito_user_pools
+  listLanguageDocuments(filter: ModelLanguageDocumentsFilterInput, limit: Int, nextToken: String): ModelLanguageDocumentsConnection
+  listLanguages(filter: ModelLanguageFilterInput, limit: Int, nextToken: String): ModelLanguageConnection @aws_api_key @aws_cognito_user_pools
+  listTagDocuments(filter: ModelTagDocumentsFilterInput, limit: Int, nextToken: String): ModelTagDocumentsConnection
+  listTags(filter: ModelTagFilterInput, limit: Int, nextToken: String): ModelTagConnection @aws_api_key @aws_cognito_user_pools
+  tagDocumentsByDocumentIdAndDocumentfilename(documentId: ID!, documentfilename: ModelStringKeyConditionInput, filter: ModelTagDocumentsFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelTagDocumentsConnection
+  tagDocumentsByTagId(filter: ModelTagDocumentsFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection, tagId: ID!): ModelTagDocumentsConnection
+}
+
+type Subscription @aws_api_key @aws_cognito_user_pools {
+  onCreateCollection(filter: ModelSubscriptionCollectionFilterInput): Collection @aws_api_key @aws_cognito_user_pools @aws_subscribe(mutations : ["createCollection"])
+  onCreateCollectionDocuments(filter: ModelSubscriptionCollectionDocumentsFilterInput): CollectionDocuments @aws_subscribe(mutations : ["createCollectionDocuments"])
+  onCreateContributor(filter: ModelSubscriptionContributorFilterInput): Contributor @aws_api_key @aws_cognito_user_pools @aws_subscribe(mutations : ["createContributor"])
+  onCreateContributorDocuments(filter: ModelSubscriptionContributorDocumentsFilterInput): ContributorDocuments @aws_subscribe(mutations : ["createContributorDocuments"])
+  onCreateDocument(filter: ModelSubscriptionDocumentFilterInput): Document @aws_api_key @aws_cognito_user_pools @aws_subscribe(mutations : ["createDocument"])
+  onCreateEdition(filter: ModelSubscriptionEditionFilterInput): Edition @aws_api_key @aws_cognito_user_pools @aws_subscribe(mutations : ["createEdition"])
+  onCreateEditionDocuments(filter: ModelSubscriptionEditionDocumentsFilterInput): EditionDocuments @aws_subscribe(mutations : ["createEditionDocuments"])
+  onCreateLanguage(filter: ModelSubscriptionLanguageFilterInput): Language @aws_api_key @aws_cognito_user_pools @aws_subscribe(mutations : ["createLanguage"])
+  onCreateLanguageDocuments(filter: ModelSubscriptionLanguageDocumentsFilterInput): LanguageDocuments @aws_subscribe(mutations : ["createLanguageDocuments"])
+  onCreateTag(filter: ModelSubscriptionTagFilterInput): Tag @aws_api_key @aws_cognito_user_pools @aws_subscribe(mutations : ["createTag"])
+  onCreateTagDocuments(filter: ModelSubscriptionTagDocumentsFilterInput): TagDocuments @aws_subscribe(mutations : ["createTagDocuments"])
+  onDeleteCollection(filter: ModelSubscriptionCollectionFilterInput): Collection @aws_api_key @aws_cognito_user_pools @aws_subscribe(mutations : ["deleteCollection"])
+  onDeleteCollectionDocuments(filter: ModelSubscriptionCollectionDocumentsFilterInput): CollectionDocuments @aws_subscribe(mutations : ["deleteCollectionDocuments"])
+  onDeleteContributor(filter: ModelSubscriptionContributorFilterInput): Contributor @aws_api_key @aws_cognito_user_pools @aws_subscribe(mutations : ["deleteContributor"])
+  onDeleteContributorDocuments(filter: ModelSubscriptionContributorDocumentsFilterInput): ContributorDocuments @aws_subscribe(mutations : ["deleteContributorDocuments"])
+  onDeleteDocument(filter: ModelSubscriptionDocumentFilterInput): Document @aws_api_key @aws_cognito_user_pools @aws_subscribe(mutations : ["deleteDocument"])
+  onDeleteEdition(filter: ModelSubscriptionEditionFilterInput): Edition @aws_api_key @aws_cognito_user_pools @aws_subscribe(mutations : ["deleteEdition"])
+  onDeleteEditionDocuments(filter: ModelSubscriptionEditionDocumentsFilterInput): EditionDocuments @aws_subscribe(mutations : ["deleteEditionDocuments"])
+  onDeleteLanguage(filter: ModelSubscriptionLanguageFilterInput): Language @aws_api_key @aws_cognito_user_pools @aws_subscribe(mutations : ["deleteLanguage"])
+  onDeleteLanguageDocuments(filter: ModelSubscriptionLanguageDocumentsFilterInput): LanguageDocuments @aws_subscribe(mutations : ["deleteLanguageDocuments"])
+  onDeleteTag(filter: ModelSubscriptionTagFilterInput): Tag @aws_api_key @aws_cognito_user_pools @aws_subscribe(mutations : ["deleteTag"])
+  onDeleteTagDocuments(filter: ModelSubscriptionTagDocumentsFilterInput): TagDocuments @aws_subscribe(mutations : ["deleteTagDocuments"])
+  onUpdateCollection(filter: ModelSubscriptionCollectionFilterInput): Collection @aws_api_key @aws_cognito_user_pools @aws_subscribe(mutations : ["updateCollection"])
+  onUpdateCollectionDocuments(filter: ModelSubscriptionCollectionDocumentsFilterInput): CollectionDocuments @aws_subscribe(mutations : ["updateCollectionDocuments"])
+  onUpdateContributor(filter: ModelSubscriptionContributorFilterInput): Contributor @aws_api_key @aws_cognito_user_pools @aws_subscribe(mutations : ["updateContributor"])
+  onUpdateContributorDocuments(filter: ModelSubscriptionContributorDocumentsFilterInput): ContributorDocuments @aws_subscribe(mutations : ["updateContributorDocuments"])
+  onUpdateDocument(filter: ModelSubscriptionDocumentFilterInput): Document @aws_api_key @aws_cognito_user_pools @aws_subscribe(mutations : ["updateDocument"])
+  onUpdateEdition(filter: ModelSubscriptionEditionFilterInput): Edition @aws_api_key @aws_cognito_user_pools @aws_subscribe(mutations : ["updateEdition"])
+  onUpdateEditionDocuments(filter: ModelSubscriptionEditionDocumentsFilterInput): EditionDocuments @aws_subscribe(mutations : ["updateEditionDocuments"])
+  onUpdateLanguage(filter: ModelSubscriptionLanguageFilterInput): Language @aws_api_key @aws_cognito_user_pools @aws_subscribe(mutations : ["updateLanguage"])
+  onUpdateLanguageDocuments(filter: ModelSubscriptionLanguageDocumentsFilterInput): LanguageDocuments @aws_subscribe(mutations : ["updateLanguageDocuments"])
+  onUpdateTag(filter: ModelSubscriptionTagFilterInput): Tag @aws_api_key @aws_cognito_user_pools @aws_subscribe(mutations : ["updateTag"])
+  onUpdateTagDocuments(filter: ModelSubscriptionTagDocumentsFilterInput): TagDocuments @aws_subscribe(mutations : ["updateTagDocuments"])
+}
+
+type Tag @model @aws_api_key @aws_cognito_user_pools {
+  documents(filter: ModelTagDocumentsFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelTagDocumentsConnection
+  language: String
+}
+
+type TagDocuments @model @aws_api_key @aws_cognito_user_pools {
+  document: Document!
+  documentId: ID!
+  documentfilename: String!
+  tag: Tag!
+  tagId: ID!
+}
+
+enum ModelAttributeTypes {
+  _null
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+input CreateCollectionDocumentsInput {
+  collectionId: ID!
+  documentId: ID!
+  documentfilename: String!
+  id: ID
+}
+
+input CreateCollectionInput {
+  id: ID
+  name: String
+}
+
+input CreateContributorDocumentsInput {
+  contributorId: ID!
+  documentId: ID!
+  documentfilename: String!
+  id: ID
+}
+
+input CreateContributorInput {
+  firstNames: String
+  id: ID
+  isAuthor: Boolean
+  isCompiler: Boolean
+  isEditor: Boolean
+  isIllustrator: Boolean
+  isOther: Boolean
+  isTranslator: Boolean
+  otherDescription: String
+  publicationFirstNames: String
+  publicationSurnames: String
+  surnames: String
+}
+
+input CreateDocumentInput {
+  audioVersion: String
+  blo2018Id: Int
+  collections: [ID!]
+  contributors: [ID!]
+  crossReferences: String
+  dateCurrentPublication: String
+  dateOriginalPublication: String
+  description: String
+  editions: [ID!]
+  fileSize: Int
+  filename: String!
+  id: ID
+  languages: [ID!]
+  locales: String
+  notes: String
+  pageRange: String
+  pageTotal: Int
+  permissionType: String
+  phelpsInfo: String
+  subtitle: String
+  tags: [ID!]
+  title: String
+  views: Int
+}
+
+input CreateEditionDocumentsInput {
+  documentId: ID!
+  documentfilename: String!
+  editionId: ID!
+  id: ID
+}
+
+input CreateEditionInput {
+  city: String
+  date: String
+  id: ID
+  isCurrentDocument: Boolean
+  isbn: String
+  originalTitle: String
+  pageRange: String
+  publication: String
+  publisher: String
+  volume: String
+}
+
+input CreateLanguageDocumentsInput {
+  documentId: ID!
+  documentfilename: String!
+  id: ID
+  languageId: ID!
+}
+
+input CreateLanguageInput {
+  id: ID
+  isCurrentDocument: Boolean
+  language: String
+}
+
+input CreateTagDocumentsInput {
+  documentId: ID!
+  documentfilename: String!
+  id: ID
+  tagId: ID!
+}
+
+input CreateTagInput {
+  id: ID
+  language: String
+}
+
+input DeleteCollectionDocumentsInput {
+  id: ID!
+}
+
+input DeleteCollectionInput {
+  id: ID!
+}
+
+input DeleteContributorDocumentsInput {
+  id: ID!
+}
+
+input DeleteContributorInput {
+  id: ID!
+}
+
+input DeleteDocumentInput {
+  filename: String!
+  id: ID!
+}
+
+input DeleteEditionDocumentsInput {
+  id: ID!
+}
+
+input DeleteEditionInput {
+  id: ID!
+}
+
+input DeleteLanguageDocumentsInput {
+  id: ID!
+}
+
+input DeleteLanguageInput {
+  id: ID!
+}
+
+input DeleteTagDocumentsInput {
+  id: ID!
+}
+
+input DeleteTagInput {
+  id: ID!
+}
+
+input ModelBooleanInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  eq: Boolean
+  ne: Boolean
+}
+
+input ModelCollectionConditionInput {
+  and: [ModelCollectionConditionInput]
+  name: ModelStringInput
+  not: ModelCollectionConditionInput
+  or: [ModelCollectionConditionInput]
+}
+
+input ModelCollectionDocumentsConditionInput {
+  and: [ModelCollectionDocumentsConditionInput]
+  collectionId: ModelIDInput
+  documentId: ModelIDInput
+  documentfilename: ModelStringInput
+  not: ModelCollectionDocumentsConditionInput
+  or: [ModelCollectionDocumentsConditionInput]
+}
+
+input ModelCollectionDocumentsFilterInput {
+  and: [ModelCollectionDocumentsFilterInput]
+  collectionId: ModelIDInput
+  documentId: ModelIDInput
+  documentfilename: ModelStringInput
+  id: ModelIDInput
+  not: ModelCollectionDocumentsFilterInput
+  or: [ModelCollectionDocumentsFilterInput]
+}
+
+input ModelCollectionFilterInput {
+  and: [ModelCollectionFilterInput]
+  name: ModelStringInput
+  not: ModelCollectionFilterInput
+  or: [ModelCollectionFilterInput]
+}
+
+input ModelContributorConditionInput {
+  and: [ModelContributorConditionInput]
+  firstNames: ModelStringInput
+  isAuthor: ModelBooleanInput
+  isCompiler: ModelBooleanInput
+  isEditor: ModelBooleanInput
+  isIllustrator: ModelBooleanInput
+  isOther: ModelBooleanInput
+  isTranslator: ModelBooleanInput
+  not: ModelContributorConditionInput
+  or: [ModelContributorConditionInput]
+  otherDescription: ModelStringInput
+  publicationFirstNames: ModelStringInput
+  publicationSurnames: ModelStringInput
+  surnames: ModelStringInput
+}
+
+input ModelContributorDocumentsConditionInput {
+  and: [ModelContributorDocumentsConditionInput]
+  contributorId: ModelIDInput
+  documentId: ModelIDInput
+  documentfilename: ModelStringInput
+  not: ModelContributorDocumentsConditionInput
+  or: [ModelContributorDocumentsConditionInput]
+}
+
+input ModelContributorDocumentsFilterInput {
+  and: [ModelContributorDocumentsFilterInput]
+  contributorId: ModelIDInput
+  documentId: ModelIDInput
+  documentfilename: ModelStringInput
+  id: ModelIDInput
+  not: ModelContributorDocumentsFilterInput
+  or: [ModelContributorDocumentsFilterInput]
+}
+
+input ModelContributorFilterInput {
+  and: [ModelContributorFilterInput]
+  firstNames: ModelStringInput
+  isAuthor: ModelBooleanInput
+  isCompiler: ModelBooleanInput
+  isEditor: ModelBooleanInput
+  isIllustrator: ModelBooleanInput
+  isOther: ModelBooleanInput
+  isTranslator: ModelBooleanInput
+  not: ModelContributorFilterInput
+  or: [ModelContributorFilterInput]
+  otherDescription: ModelStringInput
+  publicationFirstNames: ModelStringInput
+  publicationSurnames: ModelStringInput
+  surnames: ModelStringInput
+}
+
+input ModelDocumentConditionInput {
+  and: [ModelDocumentConditionInput]
+  audioVersion: ModelStringInput
+  blo2018Id: ModelIntInput
+  crossReferences: ModelStringInput
+  dateCurrentPublication: ModelStringInput
+  dateOriginalPublication: ModelStringInput
+  description: ModelStringInput
+  fileSize: ModelIntInput
+  locales: ModelStringInput
+  not: ModelDocumentConditionInput
+  notes: ModelStringInput
+  or: [ModelDocumentConditionInput]
+  pageRange: ModelStringInput
+  pageTotal: ModelIntInput
+  permissionType: ModelStringInput
+  phelpsInfo: ModelStringInput
+  subtitle: ModelStringInput
+  title: ModelStringInput
+  views: ModelIntInput
+}
+
+input ModelDocumentFilterInput {
+  and: [ModelDocumentFilterInput]
+  audioVersion: ModelStringInput
+  blo2018Id: ModelIntInput
+  crossReferences: ModelStringInput
+  dateCurrentPublication: ModelStringInput
+  dateOriginalPublication: ModelStringInput
+  description: ModelStringInput
+  fileSize: ModelIntInput
+  filename: ModelStringInput
+  id: ModelIDInput
+  locales: ModelStringInput
+  not: ModelDocumentFilterInput
+  notes: ModelStringInput
+  or: [ModelDocumentFilterInput]
+  pageRange: ModelStringInput
+  pageTotal: ModelIntInput
+  permissionType: ModelStringInput
+  phelpsInfo: ModelStringInput
+  subtitle: ModelStringInput
+  title: ModelStringInput
+  views: ModelIntInput
+}
+
+input ModelEditionConditionInput {
+  and: [ModelEditionConditionInput]
+  city: ModelStringInput
+  date: ModelStringInput
+  isCurrentDocument: ModelBooleanInput
+  isbn: ModelStringInput
+  not: ModelEditionConditionInput
+  or: [ModelEditionConditionInput]
+  originalTitle: ModelStringInput
+  pageRange: ModelStringInput
+  publication: ModelStringInput
+  publisher: ModelStringInput
+  volume: ModelStringInput
+}
+
+input ModelEditionDocumentsConditionInput {
+  and: [ModelEditionDocumentsConditionInput]
+  documentId: ModelIDInput
+  documentfilename: ModelStringInput
+  editionId: ModelIDInput
+  not: ModelEditionDocumentsConditionInput
+  or: [ModelEditionDocumentsConditionInput]
+}
+
+input ModelEditionDocumentsFilterInput {
+  and: [ModelEditionDocumentsFilterInput]
+  documentId: ModelIDInput
+  documentfilename: ModelStringInput
+  editionId: ModelIDInput
+  id: ModelIDInput
+  not: ModelEditionDocumentsFilterInput
+  or: [ModelEditionDocumentsFilterInput]
+}
+
+input ModelEditionFilterInput {
+  and: [ModelEditionFilterInput]
+  city: ModelStringInput
+  date: ModelStringInput
+  isCurrentDocument: ModelBooleanInput
+  isbn: ModelStringInput
+  not: ModelEditionFilterInput
+  or: [ModelEditionFilterInput]
+  originalTitle: ModelStringInput
+  pageRange: ModelStringInput
+  publication: ModelStringInput
+  publisher: ModelStringInput
+  volume: ModelStringInput
+}
+
+input ModelFloatInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  between: [Float]
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+}
+
+input ModelIDInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelLanguageConditionInput {
+  and: [ModelLanguageConditionInput]
+  isCurrentDocument: ModelBooleanInput
+  language: ModelStringInput
+  not: ModelLanguageConditionInput
+  or: [ModelLanguageConditionInput]
+}
+
+input ModelLanguageDocumentsConditionInput {
+  and: [ModelLanguageDocumentsConditionInput]
+  documentId: ModelIDInput
+  documentfilename: ModelStringInput
+  languageId: ModelIDInput
+  not: ModelLanguageDocumentsConditionInput
+  or: [ModelLanguageDocumentsConditionInput]
+}
+
+input ModelLanguageDocumentsFilterInput {
+  and: [ModelLanguageDocumentsFilterInput]
+  documentId: ModelIDInput
+  documentfilename: ModelStringInput
+  id: ModelIDInput
+  languageId: ModelIDInput
+  not: ModelLanguageDocumentsFilterInput
+  or: [ModelLanguageDocumentsFilterInput]
+}
+
+input ModelLanguageFilterInput {
+  and: [ModelLanguageFilterInput]
+  isCurrentDocument: ModelBooleanInput
+  language: ModelStringInput
+  not: ModelLanguageFilterInput
+  or: [ModelLanguageFilterInput]
+}
+
+input ModelSizeInput {
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelStringInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+  size: ModelSizeInput
+}
+
+input ModelStringKeyConditionInput {
+  beginsWith: String
+  between: [String]
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+}
+
+input ModelSubscriptionBooleanInput {
+  eq: Boolean
+  ne: Boolean
+}
+
+input ModelSubscriptionCollectionDocumentsFilterInput {
+  and: [ModelSubscriptionCollectionDocumentsFilterInput]
+  collectionId: ModelSubscriptionIDInput
+  documentId: ModelSubscriptionIDInput
+  documentfilename: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  or: [ModelSubscriptionCollectionDocumentsFilterInput]
+}
+
+input ModelSubscriptionCollectionFilterInput {
+  and: [ModelSubscriptionCollectionFilterInput]
+  name: ModelSubscriptionStringInput
+  or: [ModelSubscriptionCollectionFilterInput]
+}
+
+input ModelSubscriptionContributorDocumentsFilterInput {
+  and: [ModelSubscriptionContributorDocumentsFilterInput]
+  contributorId: ModelSubscriptionIDInput
+  documentId: ModelSubscriptionIDInput
+  documentfilename: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  or: [ModelSubscriptionContributorDocumentsFilterInput]
+}
+
+input ModelSubscriptionContributorFilterInput {
+  and: [ModelSubscriptionContributorFilterInput]
+  firstNames: ModelSubscriptionStringInput
+  isAuthor: ModelSubscriptionBooleanInput
+  isCompiler: ModelSubscriptionBooleanInput
+  isEditor: ModelSubscriptionBooleanInput
+  isIllustrator: ModelSubscriptionBooleanInput
+  isOther: ModelSubscriptionBooleanInput
+  isTranslator: ModelSubscriptionBooleanInput
+  or: [ModelSubscriptionContributorFilterInput]
+  otherDescription: ModelSubscriptionStringInput
+  publicationFirstNames: ModelSubscriptionStringInput
+  publicationSurnames: ModelSubscriptionStringInput
+  surnames: ModelSubscriptionStringInput
+}
+
+input ModelSubscriptionDocumentFilterInput {
+  and: [ModelSubscriptionDocumentFilterInput]
+  audioVersion: ModelSubscriptionStringInput
+  blo2018Id: ModelSubscriptionIntInput
+  crossReferences: ModelSubscriptionStringInput
+  dateCurrentPublication: ModelSubscriptionStringInput
+  dateOriginalPublication: ModelSubscriptionStringInput
+  description: ModelSubscriptionStringInput
+  fileSize: ModelSubscriptionIntInput
+  filename: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  locales: ModelSubscriptionStringInput
+  notes: ModelSubscriptionStringInput
+  or: [ModelSubscriptionDocumentFilterInput]
+  pageRange: ModelSubscriptionStringInput
+  pageTotal: ModelSubscriptionIntInput
+  permissionType: ModelSubscriptionStringInput
+  phelpsInfo: ModelSubscriptionStringInput
+  subtitle: ModelSubscriptionStringInput
+  title: ModelSubscriptionStringInput
+  views: ModelSubscriptionIntInput
+}
+
+input ModelSubscriptionEditionDocumentsFilterInput {
+  and: [ModelSubscriptionEditionDocumentsFilterInput]
+  documentId: ModelSubscriptionIDInput
+  documentfilename: ModelSubscriptionStringInput
+  editionId: ModelSubscriptionIDInput
+  id: ModelSubscriptionIDInput
+  or: [ModelSubscriptionEditionDocumentsFilterInput]
+}
+
+input ModelSubscriptionEditionFilterInput {
+  and: [ModelSubscriptionEditionFilterInput]
+  city: ModelSubscriptionStringInput
+  date: ModelSubscriptionStringInput
+  isCurrentDocument: ModelSubscriptionBooleanInput
+  isbn: ModelSubscriptionStringInput
+  or: [ModelSubscriptionEditionFilterInput]
+  originalTitle: ModelSubscriptionStringInput
+  pageRange: ModelSubscriptionStringInput
+  publication: ModelSubscriptionStringInput
+  publisher: ModelSubscriptionStringInput
+  volume: ModelSubscriptionStringInput
+}
+
+input ModelSubscriptionFloatInput {
+  between: [Float]
+  eq: Float
+  ge: Float
+  gt: Float
+  in: [Float]
+  le: Float
+  lt: Float
+  ne: Float
+  notIn: [Float]
+}
+
+input ModelSubscriptionIDInput {
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  in: [ID]
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+  notIn: [ID]
+}
+
+input ModelSubscriptionIntInput {
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  in: [Int]
+  le: Int
+  lt: Int
+  ne: Int
+  notIn: [Int]
+}
+
+input ModelSubscriptionLanguageDocumentsFilterInput {
+  and: [ModelSubscriptionLanguageDocumentsFilterInput]
+  documentId: ModelSubscriptionIDInput
+  documentfilename: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  languageId: ModelSubscriptionIDInput
+  or: [ModelSubscriptionLanguageDocumentsFilterInput]
+}
+
+input ModelSubscriptionLanguageFilterInput {
+  and: [ModelSubscriptionLanguageFilterInput]
+  isCurrentDocument: ModelSubscriptionBooleanInput
+  language: ModelSubscriptionStringInput
+  or: [ModelSubscriptionLanguageFilterInput]
+}
+
+input ModelSubscriptionStringInput {
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  in: [String]
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+  notIn: [String]
+}
+
+input ModelSubscriptionTagDocumentsFilterInput {
+  and: [ModelSubscriptionTagDocumentsFilterInput]
+  documentId: ModelSubscriptionIDInput
+  documentfilename: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  or: [ModelSubscriptionTagDocumentsFilterInput]
+  tagId: ModelSubscriptionIDInput
+}
+
+input ModelSubscriptionTagFilterInput {
+  and: [ModelSubscriptionTagFilterInput]
+  language: ModelSubscriptionStringInput
+  or: [ModelSubscriptionTagFilterInput]
+}
+
+input ModelTagConditionInput {
+  and: [ModelTagConditionInput]
+  language: ModelStringInput
+  not: ModelTagConditionInput
+  or: [ModelTagConditionInput]
+}
+
+input ModelTagDocumentsConditionInput {
+  and: [ModelTagDocumentsConditionInput]
+  documentId: ModelIDInput
+  documentfilename: ModelStringInput
+  not: ModelTagDocumentsConditionInput
+  or: [ModelTagDocumentsConditionInput]
+  tagId: ModelIDInput
+}
+
+input ModelTagDocumentsFilterInput {
+  and: [ModelTagDocumentsFilterInput]
+  documentId: ModelIDInput
+  documentfilename: ModelStringInput
+  id: ModelIDInput
+  not: ModelTagDocumentsFilterInput
+  or: [ModelTagDocumentsFilterInput]
+  tagId: ModelIDInput
+}
+
+input ModelTagFilterInput {
+  and: [ModelTagFilterInput]
+  language: ModelStringInput
+  not: ModelTagFilterInput
+  or: [ModelTagFilterInput]
+}
+
+input UpdateCollectionDocumentsInput {
+  collectionId: ID
+  documentId: ID
+  documentfilename: String
+  id: ID!
+}
+
+input UpdateCollectionInput {
+  id: ID!
+  name: String
+}
+
+input UpdateContributorDocumentsInput {
+  contributorId: ID
+  documentId: ID
+  documentfilename: String
+  id: ID!
+}
+
+input UpdateContributorInput {
+  firstNames: String
+  id: ID!
+  isAuthor: Boolean
+  isCompiler: Boolean
+  isEditor: Boolean
+  isIllustrator: Boolean
+  isOther: Boolean
+  isTranslator: Boolean
+  otherDescription: String
+  publicationFirstNames: String
+  publicationSurnames: String
+  surnames: String
+}
+
+input UpdateDocumentInput {
+  audioVersion: String
+  blo2018Id: Int
+  crossReferences: String
+  dateCurrentPublication: String
+  dateOriginalPublication: String
+  description: String
+  fileSize: Int
+  filename: String!
+  id: ID!
+  locales: String
+  notes: String
+  pageRange: String
+  pageTotal: Int
+  permissionType: String
+  phelpsInfo: String
+  subtitle: String
+  title: String
+  views: Int
+}
+
+input UpdateEditionDocumentsInput {
+  documentId: ID
+  documentfilename: String
+  editionId: ID
+  id: ID!
+}
+
+input UpdateEditionInput {
+  city: String
+  date: String
+  id: ID!
+  isCurrentDocument: Boolean
+  isbn: String
+  originalTitle: String
+  pageRange: String
+  publication: String
+  publisher: String
+  volume: String
+}
+
+input UpdateLanguageDocumentsInput {
+  documentId: ID
+  documentfilename: String
+  id: ID!
+  languageId: ID
+}
+
+input UpdateLanguageInput {
+  id: ID!
+  isCurrentDocument: Boolean
+  language: String
+}
+
+input UpdateTagDocumentsInput {
+  documentId: ID
+  documentfilename: String
+  id: ID!
+  tagId: ID
+}
+
+input UpdateTagInput {
+  id: ID!
+  language: String
+}
