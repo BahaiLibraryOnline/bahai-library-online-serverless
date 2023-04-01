@@ -1,0 +1,13 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "lambda:InvokeFunction",
+      "Resource": [
+        "arn:aws:lambda:eu-north-1:447306866448:function:cloneHtmlToS3"
+      ]
+    }
+  ]
+}
+

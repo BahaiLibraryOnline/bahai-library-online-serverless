@@ -38,7 +38,7 @@ Phase 1 of work has involved the following:
    - Validate architectural design concepts and AWS service orchestration choices in consultation with 4 AWS experts and solution architects over multiple meetings
    - Design and plan graceful failure and redundancy strategies
    - Design and plan a serverless API
-3. Foundational data layer design (see [API docs](/documentation/api))
+3. Foundational data layer design (see [API docs](./documentation/data_layer/api_design/))
 
 ![api design](documentation/data_layer/api_design/Data%20structure.png)
 
@@ -57,18 +57,25 @@ Infrastructure setup
    - Create test implementations (S3, Cloudfront, API Gateway, Amplify, Lambda, SAM, ECR) to explore and rule out architectural strategies
    - Set up final S3 and Cloudfront static website
    - Set up public Github repository
+   - Created a [docker-compose specification](docker-compose.yml) to run the legacy BLO mysql database locally
+   - Provision an [Amplify backend](amplify/) including DynamoDB database and graphQL API
 
-### Architectural implementation work to date
-Phase 1 has completed the following implementation, additionally to from the architectural and technical planning and infrastructure set-up: 
+### Operational implementation work to date
+The following implementation has been completed, additionally to from the architectural and technical planning and infrastructure set-up: 
 1. Static site migration
    - Decouple the view from the data layer by scraping the webpages currently half stored as files and half as html and css in database entries.
    - Mirror & scrape >100,000 urls via httrack over several weeks while 1-3 proceeds iteratively
-   - Upload the above data to an S3 bucket via the PUT API.
+   - Upload the above data to an S3 bucket via the PUT API and expose it publicly as [a transitional but functional BLO website clone](https://bahai-library-online.s3.eu-north-1.amazonaws.com/index.html).
    - Expose new static site via CloudFront (https://bahai-library-online.s3.eu-north-1.amazonaws.com/index.html)
-2. [OpenApi specification](/blo_openapi.json)
-3. Preliminary [Serverless Application Model template](aws-sam-config.yaml) for provisioning APIGateway with the OpenApi endpoints each tied to its own AWS Lambda serverless function. Considering Serverless Framework as an alternative that makes possible carbon aware computing patterns in future. 
+2. Legacy [mysql database migration, redesign and normalisation](documentation/data_layer/databases/mysql/)
+3. Conversion and [export of normalised MYSQL database data to DynamoDB document store](documentation/data_layer/databases/mysql/BLO2023_normalised/exportMysqlToDynamoDB.js).
+3. Draft [OpenApi specification](documentation/data_layer/api_design/blo_openapi.json) as an option
+3. Preliminary Serverless Application Model template for provisioning APIGateway. Considering Serverless Framework as an alternative that makes possible carbon aware computing patterns in future.
+4. [GraphQL specification](documentation/data_layer/api_design/blo2023_amplify_schema.graphql) for use with AWS Amplify with a [DynamoDB back end](documentation/data_layer/databases/dynamodb/)
+5. Prototype [React upload form for a new BLO metadata app](blo-app) powered by GraphQL API and DynamoDB backend
+6. Coded and provisioned transitional [serverless Lambda function](serverless-functions) to be able to use the legacy BLO edit functionality to add new materials and have the rendered page added to the S3 static clone until the new app is fully functional
 
 ### Documentation work to date
 1. Readme
 2. Preliminary data structure and API design and mapping ([API docs](/documentation/api))
-3. Architectural Decision Records (see [architecture docs](/documentation/architecture)
+3. Architectural Decision Records for Serverless choice and associated Cost Control (see [architecture docs](/documentation/architecture)
