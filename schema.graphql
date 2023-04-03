@@ -1,0 +1,261 @@
+type Document @model {
+    id: ID! @primaryKey(sortKeyFields:["filename"]) @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    audioVersion: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    blo2018Id: Int  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+
+    crossReferences: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    dateOriginalPublication: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    dateCurrentPublication: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    description: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    
+    filename: String!  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    fileSize: Int  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    
+    notes: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    pageRange: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    pageTotal: Int  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    permissionType: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    phelpsInfo: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    subtitle: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+
+    title: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    views: Int  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+}
+
+type Mutation {
+    createDocument(input: CreateDocumentInput!): Document
+}
+
+input CreateDocumentInput {
+    id: ID!
+    audioVersion: String
+    blo2018Id: Int
+    crossReferences: String
+    dateOriginalPublication: String
+    dateCurrentPublication: String
+    description: String
+    filename: String!
+    fileSize: Int
+    notes: String
+    pageRange: String
+    pageTotal: Int
+    permissionType: String
+    phelpsInfo: String
+    subtitle: String
+    title: String
+    views: Int
+}
+
+type Collection @model {
+    name: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+}
+
+type DocumentCollection {
+    id: ID!
+    document: Document!
+    collection: Collection!
+}
+
+
+type Contributor @model {
+    firstNames: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    surnames: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    publicationFirstNames: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    publicationSurnames: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    isAuthor: Boolean  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    isEditor: Boolean  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    isTranslator: Boolean  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    isCompiler: Boolean  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    isIllustrator: Boolean  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    isOther: Boolean  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    otherDescription: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    documents: [Document] @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+}
+
+type Edition @model {
+    city: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    date: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    isbn: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    isCurrentDocument: Boolean  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    originalTitle: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    pageRange: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    publication: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    publisher: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    volume: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+}
+
+type Language @model {
+    isCurrentDocument: Boolean  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    language: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+}
+
+type Tag @model {
+    language: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+}
+type Locale @model {
+    language: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+}
+
+type Summary @model {
+    filename: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    collectionName: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    contributorName: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    dateCurrentPublication: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    language: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    title: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    tag: String  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+    views: Int  @auth(rules: [
+        { allow: private, operations: [create, read, update, delete] },
+        { allow: public, operations: [read] }
+    ])
+}

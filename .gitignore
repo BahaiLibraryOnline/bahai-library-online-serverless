@@ -37,13 +37,13 @@ BLO2023_normalised_migration_2023_03_15.sql
 BLO2018_legacy_migration_2023_03_15.sql
 
 #amplify-do-not-edit-begin
-amplify/\#current-cloud-backend
-amplify/.config/local-*
-amplify/logs
-amplify/mock-data
-amplify/mock-api-resources
-amplify/backend/amplify-meta.json
-amplify/backend/.temp
+blo-backend/amplify/\#current-cloud-backend
+blo-backend/amplify/.config/local-*
+blo-backend/amplify/logs
+blo-backend/amplify/mock-data
+blo-backend/amplify/mock-api-resources
+blo-backend/amplify/backend/amplify-meta.json
+blo-backend/amplify/backend/.temp
 build/
 dist/
 node_modules/

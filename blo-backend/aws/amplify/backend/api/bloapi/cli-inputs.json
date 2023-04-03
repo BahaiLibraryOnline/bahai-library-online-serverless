@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "bloapi",
+    "serviceName": "AppSync",
+    "defaultAuthType": {
+      "mode": "AWS_IAM"
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "API_KEY",
+        "expirationTime": 365,
+        "apiKeyExpirationDate": "2024-04-01T08:36:57.090Z",
+        "keyDescription": "blo_api_key"
+      }
+    ]
+  }
+}

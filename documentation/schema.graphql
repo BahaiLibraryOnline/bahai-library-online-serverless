@@ -38,7 +38,7 @@ type ContributorDocuments @model @aws_api_key @aws_cognito_user_pools {
 type Document @model @aws_api_key @aws_cognito_user_pools {
   audioVersion: String
   blo2018Id: Int
-  collections(filter: ModelCollectionDocumentsFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelCollectionDocumentsConnection
+  collections: []
   contributors(filter: ModelContributorDocumentsFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelContributorDocumentsConnection
   crossReferences: String
   dateCurrentPublication: String
